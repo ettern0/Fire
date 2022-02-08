@@ -91,7 +91,6 @@
 		882266F127B2658F00501312 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				92D0239A27B28E2E00099E69 /* CameraPreview.swift */,
 				882266F227B2658F00501312 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -100,6 +99,7 @@
 		92D0238F27B28DED00099E69 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				92D0239A27B28E2E00099E69 /* CameraPreview.swift */,
 				92D0239C27B28E9500099E69 /* CameraView.swift */,
 				92D0239127B28E1E00099E69 /* CameraService.swift */,
 				92D0239327B28E1E00099E69 /* CameraService+Enums.swift */,
