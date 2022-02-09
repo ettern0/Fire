@@ -20,8 +20,9 @@
 		92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239227B28E1E00099E69 /* PhotoCaptureProcessor.swift */; };
 		92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239327B28E1E00099E69 /* CameraService+Enums.swift */; };
 		92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */; };
-		92D0239B27B28E2E00099E69 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239A27B28E2E00099E69 /* CameraPreview.swift */; };
 		92D0239D27B28E9500099E69 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239C27B28E9500099E69 /* CameraView.swift */; };
+		92D023A127B3F8BF00099E69 /* Colors+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* Colors+Extensions.swift */; };
+		92D023A327B40C3600099E69 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* Enums.swift */; };
 		92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E51C5527B2694900FEE370 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +39,9 @@
 		92D0239227B28E1E00099E69 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		92D0239327B28E1E00099E69 /* CameraService+Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraService+Enums.swift"; sourceTree = "<group>"; };
 		92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraService+Extensions.swift"; sourceTree = "<group>"; };
-		92D0239A27B28E2E00099E69 /* CameraPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		92D0239C27B28E9500099E69 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		92D023A027B3F8BE00099E69 /* Colors+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Extensions.swift"; sourceTree = "<group>"; };
+		92D023A227B40C3600099E69 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		92E51C5527B2694900FEE370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,8 @@
 				882266ED27B2658C00501312 /* ContentView.swift */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				92D0238F27B28DED00099E69 /* Camera */,
+				92D023A027B3F8BE00099E69 /* Colors+Extensions.swift */,
+				92D023A227B40C3600099E69 /* Enums.swift */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
 				882266EF27B2658F00501312 /* Assets.xcassets */,
@@ -99,7 +103,6 @@
 		92D0238F27B28DED00099E69 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				92D0239A27B28E2E00099E69 /* CameraPreview.swift */,
 				92D0239C27B28E9500099E69 /* CameraView.swift */,
 				92D0239127B28E1E00099E69 /* CameraService.swift */,
 				92D0239327B28E1E00099E69 /* CameraService+Enums.swift */,
@@ -192,13 +195,14 @@
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
-				92D0239B27B28E2E00099E69 /* CameraPreview.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
 				882266EE27B2658C00501312 /* ContentView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
+				92D023A327B40C3600099E69 /* Enums.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
+				92D023A127B3F8BF00099E69 /* Colors+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GrandaLocket/Preview Content\"";
-				DEVELOPMENT_TEAM = GLQY2SH5YN;
+				DEVELOPMENT_TEAM = XJB6H4WXH3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GrandaLocket/Info.plist;
