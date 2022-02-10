@@ -1,7 +1,6 @@
 
 import SwiftUI
 import Combine
-import AVFoundation
 import Foundation
 
 final class CameraModel: ObservableObject {
@@ -14,11 +13,9 @@ final class CameraModel: ObservableObject {
     @Published var isFlashOn = false
     @Published var willCapturePhoto = false
     var alertError: AlertError!
-    var session: AVCaptureSession // удалить
 
     init() {
         let session = service.session
-        self.session = session
         self.videoProvider = .init(session: session)
         
         service.$photo.sink { [weak self] (photo) in
@@ -70,90 +67,91 @@ final class CameraModel: ObservableObject {
 
 // MARK: Camera View
 
+enum ImagePosition {
+    case top
+    case center
+    case bottom
+}
+
 struct CameraPreview: View {
     @ObservedObject var videoProvider: VideoProvider
+    private let position: ImagePosition
 
     var image: UIImage?
 
-    init(videoProvider: VideoProvider) {
+    init(videoProvider: VideoProvider, position: ImagePosition) {
         self.videoProvider = videoProvider
+        self.position = position
     }
 
     var body: some View {
-        if let image = videoProvider.image {
+        if let image = videoProvider.image.flatMap(self.croppedImage(image:)) {
             Image(uiImage: image)
                 .resizable()
-                .scaledToFill()
         } else {
             EmptyView()
         }
     }
-}
 
-final class VideoProvider: NSObject, ObservableObject {
-    @Published var image: UIImage?
-
-    private let session: AVCaptureSession
-
-    init(session: AVCaptureSession) {
-        self.session = session
-        super.init()
-        setup()
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setup() {
-        let output = AVCaptureVideoDataOutput()
-        output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoProvider"))
-        session.addOutput(output)
-    }
-}
-
-extension VideoProvider: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        let imageBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-        _ = CIImage(cvPixelBuffer: imageBuffer)
-
-        let image = imageFromSampleBuffer(sampleBuffer: sampleBuffer, videoOrientation: .portrait)!
-        DispatchQueue.main.async {
-            self.image = image
+    private func croppedImage(image: UIImage) -> UIImage? {
+        guard let image = image.croppedToDeviceScreen else { return nil }
+        switch position {
+            case .top:
+                return image.topThird
+            case .center:
+                return image.centerThird
+            case .bottom:
+                return image.bottomThird
         }
     }
-
-    private func convert(ciImage:CIImage) -> UIImage {
-        let context: CIContext = CIContext.init(options: nil)
-        let cgImage: CGImage = context.createCGImage(ciImage, from: ciImage.extent)!
-        let image: UIImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .left)
-        return image
-    }
 }
 
-func imageFromSampleBuffer(
-        sampleBuffer: CMSampleBuffer,
-        videoOrientation: AVCaptureVideoOrientation) -> UIImage? {
-        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-            let context = CIContext()
-            var ciImage = CIImage(cvPixelBuffer: imageBuffer)
-
-            // FIXME: - change to Switch
-            if videoOrientation == .landscapeLeft {
-                ciImage = ciImage.oriented(forExifOrientation: 3)
-            } else if videoOrientation == .landscapeRight {
-                ciImage = ciImage.oriented(forExifOrientation: 1)
-            } else if videoOrientation == .portrait {
-                ciImage = ciImage.oriented(forExifOrientation: 6)
-            } else if videoOrientation == .portraitUpsideDown {
-                ciImage = ciImage.oriented(forExifOrientation: 8)
-            }
-
-            if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
-                return UIImage(cgImage: cgImage)
-            }
-        }
-
-        return nil
+extension UIImage {
+    var croppedToDeviceScreen: UIImage? {
+        let screenAspectRatio = UIScreen.main.bounds.width / UIScreen.main.bounds.height
+        let width = screenAspectRatio * size.height
+        let rect = CGRect(
+            x: (size.width - width) / 2,
+            y: 0,
+            width: width,
+            height: size.height
+        )
+        guard let cgImage = cgImage,
+              let image = cgImage.cropping(to: rect)
+        else { return nil }
+        return UIImage(cgImage: image, scale: scale, orientation: imageOrientation)
     }
+
+    var topThird: UIImage? {
+        let rect = CGRect(
+            origin: .zero,
+            size: .init(width: size.width, height: (size.height - size.width) / 2)
+        )
+        guard let cgImage = cgImage,
+              let image = cgImage.cropping(to: rect)
+        else { return nil }
+        return UIImage(cgImage: image, scale: scale, orientation: imageOrientation)
+    }
+
+    var centerThird: UIImage? {
+        let rect = CGRect(
+            origin: .init(x: 0, y: (size.height - size.width) / 2),
+            size: .init(width: size.width, height: size.width)
+        )
+        guard let cgImage = cgImage,
+              let image = cgImage.cropping(to: rect)
+        else { return nil }
+        return UIImage(cgImage: image, scale: scale, orientation: imageOrientation)
+    }
+    
+    var bottomThird: UIImage? {
+        let rect = CGRect(
+            origin: .init(x: 0,  y: (size.height - size.width) / 2 + size.width),
+            size: .init(width: size.width, height: (size.height - size.width) / 2)
+        )
+        guard let cgImage = cgImage,
+              let image = cgImage.cropping(to: rect)
+        else { return nil }
+        return UIImage(cgImage: image, scale: scale, orientation: imageOrientation)
+    }
+}

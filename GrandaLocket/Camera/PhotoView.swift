@@ -13,31 +13,23 @@ struct PhotoView: View {
     @State var selectedMode: Modes = .photo
 
     var body: some View {
-        ZStack {
-            blurView(blurRadius: 10)
-            blurView()
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-                .clipped()
+        GeometryReader { proxy in
+            VStack(spacing: 0) {
+                cameraView(blurRadius: 8, position: .top)
+                    .frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
+                cameraView(position: .center)
+                    .frame(width: proxy.size.width, height: proxy.size.width)
+                ZStack {
+                    cameraView(blurRadius: 8, position: .bottom)
+                        .frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
+                    buttonAreaView
+                }
+            }
         }
-//        VStack {
-////        GeometryReader { proxy in
-//            Image("kartinka")
-//                .clipped()
-////            blurView(blurRadius: 10)
-////                .frame(width: proxy.size.width, height: 200)
-////            blurView(blurRadius: 10)
-//            Color.yellow
-//                .aspectRatio(1, contentMode: .fill)
-////                .frame(width: proxy.size.width, height: proxy.size.height - 400)
-////            blurView(blurRadius: 10)
-//             Color.green
-////                .frame(width: proxy.size.width, height: 200)
-////        }
-//        }
     }
 
-    var cameraView: some View {
-        CameraPreview(videoProvider: model.videoProvider)
+//    var cameraView: some View {
+//        CameraPreview(videoProvider: model.videoProvider)
 //            .alert(isPresented: $model.showAlertError, content: {
 //                Alert(title: Text(model.alertError.title), message: Text(model.alertError.message), dismissButton: .default(Text(model.alertError.primaryButtonTitle), action: {
 //                    model.alertError.primaryAction?()
@@ -52,12 +44,12 @@ struct PhotoView: View {
 //                    }
 //                }
 //            )
-    }
+//    }
 
-    func blurView(blurRadius: CGFloat = 0) -> some View {
-        cameraView
-            .blur(radius: blurRadius)
- //           .clipped()
+    func cameraView(blurRadius: CGFloat = 0, position: ImagePosition) -> some View {
+        CameraPreview(videoProvider: model.videoProvider, position: position)
+            .blur(radius: blurRadius, opaque: true)
+            .clipped()
     }
 
     var buttonAreaView: some View {
