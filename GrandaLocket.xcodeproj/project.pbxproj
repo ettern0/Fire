@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882266EB27B2658C00501312 /* GrandaLocketApp.swift */; };
-		882266EE27B2658C00501312 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882266ED27B2658C00501312 /* ContentView.swift */; };
 		882266F027B2658F00501312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266EF27B2658F00501312 /* Assets.xcassets */; };
 		882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266F227B2658F00501312 /* Preview Assets.xcassets */; };
+		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
+		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
 		92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238527B27A5C00099E69 /* FirebaseAuth */; };
 		92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238727B27A5C00099E69 /* FirebaseAuthCombine-Community */; };
 		92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238927B27A5C00099E69 /* FirebaseCrashlytics */; };
@@ -29,10 +30,11 @@
 /* Begin PBXFileReference section */
 		882266E827B2658C00501312 /* GrandaLocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrandaLocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		882266EB27B2658C00501312 /* GrandaLocketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandaLocketApp.swift; sourceTree = "<group>"; };
-		882266ED27B2658C00501312 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		882266EF27B2658F00501312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882266F227B2658F00501312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		92D0238B27B27D2100099E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D0239027B28E1E00099E69 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		92D0239127B28E1E00099E69 /* CameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
@@ -78,11 +80,11 @@
 		882266EA27B2658C00501312 /* GrandaLocket */ = {
 			isa = PBXGroup;
 			children = (
-				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
-				882266ED27B2658C00501312 /* ContentView.swift */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
+				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				92D0238F27B28DED00099E69 /* Camera */,
 				92D023A027B3F8BE00099E69 /* Colors+Extensions.swift */,
+				92664A5227B5084F006C860E /* VisualEffectView.swift */,
 				92D023A227B40C3600099E69 /* Enums.swift */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
@@ -103,6 +105,7 @@
 		92D0238F27B28DED00099E69 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				92664A5427B51CA6006C860E /* PhotoView.swift */,
 				92D0239C27B28E9500099E69 /* CameraView.swift */,
 				92D0239127B28E1E00099E69 /* CameraService.swift */,
 				92D0239327B28E1E00099E69 /* CameraService+Enums.swift */,
@@ -193,10 +196,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
+				92664A5527B51CA6006C860E /* PhotoView.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
-				882266EE27B2658C00501312 /* ContentView.swift in Sources */,
+				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
 				92D023A327B40C3600099E69 /* Enums.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,

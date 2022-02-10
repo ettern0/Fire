@@ -2,9 +2,10 @@
 import SwiftUI
 import Combine
 import AVFoundation
+import Foundation
 
 final class CameraModel: ObservableObject {
-
+    let videoProvider: VideoProvider
     private let service = CameraService()
     private var subscriptions = Set<AnyCancellable>()
 
@@ -13,10 +14,12 @@ final class CameraModel: ObservableObject {
     @Published var isFlashOn = false
     @Published var willCapturePhoto = false
     var alertError: AlertError!
-    var session: AVCaptureSession
+    var session: AVCaptureSession // удалить
 
     init() {
-        self.session = service.session
+        let session = service.session
+        self.session = session
+        self.videoProvider = .init(session: session)
         
         service.$photo.sink { [weak self] (photo) in
             guard let pic = photo else { return }
@@ -39,6 +42,8 @@ final class CameraModel: ObservableObject {
             self?.willCapturePhoto = val
         }
         .store(in: &self.subscriptions)
+
+        self.configure()
     }
     
     func configure() {
@@ -63,232 +68,92 @@ final class CameraModel: ObservableObject {
     }
 }
 
-struct PhotoView: View {
+// MARK: Camera View
 
-    @StateObject var model = CameraModel()
-    @State var currentZoomFactor: CGFloat = 1.0
-    @State var selectedMode: Modes = .photo
+struct CameraPreview: View {
+    @ObservedObject var videoProvider: VideoProvider
+
+    var image: UIImage?
+
+    init(videoProvider: VideoProvider) {
+        self.videoProvider = videoProvider
+    }
 
     var body: some View {
-        ZStack {
-            CameraView
-            blurView
-            buttonAreaView
+        if let image = videoProvider.image {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+        } else {
+            EmptyView()
         }
-    }
-
-    var CameraView: some View {
-        CameraPreview(session: model.session)
-            .frame(width: UIScreen.main.bounds.width,
-                   height: UIScreen.main.bounds.height, alignment: .center)
-            .onAppear {
-                model.configure()
-            }
-            .alert(isPresented: $model.showAlertError, content: {
-                Alert(title: Text(model.alertError.title), message: Text(model.alertError.message), dismissButton: .default(Text(model.alertError.primaryButtonTitle), action: {
-                    model.alertError.primaryAction?()
-                }))
-            })
-            .overlay(
-                withAnimation {
-                    Group {
-                        if model.willCapturePhoto {
-                            Color.black
-                        }
-                    }
-                }
-            )
-    }
-
-    var blurView: some View {
-        VStack {
-            VStack {
-                Rectangle()
-                    .foregroundColor(.black)
-                    .frame(width: UIScreen.main.bounds.width,
-                           height: UIScreen.main.bounds.height/5)
-                    .blur(radius: 1)
-                    .opacity(0.4)
-
-            }
-            Spacer()
-            VStack {
-                Rectangle()
-                    .foregroundColor(.black)
-                    .frame(width: UIScreen.main.bounds.width,
-                           height: UIScreen.main.bounds.height/3.5)
-                    .blur(radius: 1)
-                    .opacity(0.4)
-            }
-        }
-    }
-
-    var buttonAreaView: some View {
-        VStack {
-            Spacer()
-            transitPicker
-            HStack {
-                flashButton
-                captureButton
-                flipCameraButton
-            }
-            transitButton
-                .padding(.bottom)
-                .padding(.bottom)
-        }
-    }
-
-    var flashButton: some View {
-        Button(action: {
-            model.switchFlash()
-        }, label: {
-            ZStack {
-                Circle()
-                    .frame(width: 65, height: 65, alignment: .center)
-                    .opacity(0.20)
-                Image(systemName: model.isFlashOn ? "bolt.fill" : "bolt.slash.fill")
-                    .font(.system(size: 20, weight: .medium, design: .default))
-                    .accentColor(model.isFlashOn ? .yellow : .white)
-            }
-        })
-    }
-
-    var captureButton: some View {
-        Button(action: {
-            model.capturePhoto()
-        }, label: {
-            ZStack {
-                Circle()
-                    .foregroundColor(Color(UIColor(hexString: "6E0DFF")))
-                    .frame(width: 80, height: 90, alignment: .center)
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 65, height: 65, alignment: .center)
-                Circle()
-                    .stroke(Color.black.opacity(0.8), lineWidth: 2)
-                    .frame(width: 65, height: 65, alignment: .center)
-            }
-        }).padding()
-    }
-
-    var flipCameraButton: some View {
-        Button(action: {
-            model.flipCamera()
-        }, label: {
-            ZStack {
-                Circle()
-                    .frame(width: 65, height: 65, alignment: .center)
-                    .opacity(0.20)
-                Image(systemName: "camera.rotate.fill")
-                    .foregroundColor(.white)
-            }
-        })
-    }
-
-    var transitPicker: some View {
-
-//        ScrollView(.horizontal, showsIndicators: false) {
-//            HStack {
-//                ForEach(Modes.allCases) { item in
-//                    Text(item.rawValue)
-//                }
-//            }
-//        }
-        Picker("Modes", selection: $selectedMode) {
-            ForEach(Modes.allCases) { mode in
-                Text(mode.rawValue)
-            }
-        }
-        .pickerStyle(.segmented)
-
-
-//        Picker(selection: $selectedMode, label: Text("Modes")) {
-//            ForEach(Modes.allCases) { item in
-//                Text(item.rawValue)
-//            }
-//        }
-//        .labelsHidden()
-//        .rotationEffect(Angle(degrees: -90))
-//        .frame(maxHeight: 100)
-//        .clipped()
-
-//        ScrollView(.horizontal, showsIndicators: false) {
-//
-//            ScrollViewReader { scrollView in
-//
-//                HStack(spacing: 35) {
-//
-//                    ForEach(Modes.allCases) { item in
-//                        if item.id == currentIndex {
-//                            ZStack() {
-//                                Text(item.title)
-//                                    .bold()
-//                                    .layoutPriority(1)
-//                                VStack() {
-//                                    Rectangle().frame(height: 2)
-//                                        .padding(.top, 20)
-//                                }
-//                                .matchedGeometryEffect(id: "animation", in: ns)
-//                            }
-//                        } else {
-//                            Text(item.title)
-//                                .onTapGesture {
-//                                    withAnimation {
-//                                        currentIndex = item.id
-//                                        selectedIndex = currentIndex
-//                                        scrollView.scrollTo(item)
-//                                    }
-//                                }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-    }
-
-    var transitButton: some View {
-        Button {
-
-        } label: {
-            Image("angle_down")
-        }
-        .padding(.top, -15)
     }
 }
 
-// MARK: Camera View
-struct CameraPreview: UIViewRepresentable {
+final class VideoProvider: NSObject, ObservableObject {
+    @Published var image: UIImage?
 
-    class VideoPreviewView: UIView {
-        override class var layerClass: AnyClass {
-             AVCaptureVideoPreviewLayer.self
-        }
+    private let session: AVCaptureSession
 
-        var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-            return layer as! AVCaptureVideoPreviewLayer
-        }
+    init(session: AVCaptureSession) {
+        self.session = session
+        super.init()
+        setup()
     }
 
-    let session: AVCaptureSession
-
-    func makeUIView(context: Context) -> VideoPreviewView {
-        let view = VideoPreviewView()
-        view.backgroundColor = .black
-        view.videoPreviewLayer.cornerRadius = 0
-        view.videoPreviewLayer.session = session
-        view.videoPreviewLayer.connection?.videoOrientation = .portrait
-        view.videoPreviewLayer.videoGravity = .resizeAspectFill
-        return view
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    func updateUIView(_ uiView: VideoPreviewView, context: Context) {
-
+    private func setup() {
+        let output = AVCaptureVideoDataOutput()
+        output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoProvider"))
+        session.addOutput(output)
     }
 }
 
-// MARK: Preview
-struct ContentView_Camera: PreviewProvider {
-    static var previews: some View {
-        PhotoView().preferredColorScheme(.dark)
+extension VideoProvider: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let imageBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+        _ = CIImage(cvPixelBuffer: imageBuffer)
+
+        let image = imageFromSampleBuffer(sampleBuffer: sampleBuffer, videoOrientation: .portrait)!
+        DispatchQueue.main.async {
+            self.image = image
+        }
+    }
+
+    private func convert(ciImage:CIImage) -> UIImage {
+        let context: CIContext = CIContext.init(options: nil)
+        let cgImage: CGImage = context.createCGImage(ciImage, from: ciImage.extent)!
+        let image: UIImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .left)
+        return image
     }
 }
+
+func imageFromSampleBuffer(
+        sampleBuffer: CMSampleBuffer,
+        videoOrientation: AVCaptureVideoOrientation) -> UIImage? {
+        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+            let context = CIContext()
+            var ciImage = CIImage(cvPixelBuffer: imageBuffer)
+
+            // FIXME: - change to Switch
+            if videoOrientation == .landscapeLeft {
+                ciImage = ciImage.oriented(forExifOrientation: 3)
+            } else if videoOrientation == .landscapeRight {
+                ciImage = ciImage.oriented(forExifOrientation: 1)
+            } else if videoOrientation == .portrait {
+                ciImage = ciImage.oriented(forExifOrientation: 6)
+            } else if videoOrientation == .portraitUpsideDown {
+                ciImage = ciImage.oriented(forExifOrientation: 8)
+            }
+
+            if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
+                return UIImage(cgImage: cgImage)
+            }
+        }
+
+        return nil
+    }

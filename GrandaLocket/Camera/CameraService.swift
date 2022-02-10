@@ -107,6 +107,7 @@ public class CameraService {
     
     
     public func configure() {
+        guard !isConfigured else { return }
         /*
          Setup the capture session.
          In general, it's not safe to mutate an AVCaptureSession or any of its
