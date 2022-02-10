@@ -13,6 +13,7 @@
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
 		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
+		92664A5727B568DD006C860E /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5627B568DD006C860E /* CameraModel.swift */; };
 		92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238527B27A5C00099E69 /* FirebaseAuth */; };
 		92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238727B27A5C00099E69 /* FirebaseAuthCombine-Community */; };
 		92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238927B27A5C00099E69 /* FirebaseCrashlytics */; };
@@ -37,6 +38,7 @@
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		92664A5627B568DD006C860E /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92D0238B27B27D2100099E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D0239027B28E1E00099E69 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		92D0239127B28E1E00099E69 /* CameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92664A5727B568DD006C860E /* CameraModel.swift in Sources */,
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
 				92664A5527B51CA6006C860E /* PhotoView.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
