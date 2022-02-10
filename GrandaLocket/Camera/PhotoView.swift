@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct PhotoView: View {
     @StateObject var model = CameraModel()
     @State var currentZoomFactor: CGFloat = 1.0
     @State var selectedMode: Modes = .photo
+    @State var selected: Int = 0
 
     var body: some View {
         GeometryReader { proxy in
@@ -28,24 +30,6 @@ struct PhotoView: View {
         }
     }
 
-//    var cameraView: some View {
-//        CameraPreview(videoProvider: model.videoProvider)
-//            .alert(isPresented: $model.showAlertError, content: {
-//                Alert(title: Text(model.alertError.title), message: Text(model.alertError.message), dismissButton: .default(Text(model.alertError.primaryButtonTitle), action: {
-//                    model.alertError.primaryAction?()
-//                }))
-//            })
-//            .overlay(
-//                withAnimation {
-//                    Group {
-//                        if model.willCapturePhoto {
-//                            Color.black
-//                        }
-//                    }
-//                }
-//            )
-//    }
-
     func cameraView(blurRadius: CGFloat = 0, position: ImagePosition) -> some View {
         CameraPreview(videoProvider: model.videoProvider, position: position)
             .blur(radius: blurRadius, opaque: true)
@@ -55,7 +39,11 @@ struct PhotoView: View {
     var buttonAreaView: some View {
         VStack {
             Spacer()
-            transitPicker
+            Text("\(selected)")
+           // transitPicker()
+            HorizontalPickerTestView(selected: $selected)
+                .frame(maxHeight: 50)
+                .clipped()
             HStack {
                 flashButton
                 captureButton
@@ -114,15 +102,6 @@ struct PhotoView: View {
         })
     }
 
-    var transitPicker: some View {
-        Picker("Modes", selection: $selectedMode) {
-            ForEach(Modes.allCases) { mode in
-                Text(mode.rawValue)
-            }
-        }
-        .pickerStyle(.segmented)
-    }
-
     var transitButton: some View {
         Button {
 
@@ -130,5 +109,11 @@ struct PhotoView: View {
             Image("angle_down")
         }
         .padding(.top, -15)
+    }
+}
+
+struct PhotoView_Previews: PreviewProvider {
+  static var previews: some View {
+      PhotoView()
     }
 }

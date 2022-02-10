@@ -1,7 +1,6 @@
 
 import SwiftUI
 import Combine
-import AVFoundation
 import Foundation
 
 final class CameraModel: ObservableObject {
@@ -14,11 +13,9 @@ final class CameraModel: ObservableObject {
     @Published var isFlashOn = false
     @Published var willCapturePhoto = false
     var alertError: AlertError!
-    var session: AVCaptureSession // удалить
 
     init() {
         let session = service.session
-        self.session = session
         self.videoProvider = .init(session: session)
 
         service.$photo.sink { [weak self] (photo) in
