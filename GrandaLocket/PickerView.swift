@@ -4,14 +4,71 @@ import SwiftUI
 import AudioToolbox
 
 
+struct LocketModeControl: View {
+
+    @Binding var selectedMode: LocketMode
+
+    func calculateOffset() -> CGFloat {
+        return selectedMode == .photo ? 30 : -40
+    }
+
+    var body: some View {
+        VStack {
+            HStack(spacing: 20) {
+                Button {
+                    selectedMode = .photo
+                } label: {
+                    Text(LocketMode.photo.rawValue)
+                        .bold()
+                        .foregroundColor(selectedMode == .photo ? .white: .white.opacity(0.7))
+                }
+                Button {
+                    selectedMode = .text
+                } label: {
+                    Text(LocketMode.text.rawValue)
+                        .bold()
+                        .foregroundColor(selectedMode == .text ? .white: .white.opacity(0.7))
+                }
+            }
+            .offset(x: calculateOffset())
+            .animation(.default, value: calculateOffset())
+            Image("angle_up")
+                .renderingMode(.template)
+                .foregroundColor(selectedMode.tintColor)
+                .animation(.default, value: selectedMode)
+        }
+
+    }
+}
+
+
+struct transitPickerUI: View {
+
+    @Binding var selectedMode: LocketMode
+
+    var body: some View {
+
+        ScrollViewReader { scrollView in
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(0..<11) { index in
+                        Text(String(index))
+                            .id(index)
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct transitPicker: View {
 
     @State var offset: CGFloat = 0
 
     var body: some View {
-            CustomSlider(pickerCount: Modes.allCases.count, offset: $offset) {
+            CustomSlider(pickerCount: LocketMode.allCases.count, offset: $offset) {
                 HStack(alignment: .center, spacing: 20) {
-                    ForEach(Modes.allCases) { item in
+                    ForEach(LocketMode.allCases) { item in
 
                             Text(item.rawValue)
                                 .foregroundColor(.white)
@@ -170,7 +227,7 @@ struct HorizontalPickerTestView: View {
     let length: CGFloat = 100
 
     var body: some View {
-        HorizontalPicker(items: Modes.allCases.map{ Text($0.rawValue) },
+        HorizontalPicker(items: LocketMode.allCases.map{ Text($0.rawValue) },
                          rowHeight: length,
                          selected: $selected)
     }

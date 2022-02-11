@@ -11,7 +11,7 @@ import UIKit
 struct PhotoView: View {
     @StateObject var model = CameraModel()
     @State var currentZoomFactor: CGFloat = 1.0
-    @State var selectedMode: Modes = .photo
+    @State var selectedMode: LocketMode = .photo
     @State var selected: Int = 0
 
     var body: some View {
@@ -27,6 +27,15 @@ struct PhotoView: View {
                     buttonAreaView
                 }
             }
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        //offset = gesture.translation
+                    }
+                    .onEnded { _ in
+                        selectedMode.changeMode()
+                    }
+            )
         }
     }
 
@@ -39,11 +48,7 @@ struct PhotoView: View {
     var buttonAreaView: some View {
         VStack {
             Spacer()
-            Text("\(selected)")
-           // transitPicker()
-            HorizontalPickerTestView(selected: $selected)
-                .frame(maxHeight: 50)
-                .clipped()
+            LocketModeControl(selectedMode: $selectedMode)
             HStack {
                 flashButton
                 captureButton
@@ -62,6 +67,7 @@ struct PhotoView: View {
             ZStack {
                 Circle()
                     .frame(width: 65, height: 65, alignment: .center)
+                    .foregroundColor(.white)
                     .opacity(0.20)
                 Image(systemName: model.isFlashOn ? "bolt.fill" : "bolt.slash.fill")
                     .font(.system(size: 20, weight: .medium, design: .default))
@@ -76,8 +82,9 @@ struct PhotoView: View {
         }, label: {
             ZStack {
                 Circle()
-                    .foregroundColor(Color(UIColor(hexString: "6E0DFF")))
+                    .foregroundColor(selectedMode.tintColor)
                     .frame(width: 80, height: 90, alignment: .center)
+                    .animation(.default, value: selectedMode)
                 Circle()
                     .foregroundColor(.white)
                     .frame(width: 65, height: 65, alignment: .center)
@@ -95,6 +102,7 @@ struct PhotoView: View {
             ZStack {
                 Circle()
                     .frame(width: 65, height: 65, alignment: .center)
+                    .foregroundColor(.white)
                     .opacity(0.20)
                 Image(systemName: "camera.rotate.fill")
                     .foregroundColor(.white)
