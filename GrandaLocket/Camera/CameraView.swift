@@ -1,4 +1,9 @@
-
+//
+//  CameraView.swift
+//  GrandaLocket
+//
+//  Created by Сердюков Евгений on 10.02.2022.
+//
 
 import SwiftUI
 import Combine

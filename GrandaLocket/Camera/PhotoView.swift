@@ -10,9 +10,9 @@ import UIKit
 
 struct PhotoView: View {
     @StateObject var model = CameraModel()
-    @State var currentZoomFactor: CGFloat = 1.0
-    @State var selectedMode: LocketMode = .photo
-    @State var selected: Int = 0
+    @State private var currentZoomFactor: CGFloat = 1.0
+    @State private var selectedMode: LocketMode = .photo
+    @State private var selected: Int = 0
 
     var body: some View {
         GeometryReader { proxy in
@@ -33,7 +33,7 @@ struct PhotoView: View {
                         //offset = gesture.translation
                     }
                     .onEnded { _ in
-                        selectedMode.changeMode()
+                        selectedMode.toggle()
                     }
             )
         }
@@ -121,7 +121,7 @@ struct PhotoView: View {
 }
 
 struct PhotoView_Previews: PreviewProvider {
-  static var previews: some View {
-      PhotoView()
+    static var previews: some View {
+        PhotoView()
     }
 }

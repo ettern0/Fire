@@ -1,3 +1,9 @@
+//
+//  CameraService+Extensions.swift
+//  GrandaLocket
+//
+//  Created by Сердюков Евгений on 10.02.2022.
+//
 
 import Foundation
 import UIKit
@@ -27,7 +33,6 @@ extension AVCaptureVideoOrientation {
 
 extension AVCaptureDevice.DiscoverySession {
     var uniqueDevicePositionsCount: Int {
-        
         var uniqueDevicePositions = [AVCaptureDevice.Position]()
         
         for device in devices where !uniqueDevicePositions.contains(device.position) {

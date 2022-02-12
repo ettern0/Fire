@@ -1,3 +1,9 @@
+//
+//  LocketMode.swift
+//  GrandaLocket
+//
+//  Created by Сердюков Евгений on 10.02.2022.
+//
 
 import Foundation
 import SwiftUI
@@ -8,7 +14,7 @@ enum LocketMode: String, CaseIterable, Identifiable {
 
     var id: Self { self }
 
-    mutating func changeMode() {
+    mutating func toggle() {
         switch self {
         case .photo:
             self = .text

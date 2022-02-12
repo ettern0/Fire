@@ -49,24 +49,27 @@ extension VideoProvider: AVCaptureVideoDataOutputSampleBufferDelegate {
         let image: UIImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .left)
         return image
     }
-}
 
-func imageFromSampleBuffer(
+    private func imageFromSampleBuffer(
         sampleBuffer: CMSampleBuffer,
-        videoOrientation: AVCaptureVideoOrientation) -> UIImage? {
+        videoOrientation: AVCaptureVideoOrientation
+    ) -> UIImage? {
         if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
             let context = CIContext()
             var ciImage = CIImage(cvPixelBuffer: imageBuffer)
 
-            // FIXME: - change to Switch
-            if videoOrientation == .landscapeLeft {
-                ciImage = ciImage.oriented(forExifOrientation: 3)
-            } else if videoOrientation == .landscapeRight {
-                ciImage = ciImage.oriented(forExifOrientation: 1)
-            } else if videoOrientation == .portrait {
-                ciImage = ciImage.oriented(forExifOrientation: 6)
-            } else if videoOrientation == .portraitUpsideDown {
-                ciImage = ciImage.oriented(forExifOrientation: 8)
+            switch videoOrientation {
+                case .portrait:
+                    ciImage = ciImage.oriented(forExifOrientation: 6)
+                case .portraitUpsideDown:
+                    ciImage = ciImage.oriented(forExifOrientation: 8)
+                case .landscapeRight:
+                    ciImage = ciImage.oriented(forExifOrientation: 1)
+                case .landscapeLeft:
+                    ciImage = ciImage.oriented(forExifOrientation: 3)
+                @unknown default:
+                    assertionFailure()
+                    break
             }
 
             if let cgImage = context.createCGImage(ciImage, from: ciImage.extent) {
@@ -76,3 +79,4 @@ func imageFromSampleBuffer(
 
         return nil
     }
+}

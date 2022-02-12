@@ -1,3 +1,9 @@
+//
+//  ImageResizer.swift
+//  GrandaLocket
+//
+//  Created by Сердюков Евгений on 10.02.2022.
+//
 
 import Foundation
 import UIKit

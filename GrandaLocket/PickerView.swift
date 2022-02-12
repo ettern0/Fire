@@ -1,8 +1,13 @@
+//
+//  PickerView.swift
+//  GrandaLocket
+//
+//  Created by Сердюков Евгений on 10.02.2022.
+//
 
 import UIKit
 import SwiftUI
 import AudioToolbox
-
 
 struct LocketModeControl: View {
 
@@ -41,49 +46,6 @@ struct LocketModeControl: View {
     }
 }
 
-
-struct transitPickerUI: View {
-
-    @Binding var selectedMode: LocketMode
-
-    var body: some View {
-
-        ScrollViewReader { scrollView in
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(0..<11) { index in
-                        Text(String(index))
-                            .id(index)
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct transitPicker: View {
-
-    @State var offset: CGFloat = 0
-
-    var body: some View {
-            CustomSlider(pickerCount: LocketMode.allCases.count, offset: $offset) {
-                HStack(alignment: .center, spacing: 20) {
-                    ForEach(LocketMode.allCases) { item in
-
-                            Text(item.rawValue)
-                                .foregroundColor(.white)
-                            .bold()
-                    }
-                }
-        }
-
-    }
-}
-
-func getRect() -> CGRect {
-    UIScreen.main.bounds
-}
-
 struct CustomSlider<Content: View>: UIViewRepresentable {
 
     var content: Content
@@ -105,7 +67,7 @@ struct CustomSlider<Content: View>: UIViewRepresentable {
 
         let scrollView = UIScrollView()
         let swiftUIView = UIHostingController(rootView: content).view!
-        let width = CGFloat(pickerCount * 2 * 20) + getRect().width
+        let width = CGFloat(pickerCount * 2 * 20) + UIScreen.main.bounds.width
         swiftUIView.frame = CGRect(x: 0, y: 0, width: width, height: 50)
 
         scrollView.contentSize = swiftUIView.frame.size

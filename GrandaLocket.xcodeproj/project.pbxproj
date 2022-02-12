@@ -24,7 +24,7 @@
 		92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */; };
 		92D0239D27B28E9500099E69 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239C27B28E9500099E69 /* CameraView.swift */; };
 		92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* Extensions.swift */; };
-		92D023A327B40C3600099E69 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* Enums.swift */; };
+		92D023A327B40C3600099E69 /* LocketMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* LocketMode.swift */; };
 		92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E51C5527B2694900FEE370 /* GoogleService-Info.plist */; };
 		92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACB27B5971B0062A9A7 /* CameraModel.swift */; };
 		92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACD27B59C280062A9A7 /* PickerView.swift */; };
@@ -47,7 +47,7 @@
 		92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraService+Extensions.swift"; sourceTree = "<group>"; };
 		92D0239C27B28E9500099E69 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		92D023A027B3F8BE00099E69 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		92D023A227B40C3600099E69 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		92D023A227B40C3600099E69 /* LocketMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocketMode.swift; sourceTree = "<group>"; };
 		92E51C5527B2694900FEE370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92FBDACB27B5971B0062A9A7 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92FBDACD27B59C280062A9A7 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
-				92D023A227B40C3600099E69 /* Enums.swift */,
+				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
 				882266EF27B2658F00501312 /* Assets.xcassets */,
@@ -214,7 +214,7 @@
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
-				92D023A327B40C3600099E69 /* Enums.swift in Sources */,
+				92D023A327B40C3600099E69 /* LocketMode.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
