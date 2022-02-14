@@ -42,9 +42,6 @@ struct PhotoView: View {
                         changexDirection(value.startLocation.x, value.location.x)
                         changeyDirection(value.startLocation.y, value.location.y)
                     }
-                    .onEnded { _ in
-                        changeModeWithxDirection()
-                    }
             )
         }
     }
@@ -127,14 +124,6 @@ struct PhotoView: View {
         CameraPreview(videoProvider: model.videoProvider, position: position)
             .blur(radius: blurRadius, opaque: true)
             .clipped()
-    }
-
-    func changeModeWithxDirection() {
-        if xDirection == .left, selectedMode == .text {
-            selectedMode.changeMode()
-        } else if xDirection == .right, selectedMode == .photo {
-            selectedMode.changeMode()
-        }
     }
 
     func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
