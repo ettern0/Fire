@@ -1,8 +1,8 @@
 //
 //  CameraService.swift
-//  SwiftCamera
+//  GrandaLocket
 //
-//  Created by Rolando Rodriguez on 10/15/20.
+//  Created by Сердюков Евгений on 10.02.2022.
 //
 
 import Foundation
@@ -113,16 +113,7 @@ public class CameraService {
     
     
     public func configure() {
-        /*
-         Setup the capture session.
-         In general, it's not safe to mutate an AVCaptureSession or any of its
-         inputs, outputs, or connections from multiple threads at the same time.
-         
-         Don't perform these tasks on the main queue because
-         AVCaptureSession.startRunning() is a blocking call, which can
-         take a long time. Dispatch session setup to the sessionQueue, so
-         that the main queue isn't blocked, which keeps the UI responsive.
-         */
+        guard !isConfigured else { return }
         sessionQueue.async {
             self.configureSession()
         }
@@ -133,14 +124,8 @@ public class CameraService {
       
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            // The user has previously granted access to the camera.
             break
         case .notDetermined:
-            /*
-             The user has not yet been presented with the option to grant
-             video access. Suspend the session queue to delay session
-             setup until the access request has completed.
-             */
             sessionQueue.suspend()
             AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
                 if !granted {
@@ -150,7 +135,6 @@ public class CameraService {
             })
             
         default:
-            // The user has previously denied access.
             setupResult = .notAuthorized
             
             DispatchQueue.main.async {

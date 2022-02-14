@@ -1,8 +1,8 @@
 //
 //  CameraService+Enums.swift
-//  SwiftCamera
+//  GrandaLocket
 //
-//  Created by Rolando Rodriguez on 10/15/20.
+//  Created by Сердюков Евгений on 10.02.2022.
 //
 
 import Foundation
