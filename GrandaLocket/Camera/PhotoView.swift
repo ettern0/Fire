@@ -41,6 +41,7 @@ struct PhotoView: View {
                     .onChanged { value in
                         changexDirection(value.startLocation.x, value.location.x)
                         changeyDirection(value.startLocation.y, value.location.y)
+                        changeModeWithxDirection()
                     }
             )
         }
@@ -131,9 +132,9 @@ struct PhotoView: View {
         if xOld > xNew, dif > minXToChangeMode {
             xDirection = .right
         } else if xOld < xNew, dif > minXToChangeMode {
-                xDirection = .left
-            }
+            xDirection = .left
         }
+    }
 
     func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
         let dif = abs(yOld - yNew)
@@ -141,8 +142,16 @@ struct PhotoView: View {
             yDirection = .top
         } else if yOld < yNew, dif > minYToChangeMode {
             yDirection = .bottom
-            }
         }
+    }
+
+    func changeModeWithxDirection() {
+        if xDirection == .left, selectedMode == .text {
+            selectedMode = .photo
+        } else if xDirection == .right, selectedMode == .photo {
+            selectedMode = .text
+        }
+    }
 }
 
 struct PhotoView_Previews: PreviewProvider {
