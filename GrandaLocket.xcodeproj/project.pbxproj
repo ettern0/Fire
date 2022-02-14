@@ -13,6 +13,22 @@
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
 		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
+		92CC9FDA27BA65B0009C7AB7 /* ALSHauss-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */; };
+		92CC9FE527BA663B009C7AB7 /* ALSHauss-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */; };
+		92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */; };
+		92CC9FE727BA663B009C7AB7 /* ALSHauss-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDD27BA663B009C7AB7 /* ALSHauss-Book.ttf */; };
+		92CC9FE827BA663B009C7AB7 /* ALSHauss-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDE27BA663B009C7AB7 /* ALSHauss-BoldItalic.ttf */; };
+		92CC9FE927BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDF27BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf */; };
+		92CC9FEA27BA663B009C7AB7 /* ALSHauss-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FE027BA663B009C7AB7 /* ALSHauss-LightItalic.ttf */; };
+		92CC9FEB27BA663B009C7AB7 /* ALSHauss-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FE127BA663B009C7AB7 /* ALSHauss-BlackItalic.ttf */; };
+		92CC9FEC27BA663B009C7AB7 /* ALSHauss-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FE227BA663B009C7AB7 /* ALSHauss-BookItalic.ttf */; };
+		92CC9FED27BA663B009C7AB7 /* ALSHauss-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FE327BA663B009C7AB7 /* ALSHauss-Black.ttf */; };
+		92CC9FEE27BA663B009C7AB7 /* ALSHauss-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FE427BA663B009C7AB7 /* ALSHauss-Hairline.ttf */; };
+		92CC9FF427BA6649009C7AB7 /* ALSHauss-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FEF27BA6648009C7AB7 /* ALSHauss-Regular.ttf */; };
+		92CC9FF527BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FF027BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf */; };
+		92CC9FF627BA6649009C7AB7 /* ALSHauss-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FF127BA6649009C7AB7 /* ALSHauss-Thin.ttf */; };
+		92CC9FF727BA6649009C7AB7 /* ALSHauss-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FF227BA6649009C7AB7 /* ALSHauss-RegularItalic.ttf */; };
+		92CC9FF827BA6649009C7AB7 /* ALSHauss-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FF327BA6649009C7AB7 /* ALSHauss-MediumItalic.ttf */; };
 		92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238527B27A5C00099E69 /* FirebaseAuth */; };
 		92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238727B27A5C00099E69 /* FirebaseAuthCombine-Community */; };
 		92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238927B27A5C00099E69 /* FirebaseCrashlytics */; };
@@ -41,6 +57,23 @@
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Medium.ttf"; sourceTree = "<group>"; };
+		92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Light.ttf"; sourceTree = "<group>"; };
+		92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Bold.ttf"; sourceTree = "<group>"; };
+		92CC9FDD27BA663B009C7AB7 /* ALSHauss-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Book.ttf"; sourceTree = "<group>"; };
+		92CC9FDE27BA663B009C7AB7 /* ALSHauss-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-BoldItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FDF27BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FE027BA663B009C7AB7 /* ALSHauss-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-LightItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FE127BA663B009C7AB7 /* ALSHauss-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-BlackItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FE227BA663B009C7AB7 /* ALSHauss-BookItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-BookItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FE327BA663B009C7AB7 /* ALSHauss-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Black.ttf"; sourceTree = "<group>"; };
+		92CC9FE427BA663B009C7AB7 /* ALSHauss-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Hairline.ttf"; sourceTree = "<group>"; };
+		92CC9FEF27BA6648009C7AB7 /* ALSHauss-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Regular.ttf"; sourceTree = "<group>"; };
+		92CC9FF027BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-ThinItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FF127BA6649009C7AB7 /* ALSHauss-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Thin.ttf"; sourceTree = "<group>"; };
+		92CC9FF227BA6649009C7AB7 /* ALSHauss-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-RegularItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FF327BA6649009C7AB7 /* ALSHauss-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-MediumItalic.ttf"; sourceTree = "<group>"; };
+		92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GrandaLocket.entitlements; sourceTree = "<group>"; };
 		92D0238B27B27D2100099E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D0239027B28E1E00099E69 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		92D0239127B28E1E00099E69 /* CameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
@@ -97,6 +130,7 @@
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
+				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
@@ -112,6 +146,29 @@
 				882266F227B2658F00501312 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		92CC9FD827BA6518009C7AB7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				92CC9FF327BA6649009C7AB7 /* ALSHauss-MediumItalic.ttf */,
+				92CC9FEF27BA6648009C7AB7 /* ALSHauss-Regular.ttf */,
+				92CC9FF227BA6649009C7AB7 /* ALSHauss-RegularItalic.ttf */,
+				92CC9FF127BA6649009C7AB7 /* ALSHauss-Thin.ttf */,
+				92CC9FF027BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf */,
+				92CC9FE327BA663B009C7AB7 /* ALSHauss-Black.ttf */,
+				92CC9FE127BA663B009C7AB7 /* ALSHauss-BlackItalic.ttf */,
+				92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */,
+				92CC9FDE27BA663B009C7AB7 /* ALSHauss-BoldItalic.ttf */,
+				92CC9FDD27BA663B009C7AB7 /* ALSHauss-Book.ttf */,
+				92CC9FE227BA663B009C7AB7 /* ALSHauss-BookItalic.ttf */,
+				92CC9FE427BA663B009C7AB7 /* ALSHauss-Hairline.ttf */,
+				92CC9FDF27BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf */,
+				92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */,
+				92CC9FE027BA663B009C7AB7 /* ALSHauss-LightItalic.ttf */,
+				92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		92D0238F27B28DED00099E69 /* Camera */ = {
@@ -206,9 +263,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CC9FE727BA663B009C7AB7 /* ALSHauss-Book.ttf in Resources */,
 				882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */,
+				92CC9FEB27BA663B009C7AB7 /* ALSHauss-BlackItalic.ttf in Resources */,
+				92CC9FED27BA663B009C7AB7 /* ALSHauss-Black.ttf in Resources */,
+				92CC9FEE27BA663B009C7AB7 /* ALSHauss-Hairline.ttf in Resources */,
+				92CC9FDA27BA65B0009C7AB7 /* ALSHauss-Medium.ttf in Resources */,
+				92CC9FF827BA6649009C7AB7 /* ALSHauss-MediumItalic.ttf in Resources */,
+				92CC9FE827BA663B009C7AB7 /* ALSHauss-BoldItalic.ttf in Resources */,
+				92CC9FE527BA663B009C7AB7 /* ALSHauss-Light.ttf in Resources */,
 				882266F027B2658F00501312 /* Assets.xcassets in Resources */,
+				92CC9FF727BA6649009C7AB7 /* ALSHauss-RegularItalic.ttf in Resources */,
+				92CC9FF427BA6649009C7AB7 /* ALSHauss-Regular.ttf in Resources */,
 				92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */,
+				92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */,
+				92CC9FEC27BA663B009C7AB7 /* ALSHauss-BookItalic.ttf in Resources */,
+				92CC9FF627BA6649009C7AB7 /* ALSHauss-Thin.ttf in Resources */,
+				92CC9FF527BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf in Resources */,
+				92CC9FE927BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf in Resources */,
+				92CC9FEA27BA663B009C7AB7 /* ALSHauss-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
