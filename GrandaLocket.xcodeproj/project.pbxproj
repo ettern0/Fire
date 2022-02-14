@@ -13,6 +13,8 @@
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
 		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
+		92AEBD5027BA945100654E4B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* AuthView.swift */; };
+		92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD5127BA9CAD00654E4B /* MainSignView.swift */; };
 		92CC9FDA27BA65B0009C7AB7 /* ALSHauss-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */; };
 		92CC9FE527BA663B009C7AB7 /* ALSHauss-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */; };
 		92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */; };
@@ -57,6 +59,8 @@
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		92AEBD4F27BA945100654E4B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		92AEBD5127BA9CAD00654E4B /* MainSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSignView.swift; sourceTree = "<group>"; };
 		92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Medium.ttf"; sourceTree = "<group>"; };
 		92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Light.ttf"; sourceTree = "<group>"; };
 		92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Bold.ttf"; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		882266EA27B2658C00501312 /* GrandaLocket */ = {
 			isa = PBXGroup;
 			children = (
+				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				92FBDACF27B699580062A9A7 /* SigningAndAuth */,
@@ -190,7 +195,9 @@
 		92FBDACF27B699580062A9A7 /* SigningAndAuth */ = {
 			isa = PBXGroup;
 			children = (
+				92AEBD5127BA9CAD00654E4B /* MainSignView.swift */,
 				92FBDAD027B699820062A9A7 /* SignView.swift */,
+				92AEBD4F27BA945100654E4B /* AuthView.swift */,
 			);
 			path = SigningAndAuth;
 			sourceTree = "<group>";
@@ -306,6 +313,8 @@
 				92D023A327B40C3600099E69 /* LocketMode.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
+				92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */,
+				92AEBD5027BA945100654E4B /* AuthView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,
 			);
@@ -435,6 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GrandaLocket/GrandaLocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GrandaLocket/Preview Content\"";
@@ -451,7 +461,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.magauran.GrandaLocket;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ettern0.GrandaLocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -465,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GrandaLocket/GrandaLocket.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -558,10 +569,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GrandaLocket/GrandaLocket.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GrandaLocket/Preview Content\"";
-				DEVELOPMENT_TEAM = GLQY2SH5YN;
+				DEVELOPMENT_TEAM = XJB6H4WXH3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GrandaLocket/Info.plist;
