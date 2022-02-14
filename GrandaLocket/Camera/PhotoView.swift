@@ -9,10 +9,20 @@ import SwiftUI
 import UIKit
 
 struct PhotoView: View {
+
     @StateObject var model = CameraModel()
     @State private var currentZoomFactor: CGFloat = 1.0
     @State private var selectedMode: LocketMode = .photo
     @State private var selected: Int = 0
+    @State private var xDirection: GesturesDirection = .left
+    @State private var yDirection: GesturesDirection = .top
+
+    private var minXToChangeMode: CGFloat {
+        UIScreen.main.bounds.width * 0.2
+    }
+    private var minYToChangeMode: CGFloat {
+        UIScreen.main.bounds.height * 0.1
+    }
 
     var body: some View {
         GeometryReader { proxy in
@@ -23,26 +33,20 @@ struct PhotoView: View {
                     .frame(width: proxy.size.width, height: proxy.size.width)
                 ZStack {
                     cameraView(blurRadius: 8, position: .bottom)
-                        .frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
                     buttonAreaView
-                }
+                }.frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
             }
             .gesture(
                 DragGesture()
-                    .onChanged { gesture in
-                        //offset = gesture.translation
+                    .onChanged { value in
+                        changexDirection(value.startLocation.x, value.location.x)
+                        changeyDirection(value.startLocation.y, value.location.y)
                     }
                     .onEnded { _ in
-                        selectedMode.toggle()
+                        changeModeWithxDirection()
                     }
             )
         }
-    }
-
-    func cameraView(blurRadius: CGFloat = 0, position: ImagePosition) -> some View {
-        CameraPreview(videoProvider: model.videoProvider, position: position)
-            .blur(radius: blurRadius, opaque: true)
-            .clipped()
     }
 
     var buttonAreaView: some View {
@@ -71,7 +75,7 @@ struct PhotoView: View {
                     .opacity(0.20)
                 Image(systemName: model.isFlashOn ? "bolt.fill" : "bolt.slash.fill")
                     .font(.system(size: 20, weight: .medium, design: .default))
-                    .accentColor(model.isFlashOn ? .yellow : .white)
+                    .accentColor(model.isFlashOn ? .white : .white)
             }
         })
     }
@@ -118,6 +122,38 @@ struct PhotoView: View {
         }
         .padding(.top, -15)
     }
+
+    func cameraView(blurRadius: CGFloat = 0, position: ImagePosition) -> some View {
+        CameraPreview(videoProvider: model.videoProvider, position: position)
+            .blur(radius: blurRadius, opaque: true)
+            .clipped()
+    }
+
+    func changeModeWithxDirection() {
+        if xDirection == .left, selectedMode == .text {
+            selectedMode.changeMode()
+        } else if xDirection == .right, selectedMode == .photo {
+            selectedMode.changeMode()
+        }
+    }
+
+    func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
+        let dif = abs(xOld - xNew)
+        if xOld > xNew, dif > minXToChangeMode {
+            xDirection = .right
+        } else if xOld < xNew, dif > minXToChangeMode {
+                xDirection = .left
+            }
+        }
+
+    func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
+        let dif = abs(yOld - yNew)
+        if yOld > yNew, dif > minYToChangeMode {
+            yDirection = .top
+        } else if yOld < yNew, dif > minYToChangeMode {
+            yDirection = .bottom
+            }
+        }
 }
 
 struct PhotoView_Previews: PreviewProvider {

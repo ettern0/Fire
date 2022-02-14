@@ -34,3 +34,7 @@ extension LocketMode {
         }
     }
 }
+
+enum GesturesDirection {
+    case left, right, top, bottom
+}
