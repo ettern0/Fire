@@ -1,5 +1,5 @@
 //
-//  PhotoView.swift
+//  MainView.swift
 //  GrandaLocket
 //
 //  Created by Сердюков Евгений on 10.02.2022.
@@ -8,8 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct PhotoView: View {
-
+struct MainView: View {
     @StateObject var model = CameraModel()
     @State private var currentZoomFactor: CGFloat = 1.0
     @State private var selectedMode: LocketMode = .photo
@@ -27,12 +26,12 @@ struct PhotoView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
-                cameraView(blurRadius: 8, position: .top)
+                locketCreationContainer(position: .top)
                     .frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
-                cameraView(position: .center)
+                locketCreationContainer(position: .center)
                     .frame(width: proxy.size.width, height: proxy.size.width)
                 ZStack {
-                    cameraView(blurRadius: 8, position: .bottom)
+                    locketCreationContainer(position: .bottom)
                     buttonAreaView
                 }.frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
             }
@@ -121,10 +120,30 @@ struct PhotoView: View {
         .padding(.top, -15)
     }
 
-    func cameraView(blurRadius: CGFloat = 0, position: ImagePosition) -> some View {
-        CameraPreview(videoProvider: model.videoProvider, position: position)
-            .blur(radius: blurRadius, opaque: true)
-            .clipped()
+    func locketCreationContainer(position: ImagePosition) -> some View {
+        Group {
+            switch selectedMode {
+                case .photo:
+                    CameraPreview(videoProvider: model.videoProvider, position: position)
+                        .blur(radius: blurRadius(for: position), opaque: true)
+                        .clipped()
+                        .transition(.slide)
+                case .text:
+                    TextViewBackground(style: .black, position: position)
+                        .transition(.backslide)
+            }
+        }
+    }
+
+    private func blurRadius(for position: ImagePosition) -> CGFloat {
+        switch position {
+            case .top:
+                return 8
+            case .center:
+                return 0
+            case .bottom:
+                return 8
+        }
     }
 
     func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
@@ -146,16 +165,25 @@ struct PhotoView: View {
     }
 
     func changeModeWithxDirection() {
-        if xDirection == .left, selectedMode == .text {
-            selectedMode = .photo
-        } else if xDirection == .right, selectedMode == .photo {
-            selectedMode = .text
+        withAnimation {
+            if xDirection == .left, selectedMode == .text {
+                selectedMode = .photo
+            } else if xDirection == .right, selectedMode == .photo {
+                selectedMode = .text
+            }
         }
     }
 }
 
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView()
+        MainView()
     }
+}
+
+extension AnyTransition {
+    static var backslide: AnyTransition {
+        AnyTransition.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading))}
 }

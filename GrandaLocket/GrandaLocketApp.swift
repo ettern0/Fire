@@ -15,7 +15,7 @@ struct GrandaLocketApp: App {
 
     var body: some Scene {
         WindowGroup {
-            PhotoView()
+            MainView()
                 .ignoresSafeArea()
         }
     }

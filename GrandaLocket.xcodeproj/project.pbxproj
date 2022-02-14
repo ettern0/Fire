@@ -11,8 +11,10 @@
 		882266F027B2658F00501312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266EF27B2658F00501312 /* Assets.xcassets */; };
 		882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266F227B2658F00501312 /* Preview Assets.xcassets */; };
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
+		884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */; };
+		884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
-		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
+		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238527B27A5C00099E69 /* FirebaseAuth */; };
 		92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238727B27A5C00099E69 /* FirebaseAuthCombine-Community */; };
 		92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92D0238927B27A5C00099E69 /* FirebaseCrashlytics */; };
@@ -39,8 +41,10 @@
 		882266F227B2658F00501312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
+		884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLocketStyle.swift; sourceTree = "<group>"; };
+		884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewBackground.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
-		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92D0238B27B27D2100099E69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92D0239027B28E1E00099E69 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		92D0239127B28E1E00099E69 /* CameraService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
@@ -92,8 +96,10 @@
 			children = (
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
+				92664A5427B51CA6006C860E /* MainView.swift */,
 				92FBDACF27B699580062A9A7 /* SigningAndAuth */,
 				92D0238F27B28DED00099E69 /* Camera */,
+				884D538927BA78E600C23FF5 /* Text */,
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
@@ -114,10 +120,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		884D538927BA78E600C23FF5 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */,
+				884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
 		92D0238F27B28DED00099E69 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				92664A5427B51CA6006C860E /* PhotoView.swift */,
 				92D0239C27B28E9500099E69 /* CameraView.swift */,
 				92FBDACB27B5971B0062A9A7 /* CameraModel.swift */,
 				884D537F27B58FF500C23FF5 /* VideoProvider.swift */,
@@ -220,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
-				92664A5527B51CA6006C860E /* PhotoView.swift in Sources */,
+				92664A5527B51CA6006C860E /* MainView.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
@@ -228,9 +242,11 @@
 				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
+				884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
 				92D023A327B40C3600099E69 /* LocketMode.swift in Sources */,
+				884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
