@@ -113,6 +113,17 @@ extension UIScreen {
     var width: CGFloat { UIScreen.main.bounds.width }
     var height: CGFloat { UIScreen.main.bounds.height }
 }
+
+extension String {
+   func replace(string:String, replacement:String) -> String {
+       return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+   }
+
+   func removeWhitespace() -> String {
+       return self.replace(string: " ", replacement: "")
+   }
+ }
+
 //Example save as image
 //struct ContentView: View {
 //

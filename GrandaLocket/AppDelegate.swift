@@ -11,12 +11,21 @@ import Firebase
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions:
-        [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification notification: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if Auth.auth().canHandleNotification(notification) {
+            completionHandler(.noData)
+        }
+    }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
         FirebaseApp.configure()
+
+        if let setting = Auth.auth().settings {
+            //setting.isAppVerificationDisabledForTesting = true
+        }
 
         return true
     }
