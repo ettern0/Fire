@@ -18,12 +18,15 @@
 		884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* AnyTransition++.swift */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
 		9201AAB927BBCD6000842557 /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 9201AAB827BBCD6000842557 /* Coordinator */; };
+		9201AABE27BBCEC900842557 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABD27BBCEC900842557 /* Coordinator.swift */; };
+		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
-		92AEBD5027BA945100654E4B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* AuthView.swift */; };
-		92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD5127BA9CAD00654E4B /* MainSignView.swift */; };
+		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
+		92AEBD5227BA9CAD00654E4B /* Signing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD5127BA9CAD00654E4B /* Signing.swift */; };
 		92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2527BBBC77003A4672 /* OTPManager.swift */; };
-		92BFAE2927BBBD5B003A4672 /* StatusAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */; };
+		92BFAE2927BBBD5B003A4672 /* OTPStatusAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */; };
+		92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C2084627BBD53F00D92C85 /* ContentView.swift */; };
 		92CC9FDA27BA65B0009C7AB7 /* ALSHauss-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */; };
 		92CC9FE527BA663B009C7AB7 /* ALSHauss-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */; };
 		92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */; };
@@ -55,7 +58,7 @@
 		92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E51C5527B2694900FEE370 /* GoogleService-Info.plist */; };
 		92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACB27B5971B0062A9A7 /* CameraModel.swift */; };
 		92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACD27B59C280062A9A7 /* PickerView.swift */; };
-		92FBDAD127B699820062A9A7 /* SignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDAD027B699820062A9A7 /* SignView.swift */; };
+		92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */; };
 		92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */; };
 /* End PBXBuildFile section */
 
@@ -72,12 +75,15 @@
 		884D539127BAA49900C23FF5 /* Color++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color++.swift"; sourceTree = "<group>"; };
 		884D539327BAAA1900C23FF5 /* AnyTransition++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition++.swift"; sourceTree = "<group>"; };
 		886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyPersonTextEditor.swift; sourceTree = "<group>"; };
+		9201AABD27BBCEC900842557 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9201AABF27BBCEEC00842557 /* AppDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestination.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		92AEBD4F27BA945100654E4B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		92AEBD5127BA9CAD00654E4B /* MainSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSignView.swift; sourceTree = "<group>"; };
+		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
+		92AEBD5127BA9CAD00654E4B /* Signing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signing.swift; sourceTree = "<group>"; };
 		92BFAE2527BBBC77003A4672 /* OTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPManager.swift; sourceTree = "<group>"; };
-		92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAuth.swift; sourceTree = "<group>"; };
+		92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPStatusAuth.swift; sourceTree = "<group>"; };
+		92C2084627BBD53F00D92C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Medium.ttf"; sourceTree = "<group>"; };
 		92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Light.ttf"; sourceTree = "<group>"; };
 		92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Bold.ttf"; sourceTree = "<group>"; };
@@ -107,7 +113,7 @@
 		92E51C5527B2694900FEE370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92FBDACB27B5971B0062A9A7 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92FBDACD27B59C280062A9A7 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
-		92FBDAD027B699820062A9A7 /* SignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignView.swift; sourceTree = "<group>"; };
+		92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,13 +154,14 @@
 				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
+				9201AABC27BBCEAF00842557 /* Coordinator */,
 				92664A5427B51CA6006C860E /* MainView.swift */,
-				92FBDACF27B699580062A9A7 /* SigningAndAuth */,
+				92FBDACF27B699580062A9A7 /* Login */,
 				92D0238F27B28DED00099E69 /* Camera */,
 				884D538927BA78E600C23FF5 /* Text */,
-				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				884D539027BAA48700C23FF5 /* Extensions */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
+				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
@@ -194,12 +201,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9201AABC27BBCEAF00842557 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9201AABD27BBCEC900842557 /* Coordinator.swift */,
+				9201AABF27BBCEEC00842557 /* AppDestination.swift */,
+				92C2084627BBD53F00D92C85 /* ContentView.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		92BFAE2427BBBC1D003A4672 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				92AEBD4F27BA945100654E4B /* AuthView.swift */,
+				92AEBD4F27BA945100654E4B /* SmsView.swift */,
 				92BFAE2527BBBC77003A4672 /* OTPManager.swift */,
-				92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */,
+				92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -242,14 +259,14 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		92FBDACF27B699580062A9A7 /* SigningAndAuth */ = {
+		92FBDACF27B699580062A9A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				92AEBD5127BA9CAD00654E4B /* MainSignView.swift */,
-				92FBDAD027B699820062A9A7 /* SignView.swift */,
+				92AEBD5127BA9CAD00654E4B /* Signing.swift */,
+				92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */,
 				92BFAE2427BBBC1D003A4672 /* Auth */,
 			);
-			path = SigningAndAuth;
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,14 +374,16 @@
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
-				92FBDAD127B699820062A9A7 /* SignView.swift in Sources */,
+				92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */,
 				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
+				9201AABE27BBCEC900842557 /* Coordinator.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
+				9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */,
 				884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */,
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
 				884D539227BAA49900C23FF5 /* Color++.swift in Sources */,
 				884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */,
-				92BFAE2927BBBD5B003A4672 /* StatusAuth.swift in Sources */,
+				92BFAE2927BBBD5B003A4672 /* OTPStatusAuth.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
 				92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */,
@@ -373,8 +392,9 @@
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				884D538F27BAA37100C23FF5 /* TextLocketStylePicker.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
-				92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */,
-				92AEBD5027BA945100654E4B /* AuthView.swift in Sources */,
+				92AEBD5227BA9CAD00654E4B /* Signing.swift in Sources */,
+				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
+				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,
 			);
