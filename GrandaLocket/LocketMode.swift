@@ -24,17 +24,6 @@ enum LocketMode: String, CaseIterable, Identifiable {
     }
 }
 
-extension LocketMode {
-    var tintColor: Color {
-        switch self {
-        case .photo:
-            return UIColor(rgb: 0x6E0DFF).color
-        case .text:
-            return UIColor(rgb: 0xFF7A00).color
-        }
-    }
-}
-
 enum GesturesDirection {
     case left, right, top, bottom
 }
