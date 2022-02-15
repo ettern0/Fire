@@ -25,7 +25,7 @@ struct MainSignView: View {
             } else if authMode == .auth {
                 AuthView(authMode: $authMode, phoneNumber: phoneNumber)
             } else {
-                PhotoView()
+                MainView()
             }
         }.animation(.default, value: authMode)
     }

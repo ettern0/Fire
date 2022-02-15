@@ -12,7 +12,7 @@
 		882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266F227B2658F00501312 /* Preview Assets.xcassets */; };
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
-		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
+		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* AuthView.swift */; };
 		92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD5127BA9CAD00654E4B /* MainSignView.swift */; };
 		92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2527BBBC77003A4672 /* OTPManager.swift */; };
@@ -60,7 +60,7 @@
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
-		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		92AEBD5127BA9CAD00654E4B /* MainSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSignView.swift; sourceTree = "<group>"; };
 		92BFAE2527BBBC77003A4672 /* OTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPManager.swift; sourceTree = "<group>"; };
@@ -133,11 +133,11 @@
 			children = (
 				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
+				92664A5427B51CA6006C860E /* MainView.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				92FBDACF27B699580062A9A7 /* SigningAndAuth */,
 				92D0238F27B28DED00099E69 /* Camera */,
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
-				92BFAE2A27BBC502003A4672 /* New Group */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
@@ -168,13 +168,6 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		92BFAE2A27BBC502003A4672 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		92CC9FD827BA6518009C7AB7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,7 +194,6 @@
 		92D0238F27B28DED00099E69 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				92664A5427B51CA6006C860E /* PhotoView.swift */,
 				92D0239C27B28E9500099E69 /* CameraView.swift */,
 				92FBDACB27B5971B0062A9A7 /* CameraModel.swift */,
 				884D537F27B58FF500C23FF5 /* VideoProvider.swift */,
@@ -322,7 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
-				92664A5527B51CA6006C860E /* PhotoView.swift in Sources */,
+				92664A5527B51CA6006C860E /* MainView.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,

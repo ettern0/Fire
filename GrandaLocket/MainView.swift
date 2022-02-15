@@ -1,5 +1,5 @@
 //
-//  PhotoView.swift
+//  MainView.swift
 //  GrandaLocket
 //
 //  Created by Сердюков Евгений on 10.02.2022.
@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct PhotoView: View {
+struct MainView: View {
 
     @StateObject var model = CameraModel()
     @State private var currentZoomFactor: CGFloat = 1.0
@@ -147,6 +147,6 @@ struct PhotoView: View {
 
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView()
+        MainView()
     }
 }
