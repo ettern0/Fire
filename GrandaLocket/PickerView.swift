@@ -10,7 +10,6 @@ import SwiftUI
 import AudioToolbox
 
 struct LocketModeControl: View {
-
     @Binding var selectedMode: LocketMode
 
     func calculateOffset() -> CGFloat {
@@ -21,14 +20,18 @@ struct LocketModeControl: View {
         VStack {
             HStack(spacing: 20) {
                 Button {
-                    selectedMode = .photo
+                    withAnimation {
+                        selectedMode = .photo
+                    }
                 } label: {
                     Text(LocketMode.photo.rawValue)
                         .bold()
                         .foregroundColor(selectedMode == .photo ? .white: .white.opacity(0.7))
                 }
                 Button {
-                    selectedMode = .text
+                    withAnimation {
+                        selectedMode = .text
+                    }
                 } label: {
                     Text(LocketMode.text.rawValue)
                         .bold()
@@ -111,8 +114,6 @@ struct CustomSlider<Content: View>: UIViewRepresentable {
            // AudioServicesPlayAlertSound(1157)
         }
     }
-
-
 }
 
 
