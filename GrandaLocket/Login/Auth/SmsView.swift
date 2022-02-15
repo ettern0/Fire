@@ -9,17 +9,17 @@ import SwiftUI
 import Firebase
 import Combine
 
-struct AuthView: View {
+struct SmsView: View {
 
     @ObservedObject private var otpCodeManager: OtpInputManager
-    @Binding var authMode: AuthMode
+    @Binding var destination: AppDestination
     @FocusState private var focusedField: FocusField?
     let phoneNumber: String
     let lenghOfOtp: Int = 6//Get in touch we have 6 digits otp code
     let paddingOfBox: CGFloat = 1
 
-    init(authMode: Binding<AuthMode>, phoneNumber: String) {
-        self._authMode = authMode
+    init(destination: Binding<AppDestination>, phoneNumber: String) {
+        self._destination = destination
         self.phoneNumber = phoneNumber
         UITextField.appearance().keyboardAppearance = .dark
         self.otpCodeManager = OtpInputManager()
@@ -60,10 +60,18 @@ struct AuthView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
-                        authMode = .sign
+                        destination = .phoneNumberAuth
                     } label: {
                         Image("arrow_right")
                     }
+                }
+            }
+            .onChange(of: otpCodeManager.status) { status in
+                switch status {
+                case .idle, .failure:
+                    break
+                case .success:
+                    destination = .main
                 }
             }
         }

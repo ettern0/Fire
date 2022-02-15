@@ -5,11 +5,11 @@ import UIKit
 import PhoneNumberKit
 import Firebase
 
-struct SignView: View {
+struct PhoneNumberView: View {
 
     @Binding var syncContacts: Bool
     @Binding var phoneNumber: String
-    @Binding var authMode: AuthMode
+    @Binding var destination: AppDestination
     @State var inProgress: Bool = false
 
     var body: some View {
@@ -74,7 +74,7 @@ struct SignView: View {
                         }
                         UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                         inProgress.toggle()
-                        authMode = .auth
+                    destination = .smsAuth
                     }
         } label: {
             HStack {

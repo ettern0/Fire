@@ -7,15 +7,17 @@
 
 import SwiftUI
 import Firebase
+import Coordinator
 
 @main
 struct GrandaLocketApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self)
-    private var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    @StateObject var coordinator = AppCoordinator()
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
+                .coordinator(coordinator)
                 .ignoresSafeArea()
         }
     }
