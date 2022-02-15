@@ -83,7 +83,13 @@ struct MainView: View {
         }, label: {
             ZStack {
                 Circle()
-                    .foregroundColor(selectedMode.tintColor)
+                    .fill(
+                        LinearGradient(
+                            colors: [.init(rgb: 0xF83600), .init(rgb: 0xF9D423)],
+                            startPoint: .init(x: 0, y: 1),
+                            endPoint: .init(x: 1, y: 1)
+                        )
+                    )
                     .frame(width: 80, height: 90, alignment: .center)
                     .animation(.default, value: selectedMode)
                 Circle()
