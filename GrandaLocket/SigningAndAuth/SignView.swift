@@ -9,25 +9,24 @@ struct SignView: View {
 
     @Binding var syncContacts: Bool
     @Binding var phoneNumber: String
-    @Binding var authMode: Bool
+    @Binding var authMode: AuthMode
+    @State var inProgress: Bool = false
 
     var body: some View {
         NavigationView {
             VStack {
                 header
-                Rectangle()
-                    .frame(width: UIScreen.main.bounds.width, height: 68)
                 PhoneNumberField(phoneNumber: $phoneNumber)
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
-                    .padding(.bottom, 27)
+                    .padding(.bottom, 8)
                     .padding(.leading, 16)
                     .padding(.trailing, 16)
                 Toggle(isOn: $syncContacts, label: {
                     Text("Sync Contacts")
                         .foregroundColor(.white)
                 })
-                    .padding(.bottom, 105)
+                    .padding(.bottom, 176)
                     .padding(.leading, 16)
                     .padding(.trailing, 16)
             }
@@ -47,13 +46,13 @@ struct SignView: View {
                 .foregroundColor(.white)
                 .font(Font.custom("ALSHauss-Medium", size: 24))
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 12)
+                .padding(.bottom, 8)
                 .padding(.leading, 48)
                 .padding(.trailing, 48)
             Text("Please confirm your country code and enter your phone number.")
                 .foregroundColor(.white)
                 .font(Font.custom("ALSHauss-Regular", size: 16))
-                .padding(.bottom, 48)
+                .padding(.bottom, 44)
                 .multilineTextAlignment(.center)
                 .padding(.leading, 63)
                 .padding(.trailing, 63)
@@ -63,18 +62,19 @@ struct SignView: View {
 
     var signButton: some View {
         return Button {
+            inProgress.toggle()
             PhoneAuthProvider.provider()
-                .verifyPhoneNumber(
-                    //phoneNumber.removeWhitespace()
-                    "+16505551234"
+                .verifyPhoneNumber(phoneNumber.removeWhitespace()
+                    //"+16505551234"
                     , uiDelegate: nil) { (verificationID, error) in
                         if let error = error {
+                            inProgress.toggle()
                             self.showMessagePrompt(error.localizedDescription)
-
                             return
                         }
                         UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                        authMode.toggle()
+                        inProgress.toggle()
+                        authMode = .auth
                     }
         } label: {
             Text("Next")
@@ -83,7 +83,7 @@ struct SignView: View {
         }
     }
 
-    func showMessagePrompt(_ error: String) {
+   private func showMessagePrompt(_ error: String) {
         print(error)
     }
 

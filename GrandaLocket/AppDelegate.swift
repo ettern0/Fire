@@ -16,15 +16,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if Auth.auth().canHandleNotification(notification) {
             completionHandler(.noData)
-            return
-        }
-        if let setting = Auth.auth().settings {
-            setting.isAppVerificationDisabledForTesting = true
         }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
         FirebaseApp.configure()
+
+        if let setting = Auth.auth().settings {
+            //setting.isAppVerificationDisabledForTesting = true
+        }
+
         return true
     }
 }
