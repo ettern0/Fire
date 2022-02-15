@@ -114,8 +114,6 @@ struct CustomSlider<Content: View>: UIViewRepresentable {
            // AudioServicesPlayAlertSound(1157)
         }
     }
-
-
 }
 
 

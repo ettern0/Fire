@@ -12,9 +12,9 @@ struct MainView: View {
     @StateObject var model = CameraModel()
     @State private var currentZoomFactor: CGFloat = 1.0
     @State private var selectedMode: LocketMode = .photo
-    @State private var selected: Int = 0
     @State private var xDirection: GesturesDirection = .left
     @State private var yDirection: GesturesDirection = .top
+    @State private var textStyle: TextLocketStyle = .violet
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -120,6 +120,8 @@ struct MainView: View {
         .padding(.top, -15)
     }
 
+    @State var text: String = ""
+
     func locketCreationContainer(position: ImagePosition) -> some View {
         Group {
             switch selectedMode {
@@ -127,12 +129,26 @@ struct MainView: View {
                     CameraPreview(videoProvider: model.videoProvider, position: position)
                         .blur(radius: blurRadius(for: position), opaque: true)
                         .clipped()
-                        .transition(.slide)
                 case .text:
-                    TextViewBackground(style: .black, position: position)
-                        .transition(.backslide)
+                    switch position {
+                        case .top:
+                            ZStack {
+                                TextViewBackground(style: textStyle, position: position)
+                                TextLocketStylePicker(selectedStyle: $textStyle)
+                            }
+                        case .center:
+                            ZStack {
+                                TextViewBackground(style: textStyle, position: position)
+                                HealthyPersonTextEditor()
+                            }
+                        case .bottom:
+                            TextViewBackground(style: textStyle, position: position)
+                    }
+
             }
         }
+        .animation(.default, value: selectedMode)
+        .transition(self.selectedMode == .photo ? .slide : .backslide)
     }
 
     private func blurRadius(for position: ImagePosition) -> CGFloat {
@@ -179,11 +195,4 @@ struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
-}
-
-extension AnyTransition {
-    static var backslide: AnyTransition {
-        AnyTransition.asymmetric(
-            insertion: .move(edge: .trailing),
-            removal: .move(edge: .leading))}
 }
