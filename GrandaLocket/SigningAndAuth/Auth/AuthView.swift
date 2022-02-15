@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Combine
 
 struct AuthView: View {
 
@@ -15,19 +16,13 @@ struct AuthView: View {
     @FocusState private var focusedField: FocusField?
     let phoneNumber: String
     let lenghOfOtp: Int = 6//Get in touch we have 6 digits otp code
-    let textBoxWidth = UIScreen.main.bounds.width / 8
-    let textBoxHeight = UIScreen.main.bounds.width / 8
-    let spaceBetweenBoxes: CGFloat = 10
     let paddingOfBox: CGFloat = 1
-    var textFieldOriginalWidth: CGFloat {
-        (textBoxWidth*6)+(spaceBetweenBoxes*3)+((paddingOfBox*2)*3)
-    }
 
     init(authMode: Binding<AuthMode>, phoneNumber: String) {
         self._authMode = authMode
         self.phoneNumber = phoneNumber
         UITextField.appearance().keyboardAppearance = .dark
-        self.otpCodeManager = OtpInputManager(limit: 6)
+        self.otpCodeManager = OtpInputManager()
     }
 
     var body: some View {
@@ -35,29 +30,33 @@ struct AuthView: View {
             VStack {
                 header
                 ZStack {
-                    textBoxes
-                        .onTapGesture {
-                            focusedField = FocusField.field
-                        }
-                        .offset(x: otpCodeManager.status == .uncecess ? -5 : 0)
-                        .animation(Animation.default.repeatCount(3).speed(3), value: otpCodeManager.status)
-                    TextField("", text: $otpCodeManager.text)
-                        .frame(width: focusedField == FocusField.field ? 0 : textFieldOriginalWidth, height: textBoxHeight)
-                        .foregroundColor(.clear)
-                        .accentColor(.clear)
-                        .background(Color.clear)
-                        .keyboardType(.numberPad)
-                        .textContentType(.oneTimeCode)
-                        .focused($focusedField, equals: .field)
-                        .task {
-                            self.focusedField = .field
-                        }
+                    if otpCodeManager.inProgress {
+                        ProgressView()
+                            .scaleEffect(2, anchor: .center)
+                    } else {
+                        textBoxes
+                        TextField("", text: $otpCodeManager.text)
+                            .foregroundColor(.clear)
+                            .accentColor(.clear)
+                            .background(Color.clear)
+                            .keyboardType(.numberPad)
+                            .textContentType(.oneTimeCode)
+                            .focused($focusedField, equals: .field)
+                            .task {
+                                self.focusedField = .field
+                            }
+                    }
                 }
-                .padding(.bottom, 229)
             }
+            .padding(.bottom, 229)
             .frame(maxHeight: .infinity)
             .frame(maxWidth: .infinity)
             .background(Color.black)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.focusedField = .field
+                }
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
@@ -82,7 +81,7 @@ struct AuthView: View {
                 arrayOfBoxesView.append(AnyView(otpText("")))
             }
         }
-        return HStack (spacing: spaceBetweenBoxes) {
+        return HStack (spacing: 8) {
             ForEach(arrayOfBoxesView.indices, id: \.self) { index in
                 arrayOfBoxesView[index]
             }
@@ -93,7 +92,7 @@ struct AuthView: View {
         return Text(text)
             .font(Font.custom("ALSHauss-Medium", size: 24))
             .foregroundColor(.white)
-            .frame(width: textBoxWidth, height: textBoxHeight)
+            .frame(width: 32, height: 48)
             .background(VStack {
                 Spacer()
                 RoundedRectangle(cornerRadius: 1)
@@ -127,43 +126,12 @@ struct AuthView: View {
                 .padding(.leading, 62)
                 .padding(.trailing, 62)
                 .opacity(0.8)
-
         }
     }
 }
 
 private enum FocusField: Hashable {
     case field
-}
-
-private enum Statuses {
-    case sucess, uncecess, none
-}
-
-private class OtpInputManager: ObservableObject {
-
-    @Published var status: Statuses = .none
-    @Published var text = "" {
-        didSet {
-            if text.count >= characterLimit {
-                let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
-                status = sign(id: verificationID, verificationCode: text)
-                if status == .uncecess {
-                    text = ""
-                }
-            }
-        }
-        willSet {
-            if text.count == 0, status == .uncecess {
-                status = .none
-            }
-        }
-    }
-
-    let characterLimit: Int
-    init(limit: Int = 6){
-        characterLimit = limit
-    }
 }
 
 private func separateOTP(otp: String) -> [Int:String] {
@@ -177,31 +145,4 @@ private func separateOTP(otp: String) -> [Int:String] {
     return result
 }
 
-private func sign(id: String?, verificationCode: String) -> Statuses {
 
-    var result: Statuses = .uncecess
-
-    guard let verificationID = id else {
-        return .uncecess
-    }
-
-    let credential = PhoneAuthProvider.provider().credential(
-        withVerificationID: verificationID,
-        verificationCode: verificationCode
-    )
-
-    Auth.auth().signIn(with: credential) { authResult, error in
-        if let error = error {
-            result = .uncecess
-            print(error)
-           // self.showMessagePrompt(error.localizedDescription)
-        }
-
-        if let authResult = authResult {
-            result = .sucess
-        }
-    }
-
-    return result
-
-}

@@ -15,6 +15,8 @@
 		92664A5527B51CA6006C860E /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* PhotoView.swift */; };
 		92AEBD5027BA945100654E4B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* AuthView.swift */; };
 		92AEBD5227BA9CAD00654E4B /* MainSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD5127BA9CAD00654E4B /* MainSignView.swift */; };
+		92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2527BBBC77003A4672 /* OTPManager.swift */; };
+		92BFAE2927BBBD5B003A4672 /* StatusAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */; };
 		92CC9FDA27BA65B0009C7AB7 /* ALSHauss-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */; };
 		92CC9FE527BA663B009C7AB7 /* ALSHauss-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */; };
 		92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */; };
@@ -61,6 +63,8 @@
 		92664A5427B51CA6006C860E /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		92AEBD5127BA9CAD00654E4B /* MainSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSignView.swift; sourceTree = "<group>"; };
+		92BFAE2527BBBC77003A4672 /* OTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPManager.swift; sourceTree = "<group>"; };
+		92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAuth.swift; sourceTree = "<group>"; };
 		92CC9FD927BA65B0009C7AB7 /* ALSHauss-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Medium.ttf"; sourceTree = "<group>"; };
 		92CC9FDB27BA663B009C7AB7 /* ALSHauss-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Light.ttf"; sourceTree = "<group>"; };
 		92CC9FDC27BA663B009C7AB7 /* ALSHauss-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ALSHauss-Bold.ttf"; sourceTree = "<group>"; };
@@ -133,10 +137,11 @@
 				92FBDACF27B699580062A9A7 /* SigningAndAuth */,
 				92D0238F27B28DED00099E69 /* Camera */,
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
+				92BFAE2A27BBC502003A4672 /* New Group */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92664A5227B5084F006C860E /* VisualEffectView.swift */,
-				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
+				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
 				882266EF27B2658F00501312 /* Assets.xcassets */,
@@ -151,6 +156,23 @@
 				882266F227B2658F00501312 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		92BFAE2427BBBC1D003A4672 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				92AEBD4F27BA945100654E4B /* AuthView.swift */,
+				92BFAE2527BBBC77003A4672 /* OTPManager.swift */,
+				92BFAE2827BBBD5B003A4672 /* StatusAuth.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		92BFAE2A27BBC502003A4672 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		92CC9FD827BA6518009C7AB7 /* Fonts */ = {
@@ -197,7 +219,7 @@
 			children = (
 				92AEBD5127BA9CAD00654E4B /* MainSignView.swift */,
 				92FBDAD027B699820062A9A7 /* SignView.swift */,
-				92AEBD4F27BA945100654E4B /* AuthView.swift */,
+				92BFAE2427BBBC1D003A4672 /* Auth */,
 			);
 			path = SigningAndAuth;
 			sourceTree = "<group>";
@@ -308,8 +330,10 @@
 				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
+				92BFAE2927BBBD5B003A4672 /* StatusAuth.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
+				92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */,
 				92D023A327B40C3600099E69 /* LocketMode.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,

@@ -77,9 +77,16 @@ struct SignView: View {
                         authMode = .auth
                     }
         } label: {
-            Text("Next")
-                .foregroundColor(.white)
-                .font(Font.custom("ALSHauss-Regular", size: 16))
+            HStack {
+                if inProgress {
+                    ProgressView()
+                        .scaleEffect(1.5, anchor: .center)
+                } else {
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(Font.custom("ALSHauss-Regular", size: 16))
+                }
+            }
         }
     }
 
