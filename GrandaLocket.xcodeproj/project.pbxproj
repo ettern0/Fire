@@ -17,8 +17,6 @@
 		884D539227BAA49900C23FF5 /* Color++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539127BAA49900C23FF5 /* Color++.swift */; };
 		884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* AnyTransition++.swift */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
-		9201AAB927BBCD6000842557 /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 9201AAB827BBCD6000842557 /* Coordinator */; };
-		9201AABE27BBCEC900842557 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABD27BBCEC900842557 /* Coordinator.swift */; };
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		92664A5327B50850006C860E /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* VisualEffectView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
@@ -75,7 +73,6 @@
 		884D539127BAA49900C23FF5 /* Color++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color++.swift"; sourceTree = "<group>"; };
 		884D539327BAAA1900C23FF5 /* AnyTransition++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition++.swift"; sourceTree = "<group>"; };
 		886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyPersonTextEditor.swift; sourceTree = "<group>"; };
-		9201AABD27BBCEC900842557 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9201AABF27BBCEEC00842557 /* AppDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestination.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -125,7 +122,6 @@
 				92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */,
 				92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */,
 				92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */,
-				9201AAB927BBCD6000842557 /* Coordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +200,6 @@
 		9201AABC27BBCEAF00842557 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				9201AABD27BBCEC900842557 /* Coordinator.swift */,
 				9201AABF27BBCEEC00842557 /* AppDestination.swift */,
 				92C2084627BBD53F00D92C85 /* ContentView.swift */,
 			);
@@ -290,7 +285,6 @@
 				92D0238727B27A5C00099E69 /* FirebaseAuthCombine-Community */,
 				92D0238927B27A5C00099E69 /* FirebaseCrashlytics */,
 				92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */,
-				9201AAB827BBCD6000842557 /* Coordinator */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -323,7 +317,6 @@
 			packageReferences = (
 				92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
-				9201AAB727BBCD5F00842557 /* XCRemoteSwiftPackageReference "Coordinator" */,
 			);
 			productRefGroup = 882266E927B2658C00501312 /* Products */;
 			projectDirPath = "";
@@ -376,7 +369,6 @@
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
 				92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */,
 				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
-				9201AABE27BBCEC900842557 /* Coordinator.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
 				9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */,
 				884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */,
@@ -701,14 +693,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9201AAB727BBCD5F00842557 /* XCRemoteSwiftPackageReference "Coordinator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/Coordinator.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -728,11 +712,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9201AAB827BBCD6000842557 /* Coordinator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9201AAB727BBCD5F00842557 /* XCRemoteSwiftPackageReference "Coordinator" */;
-			productName = Coordinator;
-		};
 		92D0238527B27A5C00099E69 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

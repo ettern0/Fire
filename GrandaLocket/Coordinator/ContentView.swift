@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-import Coordinator
 import Firebase
 
 struct ContentView: View {
-    
-    @Coordinator(for: AppDestination.self) var coordinator
+
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = false
