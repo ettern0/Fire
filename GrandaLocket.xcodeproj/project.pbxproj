@@ -21,6 +21,8 @@
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
 		922F74A927BD223400E03453 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A827BD223400E03453 /* ContactsView.swift */; };
 		922F74AB27BE75F000E03453 /* FooterNexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AA27BE75F000E03453 /* FooterNexView.swift */; };
+		922F74AD27BE823F00E03453 /* UIApplication+keyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AC27BE823E00E03453 /* UIApplication+keyWindow.swift */; };
+		922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */; };
 		92664A5327B50850006C860E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* BlurView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
@@ -81,6 +83,8 @@
 		922F74A627BD208A00E03453 /* ContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		922F74A827BD223400E03453 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		922F74AA27BE75F000E03453 /* FooterNexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterNexView.swift; sourceTree = "<group>"; };
+		922F74AC27BE823E00E03453 /* UIApplication+keyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+keyWindow.swift"; sourceTree = "<group>"; };
+		922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				884D539027BAA48700C23FF5 /* Extensions */,
 				92664A5227B5084F006C860E /* BlurView.swift */,
 				922F74AA27BE75F000E03453 /* FooterNexView.swift */,
+				922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92CC9FD827BA6518009C7AB7 /* Fonts */,
@@ -202,6 +207,7 @@
 				92D023A027B3F8BE00099E69 /* Extensions.swift */,
 				884D539127BAA49900C23FF5 /* Color++.swift */,
 				884D539327BAAA1900C23FF5 /* AnyTransition++.swift */,
+				922F74AC27BE823E00E03453 /* UIApplication+keyWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,11 +406,13 @@
 				884D538F27BAA37100C23FF5 /* TextLocketStylePicker.swift in Sources */,
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
 				92AEBD5227BA9CAD00654E4B /* Signing.swift in Sources */,
+				922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */,
 				92C5E68B27BD12FB00C6276A /* ConnectView.swift in Sources */,
 				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,
+				922F74AD27BE823F00E03453 /* UIApplication+keyWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
