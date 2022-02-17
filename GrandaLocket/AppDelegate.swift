@@ -23,10 +23,28 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
+        AppearanceConfigurator.configure()
+
         if let setting = Auth.auth().settings {
             //setting.isAppVerificationDisabledForTesting = true
         }
 
         return true
+    }
+}
+
+enum AppearanceConfigurator {
+    static func configure() {
+        UIFont.familyNames.forEach({ familyName in
+                    let fontNames = UIFont.fontNames(forFamilyName: familyName)
+                    print(familyName, fontNames)
+                })
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .font: UIFont(name: "ALSHauss-Regular", size: 24)
+        ]
+        UINavigationBar.appearance().titleTextAttributes = [
+            .font: UIFont(name: "ALSHauss-Regular", size: 17)
+        ]
     }
 }

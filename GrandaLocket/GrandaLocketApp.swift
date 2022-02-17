@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Firebase
-
 @main
 struct GrandaLocketApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate

@@ -37,21 +37,7 @@ struct ConnectContactsView: View {
                     .font(Font.custom("ALSHauss-Regular", size: 16))
                     .multilineTextAlignment(.center)
                     .opacity(0.8)
-                Button {
-                    ContactsInfo.instance.requestAccessIfNeeded()
-                    destination = .contacts
-                } label: {
-                    Text("NEXT")
-                        .foregroundColor(.white)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(UIColor(rgb: 0x92FFF8).color, lineWidth: 4)
-                                .frame(width: 351, height: 58)
-                        }
-                }
-                .frame(width: 343, height: 39)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 60)
+                FooterView(destination: $destination, nextDestination: .contacts)
             }
             .frame(maxWidth: .infinity)
             .background(Color.black)
