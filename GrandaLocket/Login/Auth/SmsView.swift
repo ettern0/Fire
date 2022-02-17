@@ -33,6 +33,7 @@ struct SmsView: View {
                     if otpCodeManager.inProgress {
                         ProgressView()
                             .scaleEffect(2, anchor: .center)
+                            .foregroundColor(.white)
                     } else {
                         textBoxes
                         TextField("", text: $otpCodeManager.text)
@@ -71,6 +72,7 @@ struct SmsView: View {
                 case .idle, .failure:
                     break
                 case .success:
+                    UserService().saveUserData()
                     destination = .main
                 }
             }

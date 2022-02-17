@@ -12,14 +12,21 @@ struct ContentView: View {
 
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
-    @State var syncContacts: Bool = false
+    @State var syncContacts: Bool = true
     
     var body: some View {
+
         switch destination {
+        case .onboarding:
+            EmptyView()
         case .phoneNumberAuth:
             PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
         case .smsAuth:
             SmsView(destination: $destination, phoneNumber: phoneNumber)
+        case .connectContacts:
+            ConnectContactsView(destination: $destination, syncContacts: $syncContacts)
+        case .contacts:
+            ContactsView(destination: $destination)
         case .main:
             MainView()
         case .feed:
