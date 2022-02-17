@@ -59,6 +59,7 @@
 		92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */; };
 		92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */; };
 		C12357A527BD2B4E0093D55E /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A427BD2B4E0093D55E /* Palette.swift */; };
+		C12357A827BEA0930093D55E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A727BEA0930093D55E /* Typography.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		92FBDACD27B59C280062A9A7 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 		C12357A427BD2B4E0093D55E /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		C12357A727BEA0930093D55E /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				C12357A427BD2B4E0093D55E /* Palette.swift */,
+				C12357A727BEA0930093D55E /* Typography.swift */,
 			);
 			path = DesignKit;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				92664A5327B50850006C860E /* VisualEffectView.swift in Sources */,
 				C12357A527BD2B4E0093D55E /* Palette.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
+				C12357A827BEA0930093D55E /* Typography.swift in Sources */,
 				9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */,
 				884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */,
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
