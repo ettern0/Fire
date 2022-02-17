@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Contacts
 
 struct ContactsView: View {
 
@@ -26,6 +25,7 @@ struct ContactsView: View {
                 List {
                     ForEach(allContacts) { contact in
                         ContactRow(contact: contact)
+                            .listRowSeparator(.hidden)
                     }
                     .listRowBackground(Color.black)
                     Spacer()
@@ -72,29 +72,21 @@ private struct ContactRow: View {
                     Circle()
                         .stroke()
                         .foregroundColor(Color(rgb: 0x92FFF8))
-                }
-            VStack(alignment: .leading) {
+                }.padding(.trailing, 12)
+            VStack(alignment: .leading, spacing: 8) {
                 Text("\(contact.firstName) \(contact.lastName)")
                     .foregroundColor(.white)
                     .font(Font.custom("ALSHauss-Regular", size: 16))
                 Text("\(contact.phoneNumber.stringValue)")
-                    .foregroundColor(.white)
+                    .foregroundColor(.white.opacity(0.8))
                     .font(Font.custom("ALSHauss-Regular", size: 16))
-                    .opacity(0.8)
             }
             Spacer()
             Button {
-
             } label: {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 60, height: 25)
-                    .foregroundColor(UIColor(rgb: 0xA6CFE2).color)
-                    .overlay {
-                        Text("ADD")
-                            .font(Font.custom("ALSHauss-Regular", size: 13))
-                            .foregroundColor(.black)
-                    }
-            }
+                Text("ADD")
+            }.buttonStyle(SmallCapsuleButtonStyle())
         }
+        .padding(.vertical, 10)
     }
 }

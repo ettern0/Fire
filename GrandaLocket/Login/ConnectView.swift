@@ -11,6 +11,15 @@ import Contacts
 struct ConnectContactsView: View {
 
     @Binding var destination: AppDestination
+    @Binding var syncContacts: Bool
+
+    init(destination: Binding<AppDestination>, syncContacts: Binding<Bool>) {
+        self._destination = destination
+        self._syncContacts = syncContacts
+        if self.syncContacts == false {
+            self.destination = .main
+        }
+    }
 
     var body: some View {
             VStack {

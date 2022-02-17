@@ -10,9 +10,9 @@ import Firebase
 
 struct ContentView: View {
 
-    @State var destination: AppDestination = .contacts
+    @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
-    @State var syncContacts: Bool = false
+    @State var syncContacts: Bool = true
     
     var body: some View {
 
@@ -24,7 +24,7 @@ struct ContentView: View {
         case .smsAuth:
             SmsView(destination: $destination, phoneNumber: phoneNumber)
         case .connectContacts:
-            ConnectContactsView(destination: $destination)
+            ConnectContactsView(destination: $destination, syncContacts: $syncContacts)
         case .contacts:
             ContactsView(destination: $destination)
         case .main:

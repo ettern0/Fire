@@ -81,6 +81,7 @@ struct PhoneNumberView: View {
                 if inProgress {
                     ProgressView()
                         .scaleEffect(1.5, anchor: .center)
+                        .foregroundColor(.white)
                 } else {
                     Text("Next")
                         .foregroundColor(.white)
