@@ -10,7 +10,8 @@ import SwiftUI
 struct ContactsView: View {
 
     @Binding var destination: AppDestination
-    let allContacts = ContactsInfo.instance.contacts
+    @ObservedObject private var contactsInfo = ContactsInfo.instance
+
     private static var footerHeight: CGFloat {
         48 + 16 + 16 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0)
     }
@@ -19,11 +20,17 @@ struct ContactsView: View {
         self._destination = destination
     }
 
+    var sortedContacts: [ContactInfo] {
+        contactsInfo.contacts.sorted(by: {(first, second) in
+            first.status.rawValue < second.status.rawValue
+        })
+    }
+
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 List {
-                    ForEach(allContacts) { contact in
+                    ForEach(sortedContacts) { contact in
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }
@@ -82,11 +89,30 @@ private struct ContactRow: View {
                     .font(Font.custom("ALSHauss-Regular", size: 16))
             }
             Spacer()
+
+            let buttonProperties = getTextButtonPropeties()
+
             Button {
+
             } label: {
-                Text("ADD")
-            }.buttonStyle(SmallCapsuleButtonStyle())
+                buttonProperties.label
+            }
+            .buttonStyle(SmallCapsuleButtonStyle())
+            .disabled(buttonProperties.availability)
         }
         .padding(.vertical, 10)
+    }
+
+    private func getTextButtonPropeties() -> (label: AnyView, availability: Bool) {
+        switch contact.status {
+        case .register:
+            return (label: AnyView(Text("ADD")), availability: true)
+        case .added:
+            return (label: AnyView(Text("ADDED")), availability: false)
+        case .request:
+            return (label: AnyView(Text("REQUEST")), availability: false)
+        case .none:
+            return (label: AnyView(Text("INVITE")), availability: true)
+        }
     }
 }

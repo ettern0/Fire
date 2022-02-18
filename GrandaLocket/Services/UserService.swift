@@ -36,18 +36,19 @@ final class UserService {
         }
     }
 
-    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus?) -> Void) {
+    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
 
-        db?.collection("users").whereField("phone", isEqualTo: phone)
+        let filtredPhone = phone.filter("+0123456789".contains)
+        db?.collection("users").whereField("phone", isEqualTo: filtredPhone)
             .getDocuments() { (querySnapshot, err) in
                 if let _ = err {
-                    completion(nil)
+                    completion(.none)
                 } else {
                     for _ in querySnapshot!.documents {
                         completion(.register)
                     }
                 }
             }
+        completion(.none)
     }
-
 }

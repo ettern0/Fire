@@ -16,7 +16,7 @@ struct ContentView: View {
 
     init() {
         if Auth.auth().currentUser?.uid != nil {
-            destination = .contacts
+            _destination = State(initialValue: .contacts)
         }
     }
     

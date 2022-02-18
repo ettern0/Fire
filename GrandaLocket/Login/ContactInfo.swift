@@ -12,17 +12,18 @@ struct ContactInfo: Identifiable {
     var firstName: String
     var lastName: String
     var phoneNumber: String
-    var status: ContactStatus?
+    var status: ContactStatus
 }
 
-enum ContactStatus {
-    case added, register
+//Raw value for sorting in lists
+enum ContactStatus: Int {
+    case added = 0, request, register, none
 }
 
-final class ContactsInfo {
+final class ContactsInfo: ObservableObject {
 
     static let instance = ContactsInfo()
-    var contacts: [ContactInfo]
+    @Published var contacts: [ContactInfo]
 
     private init() {
         self.contacts = []
@@ -35,17 +36,13 @@ final class ContactsInfo {
         do {
             try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
                 if let phoneNumber = contact.phoneNumbers.first?.value {
-
-                    var status: ContactStatus?
-                    UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { value in
-                        status = value
+                    UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { status in
+                        self.contacts.append(
+                                ContactInfo(firstName: contact.givenName,
+                                            lastName: contact.familyName,
+                                            phoneNumber: phoneNumber.stringValue,
+                                            status: status))
                     }
-
-                    self.contacts.append(
-                            ContactInfo(firstName: contact.givenName,
-                                        lastName: contact.familyName,
-                                        phoneNumber: phoneNumber.stringValue,
-                                        status: status))
                 }
             })
         } catch let error {
