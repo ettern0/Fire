@@ -73,7 +73,7 @@ struct SmsView: View {
                     break
                 case .success:
                     UserService().saveUserData()
-                    destination = .main
+                    destination = .connectContacts
                 }
             }
         }

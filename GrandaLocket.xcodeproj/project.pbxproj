@@ -175,9 +175,9 @@
 				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
+				9201AABC27BBCEAF00842557 /* CoordinatorView */,
 				C12357A627BE98E40093D55E /* DesignKit */,
 				922F74B227BE9C2800E03453 /* Services */,
-				9201AABC27BBCEAF00842557 /* CoordinatorView */,
 				92664A5427B51CA6006C860E /* MainView.swift */,
 				92FBDACF27B699580062A9A7 /* Login */,
 				92D0238F27B28DED00099E69 /* Camera */,
@@ -231,8 +231,8 @@
 		9201AABC27BBCEAF00842557 /* CoordinatorView */ = {
 			isa = PBXGroup;
 			children = (
-				9201AABF27BBCEEC00842557 /* AppDestination.swift */,
 				92C2084627BBD53F00D92C85 /* ContentView.swift */,
+				9201AABF27BBCEEC00842557 /* AppDestination.swift */,
 			);
 			path = CoordinatorView;
 			sourceTree = "<group>";

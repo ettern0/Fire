@@ -24,7 +24,7 @@ struct ContentView: View {
         case .smsAuth:
             SmsView(destination: $destination, phoneNumber: phoneNumber)
         case .connectContacts:
-            ConnectContactsView(destination: $destination, syncContacts: $syncContacts)
+            ConnectContactsView(destination: $destination, syncContacts: syncContacts)
         case .contacts:
             ContactsView(destination: $destination)
         case .main:

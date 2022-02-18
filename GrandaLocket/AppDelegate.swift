@@ -25,7 +25,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         AppearanceConfigurator.configure()
 
-        if let setting = Auth.auth().settings {
+        if let _ = Auth.auth().settings {
             //setting.isAppVerificationDisabledForTesting = true
         }
 
@@ -35,16 +35,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 enum AppearanceConfigurator {
     static func configure() {
-        UIFont.familyNames.forEach({ familyName in
-                    let fontNames = UIFont.fontNames(forFamilyName: familyName)
-                    print(familyName, fontNames)
-                })
-        
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            .font: UIFont(name: "ALSHauss-Regular", size: 24)
-        ]
+
+        if let font = UIFont(name: "ALSHauss-Regular", size: 24) {
+            UINavigationBar.appearance().largeTitleTextAttributes = [
+                .font: font
+            ]}
+
+        if let font = UIFont(name: "ALSHauss-Regular", size: 17) {
         UINavigationBar.appearance().titleTextAttributes = [
-            .font: UIFont(name: "ALSHauss-Regular", size: 17)
-        ]
+            .font: font
+        ]}
     }
 }
