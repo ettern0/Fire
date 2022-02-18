@@ -16,6 +16,7 @@
 		884D538F27BAA37100C23FF5 /* TextLocketStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538E27BAA37000C23FF5 /* TextLocketStylePicker.swift */; };
 		884D539227BAA49900C23FF5 /* Color++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539127BAA49900C23FF5 /* Color++.swift */; };
 		884D539427BAAA1900C23FF5 /* AnyTransition++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* AnyTransition++.swift */; };
+		885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 885FD98F27BF353900D57C09 /* FirebaseAppCheck */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
@@ -142,6 +143,7 @@
 				92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */,
 				92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */,
 				922F74B927BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */,
 				922F74B727BE9CF000E03453 /* FirebaseFirestore in Frameworks */,
 				92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */,
 			);
@@ -174,7 +176,6 @@
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				C12357A627BE98E40093D55E /* DesignKit */,
-				9201AABC27BBCEAF00842557 /* Coordinator */,
 				922F74B227BE9C2800E03453 /* Services */,
 				9201AABC27BBCEAF00842557 /* CoordinatorView */,
 				92664A5427B51CA6006C860E /* MainView.swift */,
@@ -343,6 +344,7 @@
 				92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */,
 				922F74B627BE9CF000E03453 /* FirebaseFirestore */,
 				922F74B827BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta */,
+				885FD98F27BF353900D57C09 /* FirebaseAppCheck */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -712,7 +714,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GrandaLocket/Preview Content\"";
-				DEVELOPMENT_TEAM = XJB6H4WXH3;
+				DEVELOPMENT_TEAM = GLQY2SH5YN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GrandaLocket/Info.plist;
@@ -779,6 +781,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		885FD98F27BF353900D57C09 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
 		922F74B627BE9CF000E03453 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
