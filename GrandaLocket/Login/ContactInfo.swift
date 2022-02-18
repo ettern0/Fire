@@ -6,18 +6,42 @@
 //
 
 import Contacts
+import Foundation
 
-struct ContactInfo: Identifiable {
+struct ContactInfo: Identifiable, Equatable {
     var id = UUID()
     var firstName: String
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
+
+    mutating func changeStatus(_ status: ContactStatus) {
+        self.status = status
+    }
 }
 
 //Raw value for sorting in lists
 enum ContactStatus: Int {
-    case added = 0, request, register, none
+    case added = 0, request, register, notRegister
+
+    func stringValue() -> String {
+        return String(describing: self)
+    }
+}
+
+func ContactStatusFromString(_ str: String) -> ContactStatus {
+    switch str {
+    case "added":
+        return .added
+    case "request":
+        return .request
+    case "register":
+        return .register
+    case "notRegister":
+        return .notRegister
+    default:
+        return .notRegister
+    }
 }
 
 final class ContactsInfo: ObservableObject {
@@ -51,10 +75,6 @@ final class ContactsInfo: ObservableObject {
         self.contacts = self.contacts.sorted {
             $0.firstName < $1.firstName
         }
-    }
-
-    func requestAccessIfNeeded() {
-        
     }
 
     func requestAccess() {

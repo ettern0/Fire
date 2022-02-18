@@ -34,11 +34,13 @@ struct ContactsView: View {
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }
+                    //.animation(.default)
                     .listRowBackground(Palette.blackHard)
 
                     Spacer()
                         .frame(height: Self.footerHeight)
                 }
+                .animation(.default, value: contactsInfo.contacts)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Add your friends")
@@ -50,7 +52,7 @@ struct ContactsView: View {
 
 private struct ContactRow: View {
 
-    let contact: ContactInfo
+    var contact: ContactInfo
     var textForIcon: String {
 
         let firstLetter: String
@@ -86,7 +88,7 @@ private struct ContactRow: View {
                     .foregroundColor(.white)
                     .font(Typography.description)
                     .lineSpacing(4)
-                Text("\(contact.phoneNumber.stringValue)")
+                Text("\(contact.phoneNumber)")
                     .foregroundColor(.white.opacity(0.8))
                     .font(Typography.description)
                     .lineSpacing(4)
@@ -96,7 +98,9 @@ private struct ContactRow: View {
             let buttonProperties = getTextButtonPropeties()
 
             Button {
-
+                UserService().setRequestToChangeContactStatus(contact: contact) { status in
+                    //contact.changeStatus(status)
+                }
             } label: {
                 buttonProperties.label
             }
@@ -114,7 +118,7 @@ private struct ContactRow: View {
             return (label: AnyView(Text("ADDED")), availability: false)
         case .request:
             return (label: AnyView(Text("REQUEST")), availability: false)
-        case .none:
+        case .notRegister:
             return (label: AnyView(Text("INVITE")), availability: true)
         }
     }
