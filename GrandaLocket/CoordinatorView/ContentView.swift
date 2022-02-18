@@ -13,6 +13,12 @@ struct ContentView: View {
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = true
+
+    init() {
+        if Auth.auth().currentUser?.uid != nil {
+            destination = .contacts
+        }
+    }
     
     var body: some View {
 

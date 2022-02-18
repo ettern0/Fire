@@ -7,11 +7,16 @@
 
 import Contacts
 
-struct ContactInfo : Identifiable{
+struct ContactInfo: Identifiable {
     var id = UUID()
     var firstName: String
     var lastName: String
-    var phoneNumber: CNPhoneNumber
+    var phoneNumber: String
+    var status: ContactStatus?
+}
+
+enum ContactStatus {
+    case added, register
 }
 
 final class ContactsInfo {
@@ -30,7 +35,17 @@ final class ContactsInfo {
         do {
             try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
                 if let phoneNumber = contact.phoneNumbers.first?.value {
-                    self.contacts.append(ContactInfo(firstName: contact.givenName, lastName: contact.familyName, phoneNumber: phoneNumber))
+
+                    var status: ContactStatus?
+                    UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { value in
+                        status = value
+                    }
+
+                    self.contacts.append(
+                            ContactInfo(firstName: contact.givenName,
+                                        lastName: contact.familyName,
+                                        phoneNumber: phoneNumber.stringValue,
+                                        status: status))
                 }
             })
         } catch let error {

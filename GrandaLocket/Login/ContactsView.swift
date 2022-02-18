@@ -77,7 +77,7 @@ private struct ContactRow: View {
                 Text("\(contact.firstName) \(contact.lastName)")
                     .foregroundColor(.white)
                     .font(Font.custom("ALSHauss-Regular", size: 16))
-                Text("\(contact.phoneNumber.stringValue)")
+                Text("\(contact.phoneNumber)")
                     .foregroundColor(.white.opacity(0.8))
                     .font(Font.custom("ALSHauss-Regular", size: 16))
             }

@@ -34,6 +34,20 @@ final class UserService {
                 print("Document successfully written!")
             }
         }
-
     }
+
+    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus?) -> Void) {
+
+        db?.collection("users").whereField("phone", isEqualTo: phone)
+            .getDocuments() { (querySnapshot, err) in
+                if let _ = err {
+                    completion(nil)
+                } else {
+                    for _ in querySnapshot!.documents {
+                        completion(.register)
+                    }
+                }
+            }
+    }
+
 }
