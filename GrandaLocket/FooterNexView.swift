@@ -18,7 +18,7 @@ struct FooterView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            BlurView(style: .dark)
+            BlurView(style:.dark)
                 .frame(maxWidth: .infinity)
             Button {
                 ContactsInfo.instance.requestAccessIfNeeded()

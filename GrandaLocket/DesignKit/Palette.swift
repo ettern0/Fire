@@ -18,7 +18,7 @@ enum Palette {
     static let whiteLight = Color(rgb: 0xFFFFFF).opacity(0.6)
     static let whiteOpacity = Color(rgb: 0xFFFFFF).opacity(0.06)
 
-    static let accent = UIColor(rgb: 0xCFF308)
+    static let accent = Color(rgb: 0xCFF308)
 
     static let widgetGreenLight = Color(rgb: 0x23A566)
     static let widgetGreenHard = Color(rgb: 0x1E8B57)
