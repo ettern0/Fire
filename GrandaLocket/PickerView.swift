@@ -42,7 +42,7 @@ struct LocketModeControl: View {
             .animation(.default, value: calculateOffset())
             Image("angle_up")
                 .renderingMode(.template)
-                .foregroundColor(.init(rgb: 0xF83600))
+                .foregroundColor(.init(Palette.accent))
                 .animation(.default, value: selectedMode)
         }
 

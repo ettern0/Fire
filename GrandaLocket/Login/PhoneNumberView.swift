@@ -20,18 +20,17 @@ struct PhoneNumberView: View {
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 8)
-                    .padding(.leading, 16)
-                    .padding(.trailing, 16)
+                    .padding(.horizontal,16)
                 Toggle(isOn: $syncContacts, label: {
                     Text("Sync Contacts")
                         .foregroundColor(.white)
+                    
                 })
                     .padding(.bottom, 176)
-                    .padding(.leading, 16)
-                    .padding(.trailing, 16)
+                    .padding(.horizontal,16)
             }
             .frame(maxHeight: .infinity)
-            .background(Color.black)
+            .background(Palette.blackHard)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     signButton
@@ -42,21 +41,21 @@ struct PhoneNumberView: View {
 
     var header: some View {
         VStack {
-            Text("Sign in to Granda Locket")
+            Text("Sign in to Fire")
                 .foregroundColor(.white)
-                .font(Font.custom("ALSHauss-Medium", size: 24))
+                .font(Typography.headerL)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 8)
-                .padding(.leading, 48)
-                .padding(.trailing, 48)
-            Text("Please confirm your country code and enter your phone number.")
+                .padding(.horizontal,48)
+            Text("Please confirm your country code and enter your phone number")
                 .foregroundColor(.white)
-                .font(Font.custom("ALSHauss-Regular", size: 16))
+                .font(Typography.description)
                 .padding(.bottom, 44)
                 .multilineTextAlignment(.center)
-                .padding(.leading, 63)
-                .padding(.trailing, 63)
+                .padding(.horizontal, 63)
                 .opacity(0.8)
+                .lineSpacing(4)
+
         }
     }
 
@@ -85,7 +84,7 @@ struct PhoneNumberView: View {
                 } else {
                     Text("Next")
                         .foregroundColor(.white)
-                        .font(Font.custom("ALSHauss-Regular", size: 16))
+                        .font(Typography.controlL)
                 }
             }
         }
@@ -108,7 +107,7 @@ struct PhoneNumberField: UIViewRepresentable {
         textField.withPrefix = true
         textField.maxDigits = 10
         textField.textColor = .white
-        textField.font = UIFont(name: "ALSHauss-Regular", size: 20)
+        textField.font = Typography.headerMUI
         textField.adjustsFontForContentSizeCategory = false
         textField.adjustsFontSizeToFitWidth = false
         textField.countryCodePlaceholderColor = .white.withAlphaComponent(0.5)
@@ -116,7 +115,7 @@ struct PhoneNumberField: UIViewRepresentable {
         textField.keyboardAppearance = .dark
         textField.placeholder = "Phone"
         textField.becomeFirstResponder()
-        textField.font = UIFont.systemFont(ofSize: 32)
+        textField.font = Typography.headerMUI
         textField.addTarget(context.coordinator, action: #selector(Coordinator.onTextUpdate), for: .editingChanged)
         return textField
     }
