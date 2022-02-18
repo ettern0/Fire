@@ -33,9 +33,8 @@ final class UserService {
         }
     }
 
-    
-    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
 
+    func checkUserStatusInContacts(phone: String, completion: @escaping (ContactStatus) -> Void) {
         //Try to find status in contacts
         db?.collection("contacts").whereField("phone", isEqualTo: phone.getPhoneFormat())
             .getDocuments() { (querySnapshot, err) in
@@ -47,19 +46,20 @@ final class UserService {
                     }
                 }
             }
-
+    }
+    
+    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
         //Try to find if registered in app
         db?.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat())
             .getDocuments() { (querySnapshot, err) in
-                if let _ = err {
-                    completion(.notRegister)
-                } else {
-                    for _ in querySnapshot!.documents {
-                        completion(.register)
+                if err == nil {
+                    if let snapshot = querySnapshot {
+                        snapshot.documents.map { doc in
+                            completion(.register)
+                        }
                     }
                 }
             }
-        completion(.notRegister)
     }
 
     func setRequestToChangeContactStatus(contact: ContactInfo,

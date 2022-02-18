@@ -58,14 +58,41 @@ final class ContactsInfo: ObservableObject {
         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
         do {
+
+            let group = DispatchGroup()
+
             try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
                 if let phoneNumber = contact.phoneNumbers.first?.value {
+
+                    //Try to find status in contacts
+                    group.enter()
+                    UserService().checkUserStatusInContacts(phone: phoneNumber.stringValue) { status in
+                        self.contacts.append(
+                            ContactInfo(firstName: contact.givenName,
+                                        lastName: contact.familyName,
+                                        phoneNumber: phoneNumber.stringValue,
+                                        status: status))
+                        group.leave()
+                    }
+
+                    //Try to find if registered in app
+                    group.enter()
                     UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { status in
                         self.contacts.append(
-                                ContactInfo(firstName: contact.givenName,
-                                            lastName: contact.familyName,
-                                            phoneNumber: phoneNumber.stringValue,
-                                            status: status))
+                            ContactInfo(firstName: contact.givenName,
+                                        lastName: contact.familyName,
+                                        phoneNumber: phoneNumber.stringValue,
+                                        status: status))
+                        group.leave()
+                    }
+
+                    //add to array
+                    group.notify(queue: DispatchQueue.global()) {
+                        self.contacts.append(
+                            ContactInfo(firstName: contact.givenName,
+                                        lastName: contact.familyName,
+                                        phoneNumber: phoneNumber.stringValue,
+                                        status: .notRegister))
                     }
                 }
             })
