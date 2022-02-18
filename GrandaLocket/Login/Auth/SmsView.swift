@@ -52,7 +52,7 @@ struct SmsView: View {
             .padding(.bottom, 229)
             .frame(maxHeight: .infinity)
             .frame(maxWidth: .infinity)
-            .background(Color.black)
+            .background(Palette.blackHard)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.focusedField = .field
@@ -100,7 +100,7 @@ struct SmsView: View {
 
     private func otpText(_ text: String) -> some View {
         return Text(text)
-            .font(Font.custom("ALSHauss-Medium", size: 24))
+            .font(Typography.headerL)
             .foregroundColor(.white)
             .frame(width: 32, height: 48)
             .background(VStack {
@@ -116,26 +116,26 @@ struct SmsView: View {
         VStack {
             Text("6-Digit Code")
                 .foregroundColor(.white)
-                .font(Font.custom("ALSHauss-Medium", size: 24))
+                .font(Typography.headerL)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 12)
-                .padding(.leading, 48)
-                .padding(.trailing, 48)
+                .padding(.horizontal, 63)
             Text("Please enter the code we've send to")
                 .foregroundColor(.white)
-                .font(Font.custom("ALSHauss-Regular", size: 16))
+                .font(Typography.description)
                 .multilineTextAlignment(.center)
-                .padding(.leading, 62)
-                .padding(.trailing, 62)
+                .padding(.horizontal, 63)
+                .padding(.bottom, 3)
                 .opacity(0.8)
+                .lineSpacing(4)
             Text("\(phoneNumber)")
                 .foregroundColor(.green)
-                .font(Font.custom("ALSHauss-Regular", size: 16))
+                .font(Typography.description)
                 .padding(.bottom, 48)
                 .multilineTextAlignment(.center)
-                .padding(.leading, 62)
-                .padding(.trailing, 62)
+                .padding(.horizontal, 63)
                 .opacity(0.8)
+                .lineSpacing(4)
         }
     }
 }

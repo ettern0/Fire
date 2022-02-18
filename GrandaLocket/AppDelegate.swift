@@ -36,12 +36,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 enum AppearanceConfigurator {
     static func configure() {
 
-        if let font = UIFont(name: "ALSHauss-Regular", size: 24) {
-            UINavigationBar.appearance().largeTitleTextAttributes = [
-                .font: font
-            ]}
 
-        if let font = UIFont(name: "ALSHauss-Regular", size: 17) {
+
+        if let font = Typography.headerMUI {
+                    UINavigationBar.appearance().largeTitleTextAttributes = [
+                        .font: font
+                    ]}
+
+        if let font = Typography.headerSUI {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: font
         ]}

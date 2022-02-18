@@ -27,7 +27,8 @@ struct ContactsView: View {
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }
-                    .listRowBackground(Color.black)
+                    .listRowBackground(Palette.blackHard)
+
                     Spacer()
                         .frame(height: Self.footerHeight)
                 }
@@ -71,15 +72,17 @@ private struct ContactRow: View {
                 .background {
                     Circle()
                         .stroke()
-                        .foregroundColor(Color(rgb: 0x92FFF8))
+                        .foregroundColor(Palette.accent)
                 }.padding(.trailing, 12)
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(contact.firstName) \(contact.lastName)")
                     .foregroundColor(.white)
-                    .font(Font.custom("ALSHauss-Regular", size: 16))
-                Text("\(contact.phoneNumber)")
+                    .font(Typography.description)
+                    .lineSpacing(4)
+                Text("\(contact.phoneNumber.stringValue)")
                     .foregroundColor(.white.opacity(0.8))
-                    .font(Font.custom("ALSHauss-Regular", size: 16))
+                    .font(Typography.description)
+                    .lineSpacing(4)
             }
             Spacer()
             Button {

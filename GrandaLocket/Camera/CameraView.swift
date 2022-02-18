@@ -31,7 +31,7 @@ struct CameraPreview: View {
             Image(uiImage: image)
                 .resizable()
         } else {
-            Color.black
+            Palette.blackHard
         }
     }
 
