@@ -19,30 +19,25 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions
+                     launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         AppearanceConfigurator.configure()
-
         if let _ = Auth.auth().settings {
             //setting.isAppVerificationDisabledForTesting = true
         }
-
         return true
     }
 }
 
 enum AppearanceConfigurator {
     static func configure() {
-
-
-
         if let font = Typography.headerMUI {
                     UINavigationBar.appearance().largeTitleTextAttributes = [
                         .font: font
                     ]}
-
         if let font = Typography.headerSUI {
         UINavigationBar.appearance().titleTextAttributes = [
             .font: font

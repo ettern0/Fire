@@ -20,27 +20,66 @@ struct ContactInfo: Identifiable, Equatable {
     }
 }
 
-//Raw value for sorting in lists
-enum ContactStatus: Int {
-    case added = 0, request, register, notRegister
+enum FriendStatus: Int {
+    case incomingRequest, outcomingRequest, friend
+}
 
-    func stringValue() -> String {
-        return String(describing: self)
+enum ContactStatus: Equatable {
+    case isRegistered
+    case notRegistered
+    case inContacts(FriendStatus)
+
+    var stringValue: String {
+        switch self {
+        case .isRegistered:
+            return "isRegistered"
+        case .notRegistered:
+            return "notRegistered"
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return "incomingRequest"
+            case .outcomingRequest:
+                return "outcomingRequest"
+            case .friend:
+                return "friend"
+            }
+        }
+    }
+
+    var order: Int {
+        switch self {
+        case .isRegistered:
+            return 4
+        case .notRegistered:
+            return 5
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return 3
+            case .outcomingRequest:
+                return 2
+            case .friend:
+                return 1
+            }
+        }
     }
 }
 
 func ContactStatusFromString(_ str: String) -> ContactStatus {
     switch str {
-    case "added":
-        return .added
-    case "request":
-        return .request
+    case "friend":
+        return .inContacts(.friend)
+    case "incomingRequest":
+        return .inContacts(.incomingRequest)
+    case "outcomingRequest":
+        return .inContacts(.outcomingRequest)
     case "register":
-        return .register
+        return .isRegistered
     case "notRegister":
-        return .notRegister
+        return .notRegistered
     default:
-        return .notRegister
+        return .notRegistered
     }
 }
 
@@ -55,52 +94,33 @@ final class ContactsInfo: ObservableObject {
     }
 
     func fetchingContacts() {
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
-        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-        do {
+        let contactsFromList = fetchContacts()
 
-            let group = DispatchGroup()
-
-            try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-                if let phoneNumber = contact.phoneNumbers.first?.value {
-
-                    //Try to find status in contacts
-                    group.enter()
-                    UserService().checkUserStatusInContacts(phone: phoneNumber.stringValue) { status in
-                        self.contacts.append(
-                            ContactInfo(firstName: contact.givenName,
-                                        lastName: contact.familyName,
-                                        phoneNumber: phoneNumber.stringValue,
-                                        status: status))
-                        group.leave()
-                    }
-
-                    //Try to find if registered in app
-                    group.enter()
-                    UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { status in
-                        self.contacts.append(
-                            ContactInfo(firstName: contact.givenName,
-                                        lastName: contact.familyName,
-                                        phoneNumber: phoneNumber.stringValue,
-                                        status: status))
-                        group.leave()
-                    }
-
-                    //add to array
-                    group.notify(queue: DispatchQueue.global()) {
-                        self.contacts.append(
-                            ContactInfo(firstName: contact.givenName,
-                                        lastName: contact.familyName,
-                                        phoneNumber: phoneNumber.stringValue,
-                                        status: .notRegister))
-                    }
-                }
-            })
-        } catch let error {
-            print("Failed", error)
+        //initial
+        contactsFromList.forEach { contact in
+            contact.phoneNumbers.forEach { phone in
+                self.contacts.append(
+                    ContactInfo(firstName: contact.givenName,
+                                lastName: contact.familyName,
+                                phoneNumber: phone.value.stringValue,
+                                status: .notRegistered))
+            }
         }
-        self.contacts = self.contacts.sorted {
-            $0.firstName < $1.firstName
+
+        //Try to find status in contacts
+        for index in self.contacts.indices {
+            UserService().checkUserStatusInContacts(phone: self.contacts[index].phoneNumber) { status in
+                self.contacts[index].status = status
+            }
+        }
+
+        //Try to find if registered in app
+        for index in self.contacts.indices {
+            UserService().checkUserStatusByPhone(phone: self.contacts[index].phoneNumber) { status in
+                if self.contacts[index].status == .notRegistered {
+                    self.contacts[index].status = status
+                }
+            }
         }
     }
 
@@ -127,3 +147,22 @@ final class ContactsInfo: ObservableObject {
     }
 }
 
+private func fetchContacts() -> [CNContact] {
+    let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+    let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+    var contacts: [CNContact] = []
+
+    do {
+        try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+            if let _ = contact.phoneNumbers.first?.value {
+                contacts.append(contact)
+            }
+        })
+    } catch let error {
+        print("Failed", error)
+    }
+
+    return contacts.sorted {
+        $0.givenName < $1.givenName
+    }
+}

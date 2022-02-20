@@ -5,6 +5,7 @@
 //  Created by Сердюков Евгений on 17.02.2022.
 //
 
+import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -33,9 +34,7 @@ final class UserService {
         }
     }
 
-
     func checkUserStatusInContacts(phone: String, completion: @escaping (ContactStatus) -> Void) {
-        //Try to find status in contacts
         db?.collection("contacts").whereField("phone", isEqualTo: phone.getPhoneFormat())
             .getDocuments() { (querySnapshot, err) in
                 if err == nil {
@@ -49,17 +48,20 @@ final class UserService {
     }
     
     func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
-        //Try to find if registered in app
-        db?.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat())
-            .getDocuments() { (querySnapshot, err) in
-                if err == nil {
-                    if let snapshot = querySnapshot {
-                        snapshot.documents.map { doc in
-                            completion(.register)
-                        }
-                    }
+
+        guard let db = db else {
+            return completion(.notRegistered)
+        }
+        
+        db.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat()).getDocuments(){ (querySnapshot, err) in
+            if let snapshot = querySnapshot {
+                snapshot.documents.map { doc in
+                    completion(.isRegistered)
                 }
+            } else {
+
             }
+        }
     }
 
     func setRequestToChangeContactStatus(contact: ContactInfo,
@@ -67,10 +69,10 @@ final class UserService {
 
         var statusForChange: ContactStatus
         switch contact.status {
-        case .added, .notRegister, .request:
-            statusForChange = .notRegister
-        case .register:
-            statusForChange = .request
+        case .isRegistered:
+            statusForChange = .inContacts(.outcomingRequest)
+        default:
+            statusForChange = .notRegistered
         }
 
         //Try to save data in your contacts lis Firebase with current status
@@ -85,7 +87,7 @@ final class UserService {
                 for _ in querySnapshot!.documents {
                     //Update data
                     requestToUpdate?.updateData([
-                        "status": statusForChange.stringValue()
+                        "status": statusForChange.stringValue
                     ]) { err in
                         if let _ = err {
                             completion(contact.status)
@@ -100,8 +102,8 @@ final class UserService {
 
         //Second try to create new entity in contacts Forebase
         requestToUpdate?.setData([
-            "phone": contact.phoneNumber,
-            "status": statusForChange.stringValue()
+            "phone": contact.phoneNumber.getPhoneFormat(),
+            "status": statusForChange.stringValue
         ]) { err in
             if let _ = err {
                 completion(contact.status)

@@ -10,20 +10,16 @@ import SwiftUI
 struct ContactsView: View {
 
     @Binding var destination: AppDestination
-    @ObservedObject private var contactsInfo = ContactsInfo.instance
+    @ObservedObject private var contacts = ContactsInfo.instance
 
     private static var footerHeight: CGFloat {
         48 + 16 + 16 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0)
     }
 
-    init(destination: Binding<AppDestination>) {
-        self._destination = destination
-    }
-
     var sortedContacts: [ContactInfo] {
-        contactsInfo.contacts.sorted(by: {(first, second) in
-            first.status.rawValue < second.status.rawValue
-        })
+        contacts.contacts.sorted {
+            $0.status.order < $1.status.order
+        }
     }
 
     var body: some View {
@@ -34,13 +30,11 @@ struct ContactsView: View {
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }
-                    //.animation(.default)
                     .listRowBackground(Palette.blackHard)
-
                     Spacer()
                         .frame(height: Self.footerHeight)
                 }
-                .animation(.default, value: contactsInfo.contacts)
+                .animation(.default, value: contacts.contacts)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Add your friends")
@@ -52,7 +46,9 @@ struct ContactsView: View {
 
 private struct ContactRow: View {
 
+    @ObservedObject private var contacts = ContactsInfo.instance
     var contact: ContactInfo
+
     var textForIcon: String {
 
         let firstLetter: String
@@ -99,27 +95,31 @@ private struct ContactRow: View {
 
             Button {
                 UserService().setRequestToChangeContactStatus(contact: contact) { status in
-                    //contact.changeStatus(status)
+                    if let index = contacts.contacts.firstIndex(of: contact) {
+                        contacts.contacts[index].status = status
+                    }
                 }
             } label: {
                 buttonProperties.label
             }
             .buttonStyle(SmallCapsuleButtonStyle())
-            .disabled(buttonProperties.availability)
+            .disabled(buttonProperties.disabled)
         }
         .padding(.vertical, 10)
     }
 
-    private func getTextButtonPropeties() -> (label: AnyView, availability: Bool) {
+    private func getTextButtonPropeties() -> (label: AnyView, disabled: Bool) {
         switch contact.status {
-        case .register:
-            return (label: AnyView(Text("ADD")), availability: true)
-        case .added:
-            return (label: AnyView(Text("ADDED")), availability: false)
-        case .request:
-            return (label: AnyView(Text("REQUEST")), availability: false)
-        case .notRegister:
-            return (label: AnyView(Text("INVITE")), availability: true)
+        case.isRegistered:
+            return (label: AnyView(Text("ADD")), disabled: false)
+        case .notRegistered:
+            return (label: AnyView(Text("INVITE")), disabled: false)
+        case .inContacts(.friend):
+            return (label: AnyView(Text("ADDED")), disabled: true)
+        case .inContacts(.outcomingRequest):
+            return (label: AnyView(Text("REQUEST")), disabled: false)
+        case .inContacts(.incomingRequest):
+            return (label: AnyView(Text("APPLY")), disabled: false)
         }
     }
 }
