@@ -179,7 +179,7 @@
 		882266DF27B2658C00501312 = {
 			isa = PBXGroup;
 			children = (
-				882266EA27B2658C00501312 /* Fire */,
+				882266EA27B2658C00501312 /* GrandaLocket */,
 				882266E927B2658C00501312 /* Products */,
 				922F74B527BE9CF000E03453 /* Frameworks */,
 			);
@@ -193,7 +193,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		882266EA27B2658C00501312 /* Fire */ = {
+		882266EA27B2658C00501312 /* GrandaLocket */ = {
 			isa = PBXGroup;
 			children = (
 				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
@@ -220,7 +220,7 @@
 				882266EF27B2658F00501312 /* Assets.xcassets */,
 				882266F127B2658F00501312 /* Preview Content */,
 			);
-			path = Fire;
+			path = GrandaLocket;
 			sourceTree = "<group>";
 		};
 		882266F127B2658F00501312 /* Preview Content */ = {
