@@ -83,13 +83,7 @@ struct MainView: View {
         }, label: {
             ZStack {
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [.init(rgb: 0xF83600), .init(rgb: 0xF9D423)],
-                            startPoint: .init(x: 0, y: 1),
-                            endPoint: .init(x: 1, y: 1)
-                        )
-                    )
+                    .fill(Palette.accent)
                     .frame(width: 80, height: 90, alignment: .center)
                     .animation(.default, value: selectedMode)
                 Circle()
@@ -98,6 +92,9 @@ struct MainView: View {
                 Circle()
                     .stroke(Color.black.opacity(0.8), lineWidth: 2)
                     .frame(width: 65, height: 65, alignment: .center)
+
+
+
             }
         }).padding()
     }

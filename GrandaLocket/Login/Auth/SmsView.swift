@@ -110,6 +110,7 @@ struct SmsView: View {
                     .foregroundColor(.white)
             })
             .padding(paddingOfBox)
+            .padding(.bottom,300)
     }
 
     var header: some View {
