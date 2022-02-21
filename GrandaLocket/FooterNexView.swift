@@ -21,7 +21,6 @@ struct FooterView: View {
 //            BlurView(style:.dark)
 //                .frame(maxWidth: .infinity)
             Button {
-                ContactsInfo.instance.requestAccessIfNeeded()
                 destination = nextDestination
             } label: {
                 Text("NEXT")

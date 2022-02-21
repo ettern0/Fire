@@ -122,32 +122,9 @@ extension String {
    func removeWhitespace() -> String {
        return self.replace(string: " ", replacement: "")
    }
+
+    func getPhoneFormat() -> String {
+        return self.filter("+0123456789".contains)
+    }
  }
 
-//Example save as image
-//struct ContentView: View {
-//
-//    var contentToSave: some View {
-//        ZStack {
-//            Circle()
-//                .fill(Color.blue)
-//                .frame(width: 150, height: 150)
-//                .padding()
-//            Text("🤯")
-//                .font(.largeTitle)
-//        }
-//            .background(Color.green.edgesIgnoringSafeArea(.all))
-//            .clipShape(RoundedRectangle(cornerRadius: 16))
-//    }
-//
-//    var body: some View {
-//        VStack {
-//            contentToSave
-//            Button("Save Image") {
-//                contentToSave.saveAsImage(width: 200, height: 200) { image in
-//                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-//                }
-//            }
-//        }
-//    }
-//}

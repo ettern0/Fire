@@ -6,23 +6,87 @@
 //
 
 import Contacts
+import Foundation
 
-struct ContactInfo: Identifiable {
+struct ContactInfo: Identifiable, Equatable {
     var id = UUID()
     var firstName: String
     var lastName: String
     var phoneNumber: String
-    var status: ContactStatus?
+    var status: ContactStatus
+
+    mutating func changeStatus(_ status: ContactStatus) {
+        self.status = status
+    }
 }
 
-enum ContactStatus {
-    case added, register
+enum FriendStatus: Int {
+    case incomingRequest, outcomingRequest, friend
 }
 
-final class ContactsInfo {
+enum ContactStatus: Equatable {
+    case isRegistered
+    case notRegistered
+    case inContacts(FriendStatus)
+
+    var stringValue: String {
+        switch self {
+        case .isRegistered:
+            return "isRegistered"
+        case .notRegistered:
+            return "notRegistered"
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return "incomingRequest"
+            case .outcomingRequest:
+                return "outcomingRequest"
+            case .friend:
+                return "friend"
+            }
+        }
+    }
+
+    var order: Int {
+        switch self {
+        case .isRegistered:
+            return 4
+        case .notRegistered:
+            return 5
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return 3
+            case .outcomingRequest:
+                return 2
+            case .friend:
+                return 1
+            }
+        }
+    }
+}
+
+func ContactStatusFromString(_ str: String) -> ContactStatus {
+    switch str {
+    case "friend":
+        return .inContacts(.friend)
+    case "incomingRequest":
+        return .inContacts(.incomingRequest)
+    case "outcomingRequest":
+        return .inContacts(.outcomingRequest)
+    case "register":
+        return .isRegistered
+    case "notRegister":
+        return .notRegistered
+    default:
+        return .notRegistered
+    }
+}
+
+final class ContactsInfo: ObservableObject {
 
     static let instance = ContactsInfo()
-    var contacts: [ContactInfo]
+    @Published var contacts: [ContactInfo]
 
     private init() {
         self.contacts = []
@@ -30,34 +94,34 @@ final class ContactsInfo {
     }
 
     func fetchingContacts() {
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
-        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-        do {
-            try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-                if let phoneNumber = contact.phoneNumbers.first?.value {
+        let contactsFromList = fetchContacts()
 
-                    var status: ContactStatus?
-                    UserService().checkUserStatusByPhone(phone: phoneNumber.stringValue) { value in
-                        status = value
-                    }
+        //initial
+        contactsFromList.forEach { contact in
+            contact.phoneNumbers.forEach { phone in
+                self.contacts.append(
+                    ContactInfo(firstName: contact.givenName,
+                                lastName: contact.familyName,
+                                phoneNumber: phone.value.stringValue,
+                                status: .notRegistered))
+            }
+        }
 
-                    self.contacts.append(
-                            ContactInfo(firstName: contact.givenName,
-                                        lastName: contact.familyName,
-                                        phoneNumber: phoneNumber.stringValue,
-                                        status: status))
+        //Try to find status in contacts
+        for index in self.contacts.indices {
+            UserService().checkUserStatusInContacts(phone: self.contacts[index].phoneNumber) { status in
+                self.contacts[index].status = status
+            }
+        }
+
+        //Try to find if registered in app
+        for index in self.contacts.indices {
+            UserService().checkUserStatusByPhone(phone: self.contacts[index].phoneNumber) { status in
+                if self.contacts[index].status == .notRegistered {
+                    self.contacts[index].status = status
                 }
-            })
-        } catch let error {
-            print("Failed", error)
+            }
         }
-        self.contacts = self.contacts.sorted {
-            $0.firstName < $1.firstName
-        }
-    }
-
-    func requestAccessIfNeeded() {
-        
     }
 
     func requestAccess() {
@@ -83,3 +147,22 @@ final class ContactsInfo {
     }
 }
 
+private func fetchContacts() -> [CNContact] {
+    let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+    let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+    var contacts: [CNContact] = []
+
+    do {
+        try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+            if let _ = contact.phoneNumbers.first?.value {
+                contacts.append(contact)
+            }
+        })
+    } catch let error {
+        print("Failed", error)
+    }
+
+    return contacts.sorted {
+        $0.givenName < $1.givenName
+    }
+}
