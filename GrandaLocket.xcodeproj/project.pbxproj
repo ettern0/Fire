@@ -277,13 +277,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92BFAE2427BBBC1D003A4672 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
 		92CC9FD827BA6518009C7AB7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,7 +353,6 @@
 				92AEBD4F27BA945100654E4B /* SmsView.swift */,
 				92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */,
 				92BFAE2527BBBC77003A4672 /* OTPManager.swift */,
-				92BFAE2427BBBC1D003A4672 /* Auth */,
 			);
 			path = Login;
 			sourceTree = "<group>";
