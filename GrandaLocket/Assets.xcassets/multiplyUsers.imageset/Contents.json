@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "angle_up.png",
+      "filename" : "User_03.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Vector.png",
+      "filename" : "User_03@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Vector-1.png",
+      "filename" : "User_03@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

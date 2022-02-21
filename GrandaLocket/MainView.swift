@@ -82,9 +82,7 @@ struct MainView: View {
     var captureButton: some View {
         Button(action: {
             snaphotImage = Image(uiImage: locketCreationContainer(position: .center).snapshot())
-            destination = .onboarding
-                //.frame(width: proxy.size.width, height: proxy.size.width)
-            //model.capturePhoto()
+            destination = .send
         }, label: {
             ZStack {
                 Circle()

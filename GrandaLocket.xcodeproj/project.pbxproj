@@ -63,9 +63,13 @@
 		92D0239D27B28E9500099E69 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239C27B28E9500099E69 /* CameraView.swift */; };
 		92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* Extensions.swift */; };
 		92D023A327B40C3600099E69 /* LocketMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* LocketMode.swift */; };
+		92E4F57327C4092F0040E25B /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57227C4092F0040E25B /* SendView.swift */; };
+		92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57427C409A90040E25B /* FooterSendView.swift */; };
+		92E4F57727C410A80040E25B /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57627C410A80040E25B /* ContactRow.swift */; };
+		92E4F57927C41EB10040E25B /* SendSelectedMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57827C41EB10040E25B /* SendSelectedMode.swift */; };
 		92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E51C5527B2694900FEE370 /* GoogleService-Info.plist */; };
 		92E9C96C27C38A8E002A7501 /* CarouselComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9C96B27C38A8E002A7501 /* CarouselComponents.swift */; };
-		92E9C96F27C38F28002A7501 /* ContactGeneralFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */; };
+		92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9C96E27C38F28002A7501 /* ContactFunctions.swift */; };
 		92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACB27B5971B0062A9A7 /* CameraModel.swift */; };
 		92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACD27B59C280062A9A7 /* PickerView.swift */; };
 		92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */; };
@@ -128,9 +132,13 @@
 		92D0239C27B28E9500099E69 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		92D023A027B3F8BE00099E69 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92D023A227B40C3600099E69 /* LocketMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocketMode.swift; sourceTree = "<group>"; };
+		92E4F57227C4092F0040E25B /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
+		92E4F57427C409A90040E25B /* FooterSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSendView.swift; sourceTree = "<group>"; };
+		92E4F57627C410A80040E25B /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
+		92E4F57827C41EB10040E25B /* SendSelectedMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendSelectedMode.swift; sourceTree = "<group>"; };
 		92E51C5527B2694900FEE370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92E9C96B27C38A8E002A7501 /* CarouselComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselComponents.swift; sourceTree = "<group>"; };
-		92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactGeneralFunctions.swift; sourceTree = "<group>"; };
+		92E9C96E27C38F28002A7501 /* ContactFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFunctions.swift; sourceTree = "<group>"; };
 		92FBDACB27B5971B0062A9A7 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92FBDACD27B59C280062A9A7 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 				884D539027BAA48700C23FF5 /* Extensions */,
 				C12357A627BE98E40093D55E /* DesignKit */,
 				922F74B227BE9C2800E03453 /* Services */,
+				92E4F57127C407C90040E25B /* SendView */,
 				92664A5227B5084F006C860E /* BlurView.swift */,
 				922F74AA27BE75F000E03453 /* FooterViews.swift */,
 				922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */,
@@ -303,13 +312,24 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		92E4F57127C407C90040E25B /* SendView */ = {
+			isa = PBXGroup;
+			children = (
+				92E4F57227C4092F0040E25B /* SendView.swift */,
+				92E4F57427C409A90040E25B /* FooterSendView.swift */,
+				92E4F57827C41EB10040E25B /* SendSelectedMode.swift */,
+			);
+			path = SendView;
+			sourceTree = "<group>";
+		};
 		92E9C96D27C38BFF002A7501 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
 				92C5E68A27BD12FB00C6276A /* ConnectView.swift */,
 				922F74A827BD223400E03453 /* ContactsView.swift */,
+				92E4F57627C410A80040E25B /* ContactRow.swift */,
 				922F74A627BD208A00E03453 /* ContactInfo.swift */,
-				92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */,
+				92E9C96E27C38F28002A7501 /* ContactFunctions.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -440,6 +460,7 @@
 				886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */,
 				922F74AB27BE75F000E03453 /* FooterViews.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
+				92E4F57727C410A80040E25B /* ContactRow.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
 				922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */,
@@ -468,11 +489,14 @@
 				92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */,
 				922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */,
 				92C5E68B27BD12FB00C6276A /* ConnectView.swift in Sources */,
+				92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */,
+				92E4F57927C41EB10040E25B /* SendSelectedMode.swift in Sources */,
 				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
-				92E9C96F27C38F28002A7501 /* ContactGeneralFunctions.swift in Sources */,
+				92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */,
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,
+				92E4F57327C4092F0040E25B /* SendView.swift in Sources */,
 				922F74AD27BE823F00E03453 /* UIApplication+keyWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

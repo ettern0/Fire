@@ -11,6 +11,7 @@ struct CarouselView: View {
     
     @ObservedObject private var contacts = ContactsInfo.instance
     @State var maxScale: CGFloat = 1
+    @Binding var selectedMode: SendSelectedMode
     let sizeOfstaticElement: CGFloat = 60
     let sizeOfScaledElement: CGFloat = 100
     let spacingHorizontal: CGFloat = 20
@@ -25,13 +26,20 @@ struct CarouselView: View {
 //        }
     }
 
+    init(selectedMode: Binding<SendSelectedMode>) {
+        self._selectedMode = selectedMode
+        for index in contacts.contacts.indices {
+            contacts.contacts[index].selected = self.selectedMode == .allFriends ? true : false
+        }
+    }
+
     var body: some View {
         GeometryReader { mainFrame in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     ForEach(filtredContacts) { contact in
                         GeometryReader { geo in
-                            CarouselContactView(contact: contact)
+                            CarouselContactView(selectedMode: selectedMode, contact: contact)
                                 .scaleEffect(
                                     calcScale(mainFrame: mainFrame.frame(in: .global).maxX,
                                               minX: geo.frame(in: .global).minX))
@@ -60,6 +68,7 @@ struct CarouselView: View {
 struct CarouselContactView: View {
 
     @ObservedObject private var contacts = ContactsInfo.instance
+    let selectedMode: SendSelectedMode
     var contact: ContactInfo
     var textForIcon: String {
         getShortNameFromContact(contact: contact)
