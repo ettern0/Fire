@@ -18,8 +18,8 @@ struct FooterView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            BlurView(style:.dark)
-                .frame(maxWidth: .infinity)
+//            BlurView(style:.dark)
+//                .frame(maxWidth: .infinity)
             Button {
                 destination = nextDestination
             } label: {
@@ -28,6 +28,7 @@ struct FooterView: View {
             }.buttonStyle(LargeCapsuleButtonStyle())
 
             .padding(.top, 16)
+            .padding(.bottom, 40)
             .padding(.horizontal, 16)
         }
         .frame(height: Self.footerHeight)

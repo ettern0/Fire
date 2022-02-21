@@ -37,11 +37,11 @@ struct ContactsView: View {
                 .animation(.default, value: contacts.contacts)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
+                .background(Palette.blackHard)
                 .navigationTitle("Add your friends")
+                .font(Typography.headerS)
                 FooterView(destination: $destination, nextDestination: .main)
-            }.ignoresSafeArea(edges: .bottom)
-        }.preferredColorScheme(.dark)
-    }
+            }.ignoresSafeArea(edges: .bottom)    }
 }
 
 private struct ContactRow: View {
@@ -77,13 +77,12 @@ private struct ContactRow: View {
                 .background {
                     Circle()
                         .stroke()
-                        .foregroundColor(Palette.accent)
+                        .foregroundColor(Palette.blackMiddle)
                 }.padding(.trailing, 12)
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(contact.firstName) \(contact.lastName)")
                     .foregroundColor(.white)
-                    .font(Typography.description)
-                    .lineSpacing(4)
+                    .font(.system(size: 16))
                 Text("\(contact.phoneNumber)")
                     .foregroundColor(.white.opacity(0.8))
                     .font(Typography.description)
@@ -122,4 +121,5 @@ private struct ContactRow: View {
             return (label: AnyView(Text("APPLY")), disabled: false)
         }
     }
+}
 }
