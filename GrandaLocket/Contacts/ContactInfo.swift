@@ -14,6 +14,7 @@ struct ContactInfo: Identifiable, Equatable {
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
+    var selected: Bool = false
 
     mutating func changeStatus(_ status: ContactStatus) {
         self.status = status

@@ -38,7 +38,7 @@ struct ContactsView: View {
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Add your friends")
-                FooterView(destination: $destination, nextDestination: .main)
+                FooterNextView(destination: $destination, nextDestination: .main)
             }.ignoresSafeArea(edges: .bottom)
         }.preferredColorScheme(.dark)
     }
@@ -48,25 +48,8 @@ private struct ContactRow: View {
 
     @ObservedObject private var contacts = ContactsInfo.instance
     var contact: ContactInfo
-
     var textForIcon: String {
-
-        let firstLetter: String
-        let secondLetter: String
-
-        if let ch = contact.firstName.first {
-            firstLetter = String(ch)
-        } else {
-            firstLetter = ""
-        }
-
-        if let ch = contact.lastName.first {
-            secondLetter = String(ch)
-        } else {
-            secondLetter = ""
-        }
-
-        return firstLetter + secondLetter
+        getShortNameFromContact(contact: contact)
     }
 
     var body: some View {

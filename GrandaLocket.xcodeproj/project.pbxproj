@@ -21,7 +21,7 @@
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
 		922F74A927BD223400E03453 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A827BD223400E03453 /* ContactsView.swift */; };
-		922F74AB27BE75F000E03453 /* FooterNexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AA27BE75F000E03453 /* FooterNexView.swift */; };
+		922F74AB27BE75F000E03453 /* FooterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AA27BE75F000E03453 /* FooterViews.swift */; };
 		922F74AD27BE823F00E03453 /* UIApplication+keyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AC27BE823E00E03453 /* UIApplication+keyWindow.swift */; };
 		922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */; };
 		922F74B127BE910300E03453 /* SmallCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74B027BE910300E03453 /* SmallCapsuleButtonStyle.swift */; };
@@ -64,6 +64,8 @@
 		92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* Extensions.swift */; };
 		92D023A327B40C3600099E69 /* LocketMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* LocketMode.swift */; };
 		92E51C5627B2694900FEE370 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92E51C5527B2694900FEE370 /* GoogleService-Info.plist */; };
+		92E9C96C27C38A8E002A7501 /* CarouselComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9C96B27C38A8E002A7501 /* CarouselComponents.swift */; };
+		92E9C96F27C38F28002A7501 /* ContactGeneralFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */; };
 		92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACB27B5971B0062A9A7 /* CameraModel.swift */; };
 		92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDACD27B59C280062A9A7 /* PickerView.swift */; };
 		92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */; };
@@ -88,7 +90,7 @@
 		9201AABF27BBCEEC00842557 /* AppDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestination.swift; sourceTree = "<group>"; };
 		922F74A627BD208A00E03453 /* ContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		922F74A827BD223400E03453 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
-		922F74AA27BE75F000E03453 /* FooterNexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterNexView.swift; sourceTree = "<group>"; };
+		922F74AA27BE75F000E03453 /* FooterViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterViews.swift; sourceTree = "<group>"; };
 		922F74AC27BE823E00E03453 /* UIApplication+keyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+keyWindow.swift"; sourceTree = "<group>"; };
 		922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		922F74B027BE910300E03453 /* SmallCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		92D023A027B3F8BE00099E69 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92D023A227B40C3600099E69 /* LocketMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocketMode.swift; sourceTree = "<group>"; };
 		92E51C5527B2694900FEE370 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92E9C96B27C38A8E002A7501 /* CarouselComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselComponents.swift; sourceTree = "<group>"; };
+		92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactGeneralFunctions.swift; sourceTree = "<group>"; };
 		92FBDACB27B5971B0062A9A7 /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		92FBDACD27B59C280062A9A7 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
@@ -176,17 +180,19 @@
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				9201AABC27BBCEAF00842557 /* CoordinatorView */,
-				C12357A627BE98E40093D55E /* DesignKit */,
-				922F74B227BE9C2800E03453 /* Services */,
 				92664A5427B51CA6006C860E /* MainView.swift */,
 				92FBDACF27B699580062A9A7 /* Login */,
+				92E9C96D27C38BFF002A7501 /* Contacts */,
 				92D0238F27B28DED00099E69 /* Camera */,
 				884D538927BA78E600C23FF5 /* Text */,
 				884D539027BAA48700C23FF5 /* Extensions */,
+				C12357A627BE98E40093D55E /* DesignKit */,
+				922F74B227BE9C2800E03453 /* Services */,
 				92664A5227B5084F006C860E /* BlurView.swift */,
-				922F74AA27BE75F000E03453 /* FooterNexView.swift */,
+				922F74AA27BE75F000E03453 /* FooterViews.swift */,
 				922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */,
 				922F74B027BE910300E03453 /* SmallCapsuleButtonStyle.swift */,
+				92E9C96B27C38A8E002A7501 /* CarouselComponents.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92CC9FD827BA6518009C7AB7 /* Fonts */,
@@ -255,9 +261,6 @@
 		92BFAE2427BBBC1D003A4672 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				92AEBD4F27BA945100654E4B /* SmsView.swift */,
-				92BFAE2527BBBC77003A4672 /* OTPManager.swift */,
-				92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -300,13 +303,24 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		92E9C96D27C38BFF002A7501 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				92C5E68A27BD12FB00C6276A /* ConnectView.swift */,
+				922F74A827BD223400E03453 /* ContactsView.swift */,
+				922F74A627BD208A00E03453 /* ContactInfo.swift */,
+				92E9C96E27C38F28002A7501 /* ContactGeneralFunctions.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		92FBDACF27B699580062A9A7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */,
-				92C5E68A27BD12FB00C6276A /* ConnectView.swift */,
-				922F74A827BD223400E03453 /* ContactsView.swift */,
-				922F74A627BD208A00E03453 /* ContactInfo.swift */,
+				92AEBD4F27BA945100654E4B /* SmsView.swift */,
+				92BFAE2827BBBD5B003A4672 /* OTPStatusAuth.swift */,
+				92BFAE2527BBBC77003A4672 /* OTPManager.swift */,
 				92BFAE2427BBBC1D003A4672 /* Auth */,
 			);
 			path = Login;
@@ -424,7 +438,7 @@
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
 				92664A5527B51CA6006C860E /* MainView.swift in Sources */,
 				886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */,
-				922F74AB27BE75F000E03453 /* FooterNexView.swift in Sources */,
+				922F74AB27BE75F000E03453 /* FooterViews.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
 				92D0238C27B27D2100099E69 /* AppDelegate.swift in Sources */,
@@ -446,6 +460,7 @@
 				922F74B427BE9C4400E03453 /* UserService.swift in Sources */,
 				92D0239D27B28E9500099E69 /* CameraView.swift in Sources */,
 				92BFAE2627BBBC77003A4672 /* OTPManager.swift in Sources */,
+				92E9C96C27C38A8E002A7501 /* CarouselComponents.swift in Sources */,
 				92D023A327B40C3600099E69 /* LocketMode.swift in Sources */,
 				884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */,
 				92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */,
@@ -454,6 +469,7 @@
 				922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */,
 				92C5E68B27BD12FB00C6276A /* ConnectView.swift in Sources */,
 				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
+				92E9C96F27C38F28002A7501 /* ContactGeneralFunctions.swift in Sources */,
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,

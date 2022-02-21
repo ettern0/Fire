@@ -16,7 +16,7 @@ struct ContentView: View {
 
     init() {
         if Auth.auth().currentUser?.uid != nil {
-            _destination = State(initialValue: .contacts)
+            _destination = State(initialValue: .onboarding)
         }
     }
     
@@ -24,7 +24,7 @@ struct ContentView: View {
 
         switch destination {
         case .onboarding:
-            EmptyView()
+            FooterSendView(destination: $destination, nextDestination: .onboarding)//TEST
         case .phoneNumberAuth:
             PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
         case .smsAuth:

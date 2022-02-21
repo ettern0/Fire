@@ -10,6 +10,7 @@ import SwiftUI
 
 enum Typography {
     static let description = Font.alsHaussRegular(size: 16)
+    static let descriptionS = Font.alsHaussRegular(size: 12)
 
     static let headerL = Font.alsHaussMedium(size: 28)
     static let headerM = Font.alsHaussMedium(size: 24)
