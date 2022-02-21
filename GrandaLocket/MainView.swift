@@ -15,6 +15,8 @@ struct MainView: View {
     @State private var xDirection: GesturesDirection = .left
     @State private var yDirection: GesturesDirection = .top
     @State private var textStyle: TextLocketStyle = .violet
+    @Binding var destination: AppDestination
+    @Binding var snaphotImage: Image
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -79,7 +81,10 @@ struct MainView: View {
 
     var captureButton: some View {
         Button(action: {
-            model.capturePhoto()
+            snaphotImage = Image(uiImage: locketCreationContainer(position: .center).snapshot())
+            destination = .onboarding
+                //.frame(width: proxy.size.width, height: proxy.size.width)
+            //model.capturePhoto()
         }, label: {
             ZStack {
                 Circle()
@@ -191,11 +196,5 @@ struct MainView: View {
                 selectedMode = .text
             }
         }
-    }
-}
-
-struct PhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }

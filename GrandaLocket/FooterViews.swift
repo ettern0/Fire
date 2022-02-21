@@ -35,7 +35,9 @@ struct FooterNextView: View {
 }
 
 struct FooterSendView: View {
+
     @Binding var destination: AppDestination
+    @Binding var snaphotImage: Image
     let nextDestination: AppDestination
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
@@ -48,10 +50,14 @@ struct FooterSendView: View {
     var body: some View {
         VStack {
             Spacer()
-            Image("example")
+            snaphotImage
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width,
+                       height: UIScreen.main.bounds.width)
             CarouselView()
             HStack(spacing: spacingHStack) {
                 Button {
+                    destination = .main
                 } label: {
                     ZStack {
                         Circle()

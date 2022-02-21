@@ -13,10 +13,11 @@ struct ContentView: View {
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = true
+    @State var snaphotImage: Image = Image("")
 
     init() {
         if Auth.auth().currentUser?.uid != nil {
-            _destination = State(initialValue: .onboarding)
+            _destination = State(initialValue: .main)
         }
     }
     
@@ -24,7 +25,7 @@ struct ContentView: View {
 
         switch destination {
         case .onboarding:
-            FooterSendView(destination: $destination, nextDestination: .onboarding)//TEST
+            FooterSendView(destination: $destination, snaphotImage: $snaphotImage, nextDestination: .onboarding)//TEST
         case .phoneNumberAuth:
             PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
         case .smsAuth:
@@ -34,7 +35,7 @@ struct ContentView: View {
         case .contacts:
             ContactsView(destination: $destination)
         case .main:
-            MainView()
+            MainView(destination: $destination, snaphotImage: $snaphotImage)
         case .feed:
             EmptyView()
         }
