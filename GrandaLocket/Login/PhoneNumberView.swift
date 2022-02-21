@@ -24,9 +24,9 @@ struct PhoneNumberView: View {
                 Toggle(isOn: $syncContacts, label: {
                     Text("Sync Contacts")
                         .foregroundColor(.white)
-                    
+
                 })
-                    .padding(.bottom, 176)
+                    .padding(.bottom, 467)
                     .padding(.horizontal,16)
             }
             .frame(maxHeight: .infinity)

@@ -10,10 +10,10 @@ import SwiftUI
 struct SmallCapsuleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(Typography.controlM)
+            .font(.system(size: 13).bold())
             .foregroundColor(.black.opacity(configuration.isPressed ? 0.7 : 1))
-            .padding(.vertical, 4)
-            .padding(.horizontal, 16)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 18)
             .background {
                 Capsule()
                     .fill(Palette.accent)
