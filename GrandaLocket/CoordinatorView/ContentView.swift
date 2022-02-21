@@ -13,30 +13,35 @@ struct ContentView: View {
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = true
+    @State var snaphotImage: Image = Image("")
 
     init() {
         if Auth.auth().currentUser?.uid != nil {
-            _destination = State(initialValue: .contacts)
+            _destination = State(initialValue: .main)
         }
     }
     
     var body: some View {
-
-        switch destination {
-        case .onboarding:
-            EmptyView()
-        case .phoneNumberAuth:
-            PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
-        case .smsAuth:
-            SmsView(destination: $destination, phoneNumber: phoneNumber)
-        case .connectContacts:
-            ConnectContactsView(destination: $destination, syncContacts: syncContacts)
-        case .contacts:
-            ContactsView(destination: $destination)
-        case .main:
-            MainView()
-        case .feed:
-            EmptyView()
+        Group {
+            switch destination {
+            case .onboarding:
+                EmptyView()
+            case .phoneNumberAuth:
+                PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
+            case .smsAuth:
+                SmsView(destination: $destination, phoneNumber: phoneNumber)
+            case .connectContacts:
+                ConnectContactsView(destination: $destination, syncContacts: syncContacts)
+            case .contacts:
+                ContactsView(destination: $destination)
+            case .main:
+                MainView(destination: $destination, snaphotImage: $snaphotImage)
+            case .send:
+                SendView(destination: $destination, snaphotImage: $snaphotImage)
+            case .feed:
+                EmptyView()
+            }
         }
+        .animation(.default, value: destination)
     }
 }

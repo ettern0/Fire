@@ -12,5 +12,6 @@ enum AppDestination {
          connectContacts,
          contacts,
          main,
+         send,
          feed
 }
