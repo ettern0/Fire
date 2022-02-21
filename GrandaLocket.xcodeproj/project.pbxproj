@@ -63,6 +63,8 @@
 		92D0239D27B28E9500099E69 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239C27B28E9500099E69 /* CameraView.swift */; };
 		92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* Extensions.swift */; };
 		92D023A327B40C3600099E69 /* LocketMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* LocketMode.swift */; };
+		92D14E4C27C42EDB00998DED /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 92D14E4B27C42EDB00998DED /* Lottie */; };
+		92D14E4E27C430B600998DED /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E4D27C430B600998DED /* Lottie.swift */; };
 		92E4F57327C4092F0040E25B /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57227C4092F0040E25B /* SendView.swift */; };
 		92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57427C409A90040E25B /* FooterSendView.swift */; };
 		92E4F57727C410A80040E25B /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57627C410A80040E25B /* ContactRow.swift */; };
@@ -132,6 +134,7 @@
 		92D0239C27B28E9500099E69 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		92D023A027B3F8BE00099E69 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		92D023A227B40C3600099E69 /* LocketMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocketMode.swift; sourceTree = "<group>"; };
+		92D14E4D27C430B600998DED /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		92E4F57227C4092F0040E25B /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		92E4F57427C409A90040E25B /* FooterSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSendView.swift; sourceTree = "<group>"; };
 		92E4F57627C410A80040E25B /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 				885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */,
 				922F74B727BE9CF000E03453 /* FirebaseFirestore in Frameworks */,
 				92D0238827B27A5C00099E69 /* FirebaseAuthCombine-Community in Frameworks */,
+				92D14E4C27C42EDB00998DED /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +355,7 @@
 			children = (
 				C12357A427BD2B4E0093D55E /* Palette.swift */,
 				C12357A727BEA0930093D55E /* Typography.swift */,
+				92D14E4D27C430B600998DED /* Lottie.swift */,
 			);
 			path = DesignKit;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				922F74B627BE9CF000E03453 /* FirebaseFirestore */,
 				922F74B827BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta */,
 				885FD98F27BF353900D57C09 /* FirebaseAppCheck */,
+				92D14E4B27C42EDB00998DED /* Lottie */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -411,6 +417,7 @@
 			packageReferences = (
 				92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				92D14E4A27C42EDB00998DED /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 882266E927B2658C00501312 /* Products */;
 			projectDirPath = "";
@@ -495,6 +502,7 @@
 				92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */,
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
+				92D14E4E27C430B600998DED /* Lottie.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* Extensions.swift in Sources */,
 				92E4F57327C4092F0040E25B /* SendView.swift in Sources */,
 				922F74AD27BE823F00E03453 /* UIApplication+keyWindow.swift in Sources */,
@@ -812,6 +820,14 @@
 				version = 8.9.1;
 			};
 		};
+		92D14E4A27C42EDB00998DED /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
@@ -852,6 +868,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		92D14E4B27C42EDB00998DED /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92D14E4A27C42EDB00998DED /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
