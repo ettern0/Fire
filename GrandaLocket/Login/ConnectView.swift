@@ -47,7 +47,6 @@ struct ConnectContactsView: View {
                     .lineSpacing(4)
                 FooterView(destination: $destination, nextDestination: .contacts)
             }
-            .padding(.bottom, 467)
             .frame(maxWidth: .infinity)
             .background(Palette.blackHard)
     }
