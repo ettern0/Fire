@@ -55,7 +55,7 @@ struct ContactRow: View {
 
     private func getTextButtonPropeties() -> (label: AnyView, disabled: Bool) {
         switch contact.status {
-        case.isRegistered:
+        case.registered:
             return (label: AnyView(Text("ADD")), disabled: false)
         case .notRegistered:
             return (label: AnyView(Text("INVITE")), disabled: false)

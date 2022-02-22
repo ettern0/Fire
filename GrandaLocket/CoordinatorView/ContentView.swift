@@ -13,11 +13,11 @@ struct ContentView: View {
     @State var destination: AppDestination = .phoneNumberAuth
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = true
-    @State var snaphotImage: Image = Image("")
+    @State var snapshotImage: UIImage = UIImage()
 
     init() {
         if Auth.auth().currentUser?.uid != nil {
-            _destination = State(initialValue: .contacts)
+            _destination = State(initialValue: .main)
         }
     }
     
@@ -35,9 +35,9 @@ struct ContentView: View {
             case .contacts:
                 ContactsView(destination: $destination)
             case .main:
-                MainView(destination: $destination, snaphotImage: $snaphotImage)
+                MainView(destination: $destination, snapshotImage: $snapshotImage)
             case .send:
-                SendView(destination: $destination, snaphotImage: $snaphotImage)
+                SendView(destination: $destination, snapshotImage: $snapshotImage)
             case .feed:
                 EmptyView()
             }

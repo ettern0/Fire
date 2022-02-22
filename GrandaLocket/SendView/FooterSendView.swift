@@ -12,6 +12,7 @@ struct FooterSendView: View {
     @Binding var destination: AppDestination
     @Binding var selectedMode: SendSelectedMode
     let nextDestination: AppDestination
+    let snapshotImage: UIImage
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
     private let widthOfButtonSend: CGFloat = 115
@@ -37,7 +38,11 @@ struct FooterSendView: View {
                     }
                 }
                 Button {
-                    destination = nextDestination
+                    StorageManager().persistImageToStorage(image: snapshotImage) { url in
+                       // UserService().saveImageRef(from:, to: )
+                            print(url )
+                        destination = .main
+                    }
                 } label: {
                     Text("SEND")
                         .frame(height: buttonHeight)

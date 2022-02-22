@@ -16,7 +16,7 @@ extension String {
        return self.replace(string: " ", replacement: "")
    }
 
-    func getPhoneFormat() -> String {
+    var unformatted: String {
         return self.filter("+0123456789".contains)
     }
  }

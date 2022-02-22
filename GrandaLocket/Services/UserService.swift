@@ -34,32 +34,42 @@ final class UserService {
         }
     }
 
-    func checkUserStatusInContacts(phone: String, completion: @escaping (ContactStatus) -> Void) {
-        db?.collection("contacts").whereField("phone", isEqualTo: phone.getPhoneFormat())
-            .getDocuments() { (querySnapshot, err) in
-                if err == nil {
-                    if let snapshot = querySnapshot {
-                        snapshot.documents.map { doc in
-                            completion(ContactStatusFromString(doc["status"] as? String ?? ""))
-                        }
-                    }
+    func checkRegisteredUserStatus(by phone: String, completion: @escaping (ContactStatus) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("User should not be nil.")
+            return completion(.notRegistered)
+        }
+        
+        db?.collection("contacts")
+            .document(user.uid)
+            .getDocument() { (document, err) in
+                if let document = document,
+                   let contacts = document["contacts"] as? [[String: String]],
+                   let contact = contacts.first(where: { $0["phone"] == phone.unformatted }),
+                   let rawStatus = contact["status"] {
+                    let status = contactStatus(from: rawStatus)
+                    completion(status)
+                } else {
+                    completion(.registered)
                 }
             }
     }
     
-    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
-
+    func checkUserStatus(by phone: String, completion: @escaping (ContactStatus) -> Void) {
         guard let db = db else {
             return completion(.notRegistered)
         }
         
-        db.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat()).getDocuments(){ (querySnapshot, err) in
-            if let snapshot = querySnapshot {
-                snapshot.documents.first.map { doc in
-                    completion(.isRegistered)
-                }
+        db
+            .collection("users")
+            .whereField("phone", isEqualTo: phone.unformatted)
+            .getDocuments()
+        { [weak self] (querySnapshot, err) in
+            if (querySnapshot?.documents.first) != nil {
+                guard let self = self else { return }
+                self.checkRegisteredUserStatus(by: phone, completion: completion)
             } else {
-
+                completion(.notRegistered)
             }
         }
     }
@@ -67,26 +77,17 @@ final class UserService {
     func setRequestToChangeContactStatus(contact: ContactInfo,
                                          completion: @escaping (ContactStatus) -> Void) {
 
-
         guard let user = Auth.auth().currentUser else {
             return
         }
 
-        guard let phoneFrom = user.phoneNumber?.getPhoneFormat() else {
+        guard let phoneFrom = user.phoneNumber?.unformatted else {
             return
         }
 
-        var statusForChange: ContactStatus
-        switch contact.status {
-        case .isRegistered:
-            statusForChange = .inContacts(.outcomingRequest)
-        default:
-            statusForChange = .notRegistered
-        }
-
-        let phoneTo = contact.phoneNumber.getPhoneFormat()
+        let phoneTo = contact.phoneNumber.unformatted
         let newValueTo = ["phone": phoneTo,
-                    "status": statusForChange.stringValue]
+                          "status": ContactStatus.inContacts(.outcomingRequest).stringValue]
         let newValueFrom = ["phone": phoneFrom,
                             "status": ContactStatus.inContacts(.incomingRequest).stringValue]
 
@@ -101,6 +102,7 @@ final class UserService {
             .getDocuments() { (snapshot, error) in
                 if let snapshot = snapshot, let document = snapshot.documents.first {
                     self.updateContactsFromRequest(id: document.documentID, value: newValueFrom)
+                    completion(ContactStatus.inContacts(.outcomingRequest))
                 } else {
                     assertionFailure("User doesnt exist")
                 }
