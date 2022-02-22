@@ -69,6 +69,7 @@
 		92D14E5227C4337D00998DED /* ExtensionUIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5127C4337D00998DED /* ExtensionUIScreen.swift */; };
 		92D14E5427C433D500998DED /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5327C433D500998DED /* ExtensionString.swift */; };
 		92D14E5827C436A300998DED /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5727C436A300998DED /* DrawView.swift */; };
+		92D14E5B27C5065100998DED /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5A27C5065000998DED /* FeedView.swift */; };
 		92E4F57327C4092F0040E25B /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57227C4092F0040E25B /* SendView.swift */; };
 		92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57427C409A90040E25B /* FooterSendView.swift */; };
 		92E4F57727C410A80040E25B /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57627C410A80040E25B /* ContactRow.swift */; };
@@ -143,6 +144,7 @@
 		92D14E5127C4337D00998DED /* ExtensionUIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIScreen.swift; sourceTree = "<group>"; };
 		92D14E5327C433D500998DED /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		92D14E5727C436A300998DED /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		92D14E5A27C5065000998DED /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		92E4F57227C4092F0040E25B /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		92E4F57427C409A90040E25B /* FooterSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSendView.swift; sourceTree = "<group>"; };
 		92E4F57627C410A80040E25B /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		92D14E5927C505B800998DED /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				92D14E5A27C5065000998DED /* FeedView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D14E5B27C5065100998DED /* FeedView.swift in Sources */,
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,
 				92664A5527B51CA6006C860E /* MainView.swift in Sources */,
 				92D14E5827C436A300998DED /* DrawView.swift in Sources */,
