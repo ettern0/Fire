@@ -37,29 +37,6 @@ struct FeedView: View {
     }
 }
 
-import Combine
-
-final class MyFriendsFeedViewModel: ObservableObject {
-    struct Friend: Hashable {
-        let name: String
-        let lockets: [String]
-    }
-
-    @Published
-    var friends: [Friend] = []
-
-    private var cancellable: AnyCancellable?
-
-    init() {
-        self.cancellable = ContactsInfo.instance.$contacts.sink { [weak self] contacts in
-            guard let self = self else { return }
-            let friendsModels = contacts.filter { $0.status == .inContacts(.friend) }
-            let friends = friendsModels.map { Friend(name: $0.firstName, lockets: []) }
-            self.friends = friends
-        }
-    }
-}
-
 private struct MyFriendsFeedView: View {
     @ObservedObject private var viewModel = MyFriendsFeedViewModel()
 
@@ -87,24 +64,11 @@ private struct MyFeedView: View {
                 .font(Typography.headerM)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
+                    ForEach(1...10, id: \.self) {_ in 
                     Image("example")
                         .resizable()
                         .frame(width: 100, height: 100)
-                    Image("example")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Image("example")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Image("example")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Image("example")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Image("example")
-                        .resizable()
-                        .frame(width: 100, height: 100)
+                    }
                 }
             }
         }

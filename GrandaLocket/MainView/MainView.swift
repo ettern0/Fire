@@ -16,7 +16,7 @@ struct MainView: View {
     @State private var yDirection: GesturesDirection = .top
     @State private var textStyle: TextLocketStyle = .violet
     @Binding var destination: AppDestination
-    @Binding var snaphotImage: Image
+    @Binding var snapshotImage: UIImage
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -81,7 +81,7 @@ struct MainView: View {
 
     var captureButton: some View {
         Button(action: {
-            snaphotImage = Image(uiImage: locketCreationContainer(position: .center).snapshot())
+            snapshotImage = locketCreationContainer(position: .center).snapshot()
             destination = .send
         }, label: {
             ZStack {
