@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import KeyboardObserver
 
 struct MainView: View {
     @StateObject var model = CameraModel()
@@ -17,6 +18,7 @@ struct MainView: View {
     @State private var textStyle: TextLocketStyle = .violet
     @Binding var destination: AppDestination
     @Binding var snaphotImage: Image
+    @State private var state = KeyboardState()
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -25,17 +27,37 @@ struct MainView: View {
         UIScreen.main.bounds.height * 0.1
     }
 
+    private func bottomHeight(containerSize: CGSize, keyboardHeight: CGFloat) -> CGFloat {
+        if keyboardHeight.isZero || selectedMode == .photo {
+            return (containerSize.height - containerSize.width) / 2
+        } else {
+            return keyboardHeight
+        }
+    }
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
                 locketCreationContainer(position: .top)
-                    .frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
+                    .frame(
+                        width: proxy.size.width,
+                        height: proxy.size.height -
+                          proxy.size.width -
+                          bottomHeight(containerSize: proxy.size, keyboardHeight: state.height(in: proxy))
+                    )
                 locketCreationContainer(position: .center)
-                    .frame(width: proxy.size.width, height: proxy.size.width)
+                    .frame(
+                        width: proxy.size.width,
+                        height: proxy.size.width
+                    )
                 ZStack {
                     locketCreationContainer(position: .bottom)
                     buttonAreaView
-                }.frame(width: proxy.size.width, height: (proxy.size.height - proxy.size.width) / 2)
+                }
+                .frame(
+                    width: proxy.size.width,
+                    height: bottomHeight(containerSize: proxy.size, keyboardHeight: state.height(in: proxy))
+                )
             }
             .gesture(
                 DragGesture()
@@ -46,6 +68,7 @@ struct MainView: View {
                     }
             )
         }
+        .observingKeyboard($state)
     }
 
     var buttonAreaView: some View {
@@ -168,7 +191,7 @@ struct MainView: View {
         }
     }
 
-    func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
+    private func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
         let dif = abs(xOld - xNew)
         if xOld > xNew, dif > minXToChangeMode {
             xDirection = .right
@@ -177,7 +200,7 @@ struct MainView: View {
         }
     }
 
-    func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
+    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
         let dif = abs(yOld - yNew)
         if yOld > yNew, dif > minYToChangeMode {
             yDirection = .top
@@ -186,7 +209,7 @@ struct MainView: View {
         }
     }
 
-    func changeModeWithxDirection() {
+    private func changeModeWithxDirection() {
         withAnimation {
             if xDirection == .left, selectedMode == .text {
                 selectedMode = .photo

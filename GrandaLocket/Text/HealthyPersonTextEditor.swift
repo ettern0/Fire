@@ -16,6 +16,8 @@ struct HealthyPersonTextEditor: UIViewRepresentable {
         view.textColor = .white
         view.backgroundColor = .clear
         view.isScrollEnabled = false
+        view.keyboardDismissMode = .interactive
+        view.returnKeyType = .done
 
         return view
     }
@@ -34,6 +36,15 @@ struct HealthyPersonTextEditor: UIViewRepresentable {
     final class Coordinator: NSObject, UITextViewDelegate {
         func textViewDidChange(_ textView: UITextView) {
             textView.fitText(maxLines: 5)
+        }
+
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if text == "\n" {
+                textView.resignFirstResponder()
+                return false
+            } else {
+                return true
+            }
         }
     }
 }

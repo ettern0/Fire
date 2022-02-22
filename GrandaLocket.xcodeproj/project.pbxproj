@@ -18,6 +18,8 @@
 		884D539427BAAA1900C23FF5 /* ExtensionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* ExtensionTransition.swift */; };
 		885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 885FD98F27BF353900D57C09 /* FirebaseAppCheck */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
+		8886D60B27BD10DC0081B7ED /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886D60A27BD10DC0081B7ED /* KeyboardHeightHelper.swift */; };
+		88FA4DB027C4E9A3001ED670 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */; };
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
 		922F74A927BD223400E03453 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A827BD223400E03453 /* ContactsView.swift */; };
@@ -97,6 +99,7 @@
 		884D539127BAA49900C23FF5 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		884D539327BAAA1900C23FF5 /* ExtensionTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTransition.swift; sourceTree = "<group>"; };
 		886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyPersonTextEditor.swift; sourceTree = "<group>"; };
+		8886D60A27BD10DC0081B7ED /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		9201AABF27BBCEEC00842557 /* AppDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestination.swift; sourceTree = "<group>"; };
 		922F74A627BD208A00E03453 /* ContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		922F74A827BD223400E03453 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */,
 				92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */,
 				92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */,
+				88FA4DB027C4E9A3001ED670 /* KeyboardObserver in Frameworks */,
 				922F74B927BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */,
 				922F74B727BE9CF000E03453 /* FirebaseFirestore in Frameworks */,
@@ -213,6 +217,7 @@
 				92664A5227B5084F006C860E /* BlurView.swift */,
 				922F74AA27BE75F000E03453 /* FooterNextView.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
+				8886D60A27BD10DC0081B7ED /* KeyboardHeightHelper.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
 				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
@@ -405,6 +410,7 @@
 				922F74B827BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta */,
 				885FD98F27BF353900D57C09 /* FirebaseAppCheck */,
 				92D14E4B27C42EDB00998DED /* Lottie */,
+				88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -438,6 +444,7 @@
 				92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				92D14E4A27C42EDB00998DED /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				88FA4DAE27C4E9A2001ED670 /* XCRemoteSwiftPackageReference "KeyboardObserver" */,
 			);
 			productRefGroup = 882266E927B2658C00501312 /* Products */;
 			projectDirPath = "";
@@ -507,6 +514,7 @@
 				922F74B127BE910300E03453 /* SmallCapsuleButtonStyle.swift in Sources */,
 				884D539227BAA49900C23FF5 /* ExtensionColor.swift in Sources */,
 				884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */,
+				8886D60B27BD10DC0081B7ED /* KeyboardHeightHelper.swift in Sources */,
 				92BFAE2927BBBD5B003A4672 /* OTPStatusAuth.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
 				922F74B427BE9C4400E03453 /* UserService.swift in Sources */,
@@ -788,7 +796,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GrandaLocket/Preview Content\"";
-				DEVELOPMENT_TEAM = 8TM6F8X2TF;
+				DEVELOPMENT_TEAM = GLQY2SH5YN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GrandaLocket/Info.plist;
@@ -836,6 +844,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		88FA4DAE27C4E9A2001ED670 /* XCRemoteSwiftPackageReference "KeyboardObserver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timdonnelly/KeyboardObserver";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.2;
+			};
+		};
 		92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -848,8 +864,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = exactVersion;
+				version = 3.3.0;
 			};
 		};
 		92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
@@ -867,6 +883,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
+		};
+		88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88FA4DAE27C4E9A2001ED670 /* XCRemoteSwiftPackageReference "KeyboardObserver" */;
+			productName = KeyboardObserver;
 		};
 		922F74B627BE9CF000E03453 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
