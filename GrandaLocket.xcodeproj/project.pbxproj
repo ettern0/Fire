@@ -211,6 +211,7 @@
 				922F74B227BE9C2800E03453 /* Services */,
 				92E4F57127C407C90040E25B /* SendView */,
 				92664A5227B5084F006C860E /* BlurView.swift */,
+				92D14E5927C505B800998DED /* Feed */,
 				922F74AA27BE75F000E03453 /* FooterNextView.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
@@ -332,6 +333,13 @@
 				92D14E5727C436A300998DED /* DrawView.swift */,
 			);
 			path = DrawView;
+			sourceTree = "<group>";
+		};
+		92D14E5927C505B800998DED /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		92E4F57127C407C90040E25B /* SendView */ = {

@@ -55,7 +55,7 @@ final class UserService {
         
         db.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat()).getDocuments(){ (querySnapshot, err) in
             if let snapshot = querySnapshot {
-                snapshot.documents.map { doc in
+                snapshot.documents.first.map { doc in
                     completion(.isRegistered)
                 }
             } else {
@@ -67,6 +67,15 @@ final class UserService {
     func setRequestToChangeContactStatus(contact: ContactInfo,
                                          completion: @escaping (ContactStatus) -> Void) {
 
+
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        guard let phoneFrom = user.phoneNumber?.getPhoneFormat() else {
+            return
+        }
+
         var statusForChange: ContactStatus
         switch contact.status {
         case .isRegistered:
@@ -75,41 +84,40 @@ final class UserService {
             statusForChange = .notRegistered
         }
 
-        //Try to save data in your contacts lis Firebase with current status
-        let request = db?.collection("contacts").whereField("phone", isEqualTo: contact.phoneNumber.getPhoneFormat())
-        let requestToUpdate = db?.collection("contacts").document(contact.id.uuidString)
+        let phoneTo = contact.phoneNumber.getPhoneFormat()
+        let newValueTo = ["phone": phoneTo,
+                    "status": statusForChange.stringValue]
+        let newValueFrom = ["phone": phoneFrom,
+                            "status": ContactStatus.inContacts(.incomingRequest).stringValue]
 
-        //First try to check if the number already exist and update
-        request?.getDocuments() { (querySnapshot, err) in
-            if let _ = err {
-                completion(contact.status)
-            } else {
-                for _ in querySnapshot!.documents {
-                    //Update data
-                    requestToUpdate?.updateData([
-                        "status": statusForChange.stringValue
-                    ]) { err in
-                        if let _ = err {
-                            completion(contact.status)
-                        }
-                        else {
-                            completion(statusForChange)
-                        }
-                    }
-                }
-            }
+        db?.collection("contacts").document(user.uid).getDocument { (document, error) in
+            self.updateContactsFromRequest(id: user.uid, value: newValueTo)
         }
 
-        //Second try to create new entity in contacts Forebase
-        requestToUpdate?.setData([
-            "phone": contact.phoneNumber.getPhoneFormat(),
-            "status": statusForChange.stringValue
-        ]) { err in
-            if let _ = err {
-                completion(contact.status)
+        // Request to update info in request number
+        db?
+            .collection("users")
+            .whereField("phone", isEqualTo: phoneTo)
+            .getDocuments() { (snapshot, error) in
+                if let snapshot = snapshot, let document = snapshot.documents.first {
+                    self.updateContactsFromRequest(id: document.documentID, value: newValueFrom)
+                } else {
+                    assertionFailure("User doesnt exist")
+                }
             }
-            else {
-                completion(statusForChange)
+    }
+
+    private func updateContactsFromRequest(id: String,
+                                      value: [String: String]) {
+        db?.collection("contacts").document(id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.db?.collection("contacts").document(id).updateData([
+                    "contacts": FieldValue.arrayUnion([value])
+                ])
+            } else {
+                self.db?.collection("contacts").document(id).setData([
+                    "contacts": [value]
+                ])
             }
         }
     }
