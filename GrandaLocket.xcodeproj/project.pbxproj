@@ -10,6 +10,8 @@
 		882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882266EB27B2658C00501312 /* GrandaLocketApp.swift */; };
 		882266F027B2658F00501312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266EF27B2658F00501312 /* Assets.xcassets */; };
 		882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266F227B2658F00501312 /* Preview Assets.xcassets */; };
+		883BFE1A27C6EBF3009BC9C0 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1927C6EBF3009BC9C0 /* KeyboardObserver */; };
+		883BFE1C27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1B27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta */; };
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */; };
 		884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */; };
@@ -17,8 +19,6 @@
 		884D539227BAA49900C23FF5 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539127BAA49900C23FF5 /* ExtensionColor.swift */; };
 		884D539427BAAA1900C23FF5 /* ExtensionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* ExtensionTransition.swift */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
-		88EA187627C6EA4E0097E827 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 88EA187527C6EA4E0097E827 /* FirebaseStorage */; };
-		88FA4DB027C4E9A3001ED670 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */; };
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
 		922F74A927BD223400E03453 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A827BD223400E03453 /* ContactsView.swift */; };
@@ -177,9 +177,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */,
+				883BFE1A27C6EBF3009BC9C0 /* KeyboardObserver in Frameworks */,
 				92388C8D27C59A6500C43B3B /* FirebaseCrashlytics in Frameworks */,
 				92388C8B27C59A6500C43B3B /* FirebaseAuth in Frameworks */,
 				92388C8F27C59A6500C43B3B /* FirebaseFirestore in Frameworks */,
+				883BFE1C27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				92D14E4C27C42EDB00998DED /* Lottie in Frameworks */,
 				92388C9127C59A6500C43B3B /* FirebaseStorage in Frameworks */,
 			);
@@ -430,6 +432,8 @@
 				92388C8C27C59A6500C43B3B /* FirebaseCrashlytics */,
 				92388C8E27C59A6500C43B3B /* FirebaseFirestore */,
 				92388C9027C59A6500C43B3B /* FirebaseStorage */,
+				883BFE1927C6EBF3009BC9C0 /* KeyboardObserver */,
+				883BFE1B27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -463,6 +467,7 @@
 				92FBDAD227B6B4B20062A9A7 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				92D14E4A27C42EDB00998DED /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				92388C8927C59A6500C43B3B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				883BFE1827C6EBF3009BC9C0 /* XCRemoteSwiftPackageReference "KeyboardObserver" */,
 			);
 			productRefGroup = 882266E927B2658C00501312 /* Products */;
 			projectDirPath = "";
@@ -868,6 +873,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		883BFE1827C6EBF3009BC9C0 /* XCRemoteSwiftPackageReference "KeyboardObserver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timdonnelly/KeyboardObserver";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.2;
+			};
+		};
 		92388C8927C59A6500C43B3B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -895,6 +908,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		883BFE1927C6EBF3009BC9C0 /* KeyboardObserver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 883BFE1827C6EBF3009BC9C0 /* XCRemoteSwiftPackageReference "KeyboardObserver" */;
+			productName = KeyboardObserver;
+		};
+		883BFE1B27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92388C8927C59A6500C43B3B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
 		92388C8A27C59A6500C43B3B /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 92388C8927C59A6500C43B3B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
