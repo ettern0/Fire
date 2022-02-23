@@ -13,6 +13,7 @@
 		883BFE1A27C6EBF3009BC9C0 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1927C6EBF3009BC9C0 /* KeyboardObserver */; };
 		883BFE1C27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1B27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta */; };
 		883BFE1E27C6F2EC009BC9C0 /* AppearanceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */; };
+		883BFE2027C6FA06009BC9C0 /* ScreenshotMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883BFE1F27C6FA06009BC9C0 /* ScreenshotMaker.swift */; };
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */; };
 		884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */; };
@@ -66,7 +67,6 @@
 		92D0239827B28E1F00099E69 /* CameraService+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239327B28E1E00099E69 /* CameraService+Enums.swift */; };
 		92D0239927B28E1F00099E69 /* CameraService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */; };
 		92D0239D27B28E9500099E69 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0239C27B28E9500099E69 /* CameraView.swift */; };
-		92D023A127B3F8BF00099E69 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A027B3F8BE00099E69 /* ExtensionView.swift */; };
 		92D023A327B40C3600099E69 /* LocketMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D023A227B40C3600099E69 /* LocketMode.swift */; };
 		92D14E4C27C42EDB00998DED /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 92D14E4B27C42EDB00998DED /* Lottie */; };
 		92D14E4E27C430B600998DED /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E4D27C430B600998DED /* Lottie.swift */; };
@@ -99,6 +99,7 @@
 		882266F227B2658F00501312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
+		883BFE1F27C6FA06009BC9C0 /* ScreenshotMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMaker.swift; sourceTree = "<group>"; };
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLocketStyle.swift; sourceTree = "<group>"; };
 		884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewBackground.swift; sourceTree = "<group>"; };
@@ -149,7 +150,6 @@
 		92D0239327B28E1E00099E69 /* CameraService+Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraService+Enums.swift"; sourceTree = "<group>"; };
 		92D0239427B28E1E00099E69 /* CameraService+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraService+Extensions.swift"; sourceTree = "<group>"; };
 		92D0239C27B28E9500099E69 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		92D023A027B3F8BE00099E69 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		92D023A227B40C3600099E69 /* LocketMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocketMode.swift; sourceTree = "<group>"; };
 		92D14E4D27C430B600998DED /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		92D14E4F27C432F300998DED /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
@@ -265,12 +265,12 @@
 			isa = PBXGroup;
 			children = (
 				884D539127BAA49900C23FF5 /* ExtensionColor.swift */,
-				92D023A027B3F8BE00099E69 /* ExtensionView.swift */,
 				92D14E5327C433D500998DED /* ExtensionString.swift */,
 				92D14E4F27C432F300998DED /* ExtensionUIImage.swift */,
 				884D539327BAAA1900C23FF5 /* ExtensionTransition.swift */,
 				922F74AC27BE823E00E03453 /* ExtensionUIApplication.swift */,
 				92D14E5127C4337D00998DED /* ExtensionUIScreen.swift */,
+				883BFE1F27C6FA06009BC9C0 /* ScreenshotMaker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -547,6 +547,7 @@
 				922F74A927BD223400E03453 /* ContactsView.swift in Sources */,
 				922F74B127BE910300E03453 /* SmallCapsuleButtonStyle.swift in Sources */,
 				884D539227BAA49900C23FF5 /* ExtensionColor.swift in Sources */,
+				883BFE2027C6FA06009BC9C0 /* ScreenshotMaker.swift in Sources */,
 				884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */,
 				92BFAE2927BBBD5B003A4672 /* OTPStatusAuth.swift in Sources */,
 				92FBDACE27B59C280062A9A7 /* PickerView.swift in Sources */,
@@ -568,7 +569,6 @@
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
 				92D14E4E27C430B600998DED /* Lottie.swift in Sources */,
-				92D023A127B3F8BF00099E69 /* ExtensionView.swift in Sources */,
 				92E4F57327C4092F0040E25B /* SendView.swift in Sources */,
 				922F74AD27BE823F00E03453 /* ExtensionUIApplication.swift in Sources */,
 			);
