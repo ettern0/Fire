@@ -135,7 +135,7 @@ final class UserService {
             return
         }
 
-        db?.collection("contacts").document(user.uid)
+        db?.collection("contacts/\(user.uid)/contacts")
             .addSnapshotListener { documentSnapshot, error in
                 guard documentSnapshot != nil else {
                     print("Error fetching document: \(error?.localizedDescription ?? "")")

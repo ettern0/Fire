@@ -176,7 +176,7 @@ final class ContactsInfo: ObservableObject {
             }
         }
 
-        dispatchGroup.notify(queue: .global()) {
+        dispatchGroup.notify(queue: .main) {
             self.contacts = internalContacts
 
             self.isFetchingInProgress = false
