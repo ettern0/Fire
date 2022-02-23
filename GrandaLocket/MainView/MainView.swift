@@ -150,6 +150,7 @@ struct MainView: View {
     }
 
     @State var text: String = ""
+    @State var isEditing: Bool = false
 
     func locketCreationContainer(position: ImagePosition) -> some View {
         Group {
@@ -168,12 +169,11 @@ struct MainView: View {
                         case .center:
                             ZStack {
                                 TextViewBackground(style: textStyle, position: position)
-                                HealthyPersonTextEditor()
+                                HealthyPersonTextEditor(text: $text, isEditing: $isEditing)
                             }
                         case .bottom:
                             TextViewBackground(style: textStyle, position: position)
                     }
-
             }
         }
         .animation(.default, value: selectedMode)
