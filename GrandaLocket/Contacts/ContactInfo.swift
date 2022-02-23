@@ -108,6 +108,8 @@ final class ContactsInfo: ObservableObject {
     static let instance = ContactsInfo()
     @Published var contacts: [ContactInfo]
     private let userService = UserService()
+    private var isFetchingInProgress: Bool = false
+    private var isFetchingPlanned: Bool = false
 
     private init() {
         self.contacts = []
@@ -117,9 +119,6 @@ final class ContactsInfo: ObservableObject {
             self?.fetchIfNeeded()
         }
     }
-
-    private var isFetchingInProgress: Bool = false
-    private var isFetchingPlanned: Bool = false
 
     func fetchIfNeeded() {
         if isFetchingInProgress {

@@ -11,16 +11,16 @@ struct FeedView: View {
 
     @Binding var destination: AppDestination
     @State private var yDirection: GesturesDirection = .bottom
-    private let service = DownloadImageService()
+    @ObservedObject var viewModel = FeedViewModel()
     private var minYToChangeMode: CGFloat {
         UIScreen.main.bounds.height * 0.1
     }
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                MyFeedView()
-                MyFriendsFeedView()
+            VStack(alignment: .leading, spacing: 40) {
+                MyFeedView(viewModel: viewModel)
+                MyFriendsFeedView(viewModel: viewModel)
                 Spacer()
             }
             .gesture(
@@ -46,11 +46,6 @@ struct FeedView: View {
                     }
                 }
             }
-        }.onAppear {
-            // govnokod
-            service.download() { value in
-
-            }
         }
     }
 
@@ -73,7 +68,7 @@ struct FeedView: View {
 }
 
 private struct MyFriendsFeedView: View {
-    @ObservedObject private var viewModel = MyFriendsFeedViewModel()
+    @ObservedObject var viewModel: FeedViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -81,12 +76,11 @@ private struct MyFriendsFeedView: View {
                 .font(Typography.headerM)
                 .padding(.bottom, 20)
             ForEach(viewModel.friends, id: \.self) { friend in
-                Text(friend.name)
-                Text(friend.phone)
-                if friend.lockets.isEmpty {
-                    Text("Душнила-друг ничего тебе не послал")
-                } else {
-                    Text("Посты любимого друга")
+                if friend.url.count > 0 {
+                    Text(friend.name)
+                        .font(Typography.headerS)
+                        .padding(.bottom, 20)
+                    UserPhotosView(urls: friend.url)
                 }
             }
         }
@@ -94,17 +88,35 @@ private struct MyFriendsFeedView: View {
 }
 
 private struct MyFeedView: View {
+    @ObservedObject var viewModel: FeedViewModel
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("My Fire")
                 .font(Typography.headerM)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(1...10, id: \.self) {_ in 
-                    Image("example")
-                        .resizable()
+                .padding(.bottom, 20)
+            UserPhotosView(urls: viewModel.myPhotos)
+        }
+    }
+}
+
+private struct UserPhotosView: View {
+    var urls: Array<URL>
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(urls, id: \.self) { url in
+                    AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        } placeholder: {
+                            ProgressView()
+                        }
                         .frame(width: 100, height: 100)
-                    }
+                        .background(.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
         }

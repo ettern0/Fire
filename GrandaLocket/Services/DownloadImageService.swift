@@ -7,7 +7,7 @@
 
 import Firebase
 
-struct RemotePhoto {
+struct RemotePhoto: Equatable {
     let url: URL
     let authorID: String
 }
@@ -83,5 +83,20 @@ final class DownloadImageService {
             let photo = RemotePhoto(url: url, authorID: author)
             completion(photo)
         }
+    }
+
+    func addImageListener(onUpdate: @escaping () -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        db?.collection("user_images").document(user.uid)
+            .addSnapshotListener { documentSnapshot, error in
+                guard documentSnapshot != nil else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "")")
+                    return
+                }
+                onUpdate()
+            }
     }
 }
