@@ -45,7 +45,7 @@ struct ConnectContactsView: View {
                     .multilineTextAlignment(.center)
                     .opacity(0.8)
                     .lineSpacing(4)
-                FooterView(destination: $destination, nextDestination: .contacts)
+                FooterNextView(destination: $destination, nextDestination: .contacts)
             }
             .frame(maxWidth: .infinity)
             .background(Palette.blackHard)

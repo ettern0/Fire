@@ -1,72 +1,18 @@
 //
-//  ContactList.swift
+//  ContactRow.swift
 //  GrandaLocket
 //
-//  Created by Сердюков Евгений on 16.02.2022.
+//  Created by Сердюков Евгений on 21.02.2022.
 //
 
 import SwiftUI
 
-struct ContactsView: View {
-
-    @Binding var destination: AppDestination
-    @ObservedObject private var contacts = ContactsInfo.instance
-
-    private static var footerHeight: CGFloat {
-        48 + 16 + 16 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0)
-    }
-
-    var sortedContacts: [ContactInfo] {
-        contacts.contacts.sorted {
-            $0.status.order < $1.status.order
-        }
-    }
-
-    var body: some View {
-        NavigationView {
-            ZStack(alignment: .bottom) {
-                List {
-                    ForEach(sortedContacts) { contact in
-                        ContactRow(contact: contact)
-                            .listRowSeparator(.hidden)
-                    }
-                    .listRowBackground(Palette.blackHard)
-                    Spacer()
-                        .frame(height: Self.footerHeight)
-                }
-                .animation(.default, value: contacts.contacts)
-                .listStyle(.plain)
-                .navigationBarTitleDisplayMode(.inline)
-                .background(Palette.blackHard)
-                .navigationTitle("Add your friends")
-                .font(Typography.headerS)
-                FooterView(destination: $destination, nextDestination: .main)
-            }.ignoresSafeArea(edges: .bottom)    }
-}
-
-private struct ContactRow: View {
+struct ContactRow: View {
 
     @ObservedObject private var contacts = ContactsInfo.instance
     var contact: ContactInfo
-
     var textForIcon: String {
-
-        let firstLetter: String
-        let secondLetter: String
-
-        if let ch = contact.firstName.first {
-            firstLetter = String(ch)
-        } else {
-            firstLetter = ""
-        }
-
-        if let ch = contact.lastName.first {
-            secondLetter = String(ch)
-        } else {
-            secondLetter = ""
-        }
-
-        return firstLetter + secondLetter
+        getShortNameFromContact(contact: contact)
     }
 
     var body: some View {
@@ -109,7 +55,7 @@ private struct ContactRow: View {
 
     private func getTextButtonPropeties() -> (label: AnyView, disabled: Bool) {
         switch contact.status {
-        case.isRegistered:
+        case.registered:
             return (label: AnyView(Text("ADD")), disabled: false)
         case .notRegistered:
             return (label: AnyView(Text("INVITE")), disabled: false)
@@ -121,5 +67,4 @@ private struct ContactRow: View {
             return (label: AnyView(Text("APPLY")), disabled: false)
         }
     }
-}
 }

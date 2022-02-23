@@ -14,6 +14,7 @@ struct ContactInfo: Identifiable, Equatable {
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
+    var selected: Bool = false
 
     mutating func changeStatus(_ status: ContactStatus) {
         self.status = status
@@ -25,14 +26,14 @@ enum FriendStatus: Int {
 }
 
 enum ContactStatus: Equatable {
-    case isRegistered
+    case registered
     case notRegistered
     case inContacts(FriendStatus)
 
     var stringValue: String {
         switch self {
-        case .isRegistered:
-            return "isRegistered"
+        case .registered:
+            return "registered"
         case .notRegistered:
             return "notRegistered"
         case .inContacts(let friendStatus):
@@ -49,7 +50,7 @@ enum ContactStatus: Equatable {
 
     var order: Int {
         switch self {
-        case .isRegistered:
+        case .registered:
             return 4
         case .notRegistered:
             return 5
@@ -66,7 +67,7 @@ enum ContactStatus: Equatable {
     }
 }
 
-func ContactStatusFromString(_ str: String) -> ContactStatus {
+func contactStatus(from str: String) -> ContactStatus {
     switch str {
     case "friend":
         return .inContacts(.friend)
@@ -75,7 +76,7 @@ func ContactStatusFromString(_ str: String) -> ContactStatus {
     case "outcomingRequest":
         return .inContacts(.outcomingRequest)
     case "register":
-        return .isRegistered
+        return .registered
     case "notRegister":
         return .notRegistered
     default:
@@ -87,6 +88,7 @@ final class ContactsInfo: ObservableObject {
 
     static let instance = ContactsInfo()
     @Published var contacts: [ContactInfo]
+    private let userService = UserService()
 
     private init() {
         self.contacts = []
@@ -95,30 +97,15 @@ final class ContactsInfo: ObservableObject {
 
     func fetchingContacts() {
         let contactsFromList = fetchContacts()
-
-        //initial
         contactsFromList.forEach { contact in
             contact.phoneNumbers.forEach { phone in
-                self.contacts.append(
-                    ContactInfo(firstName: contact.givenName,
-                                lastName: contact.familyName,
-                                phoneNumber: phone.value.stringValue,
-                                status: .notRegistered))
-            }
-        }
-
-        //Try to find status in contacts
-        for index in self.contacts.indices {
-            UserService().checkUserStatusInContacts(phone: self.contacts[index].phoneNumber) { status in
-                self.contacts[index].status = status
-            }
-        }
-
-        //Try to find if registered in app
-        for index in self.contacts.indices {
-            UserService().checkUserStatusByPhone(phone: self.contacts[index].phoneNumber) { status in
-                if self.contacts[index].status == .notRegistered {
-                    self.contacts[index].status = status
+                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { status in
+                    self.contacts.append(
+                        ContactInfo(firstName: contact.givenName,
+                                    lastName: contact.familyName,
+                                    phoneNumber: phone.value.stringValue,
+                                    status: status)
+                    )
                 }
             }
         }
