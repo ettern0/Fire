@@ -17,9 +17,10 @@ struct ContactsView: View {
     }
 
     var sortedContacts: [ContactInfo] {
-       contacts.contacts.sorted {
+        let result = contacts.contacts.sorted {
             $0.status.order < $1.status.order
         }
+        return result
     }
 
     var body: some View {

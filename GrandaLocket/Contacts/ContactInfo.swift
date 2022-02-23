@@ -65,6 +65,26 @@ enum ContactStatus: Equatable {
             }
         }
     }
+
+    // Возвращает статус дружбы, в который нужно перейти при нажатии на кнопку в списке контактов.
+    // Первый аргумент - статус в таблице текущего пользователя, а второй - в таблице друга.
+    func nextOnFriendRequest() -> (Self, Self) {
+        switch self {
+        case .registered:
+            return (.inContacts(.outcomingRequest), .inContacts(.incomingRequest))
+        case .notRegistered:
+            return (.notRegistered, .notRegistered)
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return (.inContacts(.friend), .inContacts(.friend))
+            case .outcomingRequest:
+                return (.inContacts(.outcomingRequest), .inContacts(.incomingRequest))
+            case .friend:
+                return (.inContacts(.friend), .inContacts(.friend))
+            }
+        }
+    }
 }
 
 func contactStatus(from str: String) -> ContactStatus {

@@ -92,19 +92,22 @@ final class UserService {
             return
         }
 
+        let currentStatus = contact.status
+        let (userStatus, friendStatus) = currentStatus.nextOnFriendRequest()
+
         let phoneTo = contact.phoneNumber.unformatted
         let userRequestFields = [
             "phone": phoneTo,
-            "status": ContactStatus.inContacts(.outcomingRequest).stringValue
+            "status": userStatus.stringValue
         ]
         let friendRequestField = [
             "phone": phoneFrom,
-            "status": ContactStatus.inContacts(.incomingRequest).stringValue
+            "status": friendStatus.stringValue
         ]
 
         self.updateContactsFromRequest(id: user.uid, friendID: contactID, value: userRequestFields)
         self.updateContactsFromRequest(id: contactID, friendID: user.uid, value: friendRequestField)
-        completion(ContactStatus.inContacts(.outcomingRequest))
+        completion(userStatus)
     }
 
     private func updateContactsFromRequest(
