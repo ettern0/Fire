@@ -12,6 +12,7 @@
 		882266F327B2658F00501312 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882266F227B2658F00501312 /* Preview Assets.xcassets */; };
 		883BFE1A27C6EBF3009BC9C0 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1927C6EBF3009BC9C0 /* KeyboardObserver */; };
 		883BFE1C27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 883BFE1B27C6ED7B009BC9C0 /* FirebaseFirestoreSwift-Beta */; };
+		883BFE1E27C6F2EC009BC9C0 /* AppearanceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */; };
 		884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D537F27B58FF500C23FF5 /* VideoProvider.swift */; };
 		884D538B27BA78FE00C23FF5 /* TextLocketStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */; };
 		884D538D27BA9E4F00C23FF5 /* TextViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */; };
@@ -97,6 +98,7 @@
 		882266EF27B2658F00501312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882266F227B2658F00501312 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLocketStyle.swift; sourceTree = "<group>"; };
 		884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewBackground.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				92CC9FF927BA7599009C7AB7 /* GrandaLocket.entitlements */,
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
+				883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
 				9201AABC27BBCEAF00842557 /* CoordinatorView */,
 				92D14E5527C4346B00998DED /* MainView */,
@@ -540,6 +543,7 @@
 				9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */,
 				884D539427BAAA1900C23FF5 /* ExtensionTransition.swift in Sources */,
 				884D538027B58FF500C23FF5 /* VideoProvider.swift in Sources */,
+				883BFE1E27C6F2EC009BC9C0 /* AppearanceConfigurator.swift in Sources */,
 				922F74A927BD223400E03453 /* ContactsView.swift in Sources */,
 				922F74B127BE910300E03453 /* SmallCapsuleButtonStyle.swift in Sources */,
 				884D539227BAA49900C23FF5 /* ExtensionColor.swift in Sources */,
