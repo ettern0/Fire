@@ -25,7 +25,7 @@ struct FooterSendView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 50) {
             CarouselView(viewModel: viewModel, selectedMode: $selectedMode)
             HStack(spacing: spacingHStack) {
                 Button {
@@ -60,7 +60,6 @@ struct FooterSendView: View {
                     .frame(width: widthOfButtonSend, height: buttonHeight)
             }
             .offset(x: footerOffset)
-            .padding(.vertical, 48)
         }
     }
 }

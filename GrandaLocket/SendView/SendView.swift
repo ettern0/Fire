@@ -23,6 +23,7 @@ struct SendView: View {
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width,
                            height: UIScreen.main.bounds.width)
+                Spacer()
                 FooterSendView(
                     destination: $destination,
                     selectedMode: $selectedMode,

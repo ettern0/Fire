@@ -12,45 +12,60 @@ struct CarouselView: View {
     @State var maxScale: CGFloat = 1
     @Binding var selectedMode: SendSelectedMode
     let sizeOfstaticElement: CGFloat = 60
-    let sizeOfScaledElement: CGFloat = 100
+    let sizeOfScaledElement: CGFloat = 120
     let spacingHorizontal: CGFloat = 20
 
     var maxRatio: CGFloat {
         sizeOfScaledElement/sizeOfstaticElement
     }
 
+    var yOffset: CGFloat {
+        (sizeOfScaledElement - sizeOfstaticElement)/2
+    }
+
+    var xSpacing: CGFloat {
+        (sizeOfScaledElement - sizeOfstaticElement)/2
+    }
+
     var body: some View {
-//        GeometryReader { mainFrame in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 24) {
-//                    ForEach(filtredContacts) { contact in
-//                        GeometryReader { geo in
-//                            CarouselContactView(selectedMode: selectedMode, contact: contact)
-//                                .scaleEffect(
-//                                    calcScale(mainFrame: mainFrame.frame(in: .global).maxX,
-//                                              minX: geo.frame(in: .global).minX))
-//                        }
-//                        .frame(width: sizeOfScaledElement + spacingHorizontal)
-//                    }
-//                }
-//                .position(x: 0, y: mainFrame.size.height)
                     ForEach(viewModel.friends) { friend in
                         CarouselContactView(viewModel: viewModel, friend: friend)
                     }
             }
-        }.frame(height: sizeOfScaledElement * 2)
-    }
-
-    private func calcScale(mainFrame: CGFloat, minX: CGFloat) -> CGFloat {
-        let scale = minX / mainFrame
-        var decreesRatio = abs(2 - (abs(0.5 - scale) * 2))
-        if decreesRatio > maxRatio {
-            decreesRatio = maxRatio
-        } else if decreesRatio < 1 {
-            decreesRatio = 1
         }
-        return decreesRatio
+            .padding(15)
     }
+//
+//    var CarouselView: some View {
+//        GeometryReader { mainView in
+//            ScrollView(.horizontal, showsIndicators: false) {
+//                HStack(spacing: xSpacing) {
+//                    ForEach(viewModel.friends) { friend in
+//                        GeometryReader { item in
+//                            CarouselContactView(viewModel: viewModel, friend: friend)
+//                                .scaleEffect(
+//                                    calcScale(mainFrame: mainView.frame(in: .global).maxX,
+//                                              minX: item.frame(in: .global).minX))
+//                        }.frame(width: 60, height: mainView.frame(in: .global).maxY)
+//                    }
+//                }
+//                .offset(y: yOffset)
+//            }
+//        }
+//    }
+
+//    private func calcScale(mainFrame: CGFloat, minX: CGFloat) -> CGFloat {
+//        let scale = minX / mainFrame
+//        var decreesRatio = abs(2 - (abs(0.5 - scale) * 2))
+//        if decreesRatio > maxRatio {
+//            decreesRatio = maxRatio
+//        } else if decreesRatio < 1 {
+//            decreesRatio = 1
+//        }
+//        return decreesRatio
+//    }
 }
 
 struct CarouselContactView: View {
@@ -75,7 +90,7 @@ struct CarouselContactView: View {
                     }
                 Text(friend.name)
                     .frame(width: 60, height: 20)
-                    .font(Typography.descriptionS)
+                    .font(Typography.controlL)
                     .lineLimit(nil)
             }
         }

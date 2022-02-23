@@ -10,15 +10,26 @@ import SwiftUI
 struct FeedView: View {
 
     @Binding var destination: AppDestination
+    @State private var yDirection: GesturesDirection = .bottom
+    private let service = DownloadImageService()
+    private var minYToChangeMode: CGFloat {
+        UIScreen.main.bounds.height * 0.1
+    }
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 MyFeedView()
                 MyFriendsFeedView()
-
                 Spacer()
             }
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        changeyDirection(value.startLocation.y, value.location.y)
+                        changeModeWithyDirection()
+                    }
+            )
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button {
@@ -34,6 +45,28 @@ struct FeedView: View {
                         }
                     }
                 }
+            }
+        }.onAppear {
+            // govnokod
+            service.download() { value in
+
+            }
+        }
+    }
+
+    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
+        let dif = abs(yOld - yNew)
+        if yOld < yNew, dif > minYToChangeMode {
+            yDirection = .top
+        } else if yOld > yNew, dif > minYToChangeMode {
+            yDirection = .bottom
+        }
+    }
+
+    private func changeModeWithyDirection() {
+        withAnimation {
+            if yDirection == .top {
+                destination = .main
             }
         }
     }

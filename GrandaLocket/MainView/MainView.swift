@@ -117,7 +117,7 @@ struct MainView: View {
 
     var transitButton: some View {
         Button {
-
+            destination = .feed
         } label: {
             Image("angle_down")
         }
@@ -166,7 +166,7 @@ struct MainView: View {
         }
     }
 
-    func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
+    private func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
         let dif = abs(xOld - xNew)
         if xOld > xNew, dif > minXToChangeMode {
             xDirection = .right
@@ -175,7 +175,7 @@ struct MainView: View {
         }
     }
 
-    func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
+    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
         let dif = abs(yOld - yNew)
         if yOld < yNew, dif > minYToChangeMode {
             yDirection = .top
@@ -184,7 +184,7 @@ struct MainView: View {
         }
     }
 
-    func changeModeWithxDirection() {
+    private func changeModeWithxDirection() {
         withAnimation {
             if xDirection == .left, selectedMode == .text {
                 selectedMode = .photo
@@ -194,7 +194,7 @@ struct MainView: View {
         }
     }
 
-    func changeModeWithyDirection() {
+    private func changeModeWithyDirection() {
         withAnimation {
             if yDirection == .bottom {
                 destination = .feed

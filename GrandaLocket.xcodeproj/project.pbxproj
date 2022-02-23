@@ -31,6 +31,8 @@
 		92388C9127C59A6500C43B3B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C9027C59A6500C43B3B /* FirebaseStorage */; };
 		92388C9327C62F1D00C43B3B /* button_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 92388C9227C62F1D00C43B3B /* button_loading.json */; };
 		92388C9527C6772D00C43B3B /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9427C6772C00C43B3B /* SendViewModel.swift */; };
+		92388C9727C69CE300C43B3B /* DownloadImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9627C69CE100C43B3B /* DownloadImageService.swift */; };
+		92388C9927C6B58300C43B3B /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9827C6B58300C43B3B /* FeedViewModel.swift */; };
 		92664A5327B50850006C860E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* BlurView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
@@ -110,6 +112,8 @@
 		922F74B327BE9C4400E03453 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		92388C9227C62F1D00C43B3B /* button_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = button_loading.json; sourceTree = "<group>"; };
 		92388C9427C6772C00C43B3B /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
+		92388C9627C69CE100C43B3B /* DownloadImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageService.swift; sourceTree = "<group>"; };
+		92388C9827C6B58300C43B3B /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 			children = (
 				922F74B327BE9C4400E03453 /* UserService.swift */,
 				92D14E5E27C58F2900998DED /* UserImagesService.swift */,
+				92388C9627C69CE100C43B3B /* DownloadImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				92D14E5A27C5065000998DED /* FeedView.swift */,
+				92388C9827C6B58300C43B3B /* FeedViewModel.swift */,
 				92D14E5C27C58BF900998DED /* MyFriendsFeedViewModel.swift */,
 			);
 			path = Feed;
@@ -511,6 +517,7 @@
 				922F74AB27BE75F000E03453 /* FooterNextView.swift in Sources */,
 				92D0239527B28E1F00099E69 /* ImageResizer.swift in Sources */,
 				92E4F57727C410A80040E25B /* ContactRow.swift in Sources */,
+				92388C9727C69CE300C43B3B /* DownloadImageService.swift in Sources */,
 				92D14E5027C432F300998DED /* ExtensionUIImage.swift in Sources */,
 				92D14E5227C4337D00998DED /* ExtensionUIScreen.swift in Sources */,
 				92D0239727B28E1F00099E69 /* PhotoCaptureProcessor.swift in Sources */,
@@ -543,6 +550,7 @@
 				922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */,
 				92C5E68B27BD12FB00C6276A /* ConnectView.swift in Sources */,
 				92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */,
+				92388C9927C6B58300C43B3B /* FeedViewModel.swift in Sources */,
 				92E4F57927C41EB10040E25B /* SendSelectedMode.swift in Sources */,
 				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
 				92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */,
