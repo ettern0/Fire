@@ -31,16 +31,3 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-
-enum AppearanceConfigurator {
-    static func configure() {
-        if let font = Typography.headerMUI {
-                    UINavigationBar.appearance().largeTitleTextAttributes = [
-                        .font: font
-                    ]}
-        if let font = Typography.headerSUI {
-        UINavigationBar.appearance().titleTextAttributes = [
-            .font: font
-        ]}
-    }
-}
