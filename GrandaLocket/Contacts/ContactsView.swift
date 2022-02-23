@@ -17,7 +17,7 @@ struct ContactsView: View {
     }
 
     var sortedContacts: [ContactInfo] {
-        contacts.contacts.sorted {
+       contacts.contacts.sorted {
             $0.status.order < $1.status.order
         }
     }
@@ -26,7 +26,7 @@ struct ContactsView: View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 List {
-                    ForEach(sortedContacts) { contact in
+                    ForEach(sortedContacts, id: \.phoneNumber) { contact in
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }

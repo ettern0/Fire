@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct SendView: View {
 
@@ -23,10 +23,12 @@ struct SendView: View {
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width,
                            height: UIScreen.main.bounds.width)
-                FooterSendView(destination: $destination,
-                               selectedMode: $selectedMode,
-                               nextDestination: .main,
-                               snapshotImage: snapshotImage)
+                FooterSendView(
+                    destination: $destination,
+                    selectedMode: $selectedMode,
+                    nextDestination: .main,
+                    snapshotImage: snapshotImage
+                )
             }
             .navigationTitle(selectedMode.rawValue)
             .font(Typography.headerM)

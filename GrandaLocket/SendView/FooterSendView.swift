@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct FooterSendView: View {
-
     @Binding var destination: AppDestination
     @Binding var selectedMode: SendSelectedMode
     let nextDestination: AppDestination
     let snapshotImage: UIImage
+    @ObservedObject var viewModel = SendViewModel()
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
     private let widthOfButtonSend: CGFloat = 115
-    @State var loadProcess: Bool = false
+    @State var isLoading: Bool = false
+    @State var selectedIDs: [String] = []
+    private let imagesService = UserImagesService()
 
     var footerOffset: CGFloat {
         -((spacingHStack + buttonHeight)/2)
@@ -24,7 +26,7 @@ struct FooterSendView: View {
 
     var body: some View {
         VStack {
-            CarouselView(selectedMode: $selectedMode)
+            CarouselView(viewModel: viewModel, selectedMode: $selectedMode)
             HStack(spacing: spacingHStack) {
                 Button {
                     destination = .main
@@ -39,15 +41,18 @@ struct FooterSendView: View {
                     }
                 }
                 Button {
-                    loadProcess.toggle()
-                    StorageManager().persistImageToStorage(image: snapshotImage) { status in
-                        loadProcess.toggle()
+                    isLoading = true
+                    imagesService.send(
+                        image: snapshotImage,
+                        to: viewModel.friends.filter(\.isSelected).compactMap(\.id)
+                    ) { status in
+                        isLoading = false
                         destination = .main
                     }
                 } label: {
-                    if loadProcess {
-                        LottieView(name: "button_loading", loopMode: .loop)
-                            .offset(y: -buttonHeight/4)
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .black))
                     } else {
                         Text("SEND")
                     }

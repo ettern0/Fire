@@ -9,8 +9,8 @@ import Contacts
 import Foundation
 
 struct ContactInfo: Identifiable, Equatable {
-    var id = UUID()
-    var firstName: String
+    let id: String?
+    let firstName: String
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
@@ -85,7 +85,6 @@ func contactStatus(from str: String) -> ContactStatus {
 }
 
 final class ContactsInfo: ObservableObject {
-
     static let instance = ContactsInfo()
     @Published var contacts: [ContactInfo]
     private let userService = UserService()
@@ -106,7 +105,7 @@ final class ContactsInfo: ObservableObject {
         if isFetchingInProgress {
             isFetchingPlanned = true
         } else {
-            fetchingContacts()
+            fetchContactsInfo()
         }
     }
 
@@ -132,21 +131,20 @@ final class ContactsInfo: ObservableObject {
         }
     }
 
-    private func fetchingContacts() {
+    private func fetchContactsInfo() {
         self.isFetchingInProgress = true
         self.isFetchingPlanned = false
-
         var internalContacts = [ContactInfo]()
-
         let contactsFromList = fetchContacts()
 
         let dispatchGroup = DispatchGroup()
         contactsFromList.forEach { contact in
             contact.phoneNumbers.forEach { phone in
                 dispatchGroup.enter()
-                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { status in
+                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { (id, status) in
                     internalContacts.append(
                         ContactInfo(
+                            id: id,
                             firstName: contact.givenName,
                             lastName: contact.familyName,
                             phoneNumber: phone.value.stringValue,
@@ -167,7 +165,7 @@ final class ContactsInfo: ObservableObject {
             }
         }
     }
-    
+
     private func fetchContacts() -> [CNContact] {
         let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
@@ -186,5 +184,11 @@ final class ContactsInfo: ObservableObject {
         return contacts.sorted {
             $0.givenName < $1.givenName
         }
+    }
+}
+
+extension ContactInfo {
+    var isFriend: Bool {
+        status == .inContacts(.friend)
     }
 }

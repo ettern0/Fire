@@ -30,6 +30,7 @@
 		92388C8F27C59A6500C43B3B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C8E27C59A6500C43B3B /* FirebaseFirestore */; };
 		92388C9127C59A6500C43B3B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C9027C59A6500C43B3B /* FirebaseStorage */; };
 		92388C9327C62F1D00C43B3B /* button_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 92388C9227C62F1D00C43B3B /* button_loading.json */; };
+		92388C9527C6772D00C43B3B /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9427C6772C00C43B3B /* SendViewModel.swift */; };
 		92664A5327B50850006C860E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* BlurView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
@@ -70,7 +71,7 @@
 		92D14E5827C436A300998DED /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5727C436A300998DED /* DrawView.swift */; };
 		92D14E5B27C5065100998DED /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5A27C5065000998DED /* FeedView.swift */; };
 		92D14E5D27C58BFA00998DED /* MyFriendsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5C27C58BF900998DED /* MyFriendsFeedViewModel.swift */; };
-		92D14E5F27C58F2900998DED /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5E27C58F2900998DED /* StorageManager.swift */; };
+		92D14E5F27C58F2900998DED /* UserImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5E27C58F2900998DED /* UserImagesService.swift */; };
 		92E4F57327C4092F0040E25B /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57227C4092F0040E25B /* SendView.swift */; };
 		92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57427C409A90040E25B /* FooterSendView.swift */; };
 		92E4F57727C410A80040E25B /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57627C410A80040E25B /* ContactRow.swift */; };
@@ -108,6 +109,7 @@
 		922F74B027BE910300E03453 /* SmallCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		922F74B327BE9C4400E03453 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		92388C9227C62F1D00C43B3B /* button_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = button_loading.json; sourceTree = "<group>"; };
+		92388C9427C6772C00C43B3B /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
@@ -148,7 +150,7 @@
 		92D14E5727C436A300998DED /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		92D14E5A27C5065000998DED /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		92D14E5C27C58BF900998DED /* MyFriendsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsFeedViewModel.swift; sourceTree = "<group>"; };
-		92D14E5E27C58F2900998DED /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		92D14E5E27C58F2900998DED /* UserImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImagesService.swift; sourceTree = "<group>"; };
 		92E4F57227C4092F0040E25B /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		92E4F57427C409A90040E25B /* FooterSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSendView.swift; sourceTree = "<group>"; };
 		92E4F57627C410A80040E25B /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
@@ -275,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				922F74B327BE9C4400E03453 /* UserService.swift */,
-				92D14E5E27C58F2900998DED /* StorageManager.swift */,
+				92D14E5E27C58F2900998DED /* UserImagesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -355,8 +357,9 @@
 			children = (
 				92E4F57227C4092F0040E25B /* SendView.swift */,
 				92E4F57427C409A90040E25B /* FooterSendView.swift */,
-				92E4F57827C41EB10040E25B /* SendSelectedMode.swift */,
 				92E9C96B27C38A8E002A7501 /* CarouselView.swift */,
+				92388C9427C6772C00C43B3B /* SendViewModel.swift */,
+				92E4F57827C41EB10040E25B /* SendSelectedMode.swift */,
 			);
 			path = SendView;
 			sourceTree = "<group>";
@@ -497,7 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92D14E5F27C58F2900998DED /* StorageManager.swift in Sources */,
+				92388C9527C6772D00C43B3B /* SendViewModel.swift in Sources */,
+				92D14E5F27C58F2900998DED /* UserImagesService.swift in Sources */,
 				92D14E5D27C58BFA00998DED /* MyFriendsFeedViewModel.swift in Sources */,
 				92D14E5B27C5065100998DED /* FeedView.swift in Sources */,
 				92D0239627B28E1F00099E69 /* CameraService.swift in Sources */,

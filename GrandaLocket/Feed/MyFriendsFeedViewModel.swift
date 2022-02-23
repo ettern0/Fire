@@ -22,7 +22,7 @@ final class MyFriendsFeedViewModel: ObservableObject {
 
     init() {
         self.cancellable = ContactsInfo.instance.$contacts
-            .throttle(for: 0.5, scheduler: RunLoop.main, latest: true)
+            .receive(on: RunLoop.main)
             .sink { [weak self] contacts in
                 guard let self = self else { return }
                 let friendsModels = contacts.filter { $0.status == .inContacts(.friend) }
