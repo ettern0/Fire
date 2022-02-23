@@ -34,30 +34,34 @@ final class UserService {
         }
     }
 
-    func checkRegisteredUserStatus(by phone: String, completion: @escaping (ContactStatus) -> Void) {
+    private func checkRegisteredUserStatus(
+        by phone: String,
+        id: String,
+        completion: @escaping (String?, ContactStatus) -> Void
+    ) {
         guard let user = Auth.auth().currentUser else {
             assertionFailure("User should not be nil.")
-            return completion(.notRegistered)
+            return completion(nil, .notRegistered)
         }
-        
-        db?.collection("contacts")
-            .document(user.uid)
+
+        let uid = user.uid
+
+        db?.collection("contacts/\(uid)/contacts")
+            .document(id)
             .getDocument() { (document, err) in
                 if let document = document,
-                   let contacts = document["contacts"] as? [[String: String]],
-                   let contact = contacts.first(where: { $0["phone"] == phone.unformatted }),
-                   let rawStatus = contact["status"] {
+                   let rawStatus = document["status"] as? String {
                     let status = contactStatus(from: rawStatus)
-                    completion(status)
+                    completion(id, status)
                 } else {
-                    completion(.registered)
+                    completion(id, .registered)
                 }
             }
     }
     
-    func checkUserStatus(by phone: String, completion: @escaping (ContactStatus) -> Void) {
+    func checkUserStatus(by phone: String, completion: @escaping (String?, ContactStatus) -> Void) {
         guard let db = db else {
-            return completion(.notRegistered)
+            return completion(nil, .notRegistered)
         }
         
         db
@@ -65,11 +69,11 @@ final class UserService {
             .whereField("phone", isEqualTo: phone.unformatted)
             .getDocuments()
         { [weak self] (querySnapshot, err) in
-            if (querySnapshot?.documents.first) != nil {
+            if let document = querySnapshot?.documents.first {
                 guard let self = self else { return }
-                self.checkRegisteredUserStatus(by: phone, completion: completion)
+                self.checkRegisteredUserStatus(by: phone, id: document.documentID, completion: completion)
             } else {
-                completion(.notRegistered)
+                completion(nil, .notRegistered)
             }
         }
     }
@@ -81,46 +85,63 @@ final class UserService {
             return
         }
 
-        guard let phoneFrom = user.phoneNumber?.unformatted else {
+        guard let phoneFrom = user.phoneNumber?.unformatted,
+              let contactID = contact.id
+        else {
+            assertionFailure()
             return
         }
 
+        let currentStatus = contact.status
+        let (userStatus, friendStatus) = currentStatus.nextOnFriendRequest()
+
         let phoneTo = contact.phoneNumber.unformatted
-        let newValueTo = ["phone": phoneTo,
-                          "status": ContactStatus.inContacts(.outcomingRequest).stringValue]
-        let newValueFrom = ["phone": phoneFrom,
-                            "status": ContactStatus.inContacts(.incomingRequest).stringValue]
+        let userRequestFields = [
+            "phone": phoneTo,
+            "status": userStatus.stringValue
+        ]
+        let friendRequestField = [
+            "phone": phoneFrom,
+            "status": friendStatus.stringValue
+        ]
 
-        db?.collection("contacts").document(user.uid).getDocument { (document, error) in
-            self.updateContactsFromRequest(id: user.uid, value: newValueTo)
-        }
-
-        // Request to update info in request number
-        db?
-            .collection("users")
-            .whereField("phone", isEqualTo: phoneTo)
-            .getDocuments() { (snapshot, error) in
-                if let snapshot = snapshot, let document = snapshot.documents.first {
-                    self.updateContactsFromRequest(id: document.documentID, value: newValueFrom)
-                    completion(ContactStatus.inContacts(.outcomingRequest))
-                } else {
-                    assertionFailure("User doesnt exist")
-                }
-            }
+        self.updateContactsFromRequest(id: user.uid, friendID: contactID, value: userRequestFields)
+        self.updateContactsFromRequest(id: contactID, friendID: user.uid, value: friendRequestField)
+        completion(userStatus)
     }
 
-    private func updateContactsFromRequest(id: String,
-                                      value: [String: String]) {
+    private func updateContactsFromRequest(
+        id: String,
+        friendID: String,
+        value: [String: String]
+    ) {
         db?.collection("contacts").document(id).getDocument { (document, error) in
             if let document = document, document.exists {
-                self.db?.collection("contacts").document(id).updateData([
-                    "contacts": FieldValue.arrayUnion([value])
-                ])
+                self.db?
+                    .collection("contacts/\(id)/contacts")
+                    .document(friendID)
+                    .updateData(value)
             } else {
-                self.db?.collection("contacts").document(id).setData([
-                    "contacts": [value]
-                ])
+                self.db?
+                    .collection("contacts/\(id)/contacts")
+                    .document(friendID)
+                    .setData(value)
             }
         }
+    }
+
+    func addContactsListener(onUpdate: @escaping () -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        db?.collection("contacts/\(user.uid)/contacts")
+            .addSnapshotListener { documentSnapshot, error in
+                guard documentSnapshot != nil else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "")")
+                    return
+                }
+                onUpdate()
+            }
     }
 }

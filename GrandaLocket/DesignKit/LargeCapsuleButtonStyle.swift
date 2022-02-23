@@ -19,7 +19,6 @@ struct LargeCapsuleButtonStyle: ButtonStyle {
                     .fill(.black.opacity(0.0001)) // https://stackoverflow.com/a/57157130
                     .overlay {
                         Capsule()
-//                            .stroke(lineWidth: 4)
                             .foregroundColor(Palette.accent)
                             .opacity(configuration.isPressed ? 0.7 : 1.0)
 
