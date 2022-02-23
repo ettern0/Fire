@@ -93,21 +93,20 @@ final class ContactsInfo: ObservableObject {
     private init() {
         self.contacts = []
         self.requestAccess()
+
+        userService.addContactsListener { [weak self] in
+            self?.fetchIfNeeded()
+        }
     }
 
-    func fetchingContacts() {
-        let contactsFromList = fetchContacts()
-        contactsFromList.forEach { contact in
-            contact.phoneNumbers.forEach { phone in
-                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { status in
-                    self.contacts.append(
-                        ContactInfo(firstName: contact.givenName,
-                                    lastName: contact.familyName,
-                                    phoneNumber: phone.value.stringValue,
-                                    status: status)
-                    )
-                }
-            }
+    private var isFetchingInProgress: Bool = false
+    private var isFetchingPlanned: Bool = false
+
+    func fetchIfNeeded() {
+        if isFetchingInProgress {
+            isFetchingPlanned = true
+        } else {
+            fetchingContacts()
         }
     }
 
@@ -115,41 +114,77 @@ final class ContactsInfo: ObservableObject {
         let store = CNContactStore()
         switch CNContactStore.authorizationStatus(for: .contacts) {
         case .authorized:
-            self.fetchingContacts()
+            self.fetchIfNeeded()
         case .denied:
             store.requestAccess(for: .contacts) { granted, error in
                 if granted {
-                    self.fetchingContacts()
+                    self.fetchIfNeeded()
                 }
             }
         case .restricted, .notDetermined:
             store.requestAccess(for: .contacts) { granted, error in
                 if granted {
-                    self.fetchingContacts()
+                    self.fetchIfNeeded()
                 }
             }
         @unknown default:
             print("error")
         }
     }
-}
 
-private func fetchContacts() -> [CNContact] {
-    let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
-    let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-    var contacts: [CNContact] = []
+    private func fetchingContacts() {
+        self.isFetchingInProgress = true
+        self.isFetchingPlanned = false
 
-    do {
-        try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-            if let _ = contact.phoneNumbers.first?.value {
-                contacts.append(contact)
+        var internalContacts = [ContactInfo]()
+
+        let contactsFromList = fetchContacts()
+
+        let dispatchGroup = DispatchGroup()
+        contactsFromList.forEach { contact in
+            contact.phoneNumbers.forEach { phone in
+                dispatchGroup.enter()
+                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { status in
+                    internalContacts.append(
+                        ContactInfo(
+                            firstName: contact.givenName,
+                            lastName: contact.familyName,
+                            phoneNumber: phone.value.stringValue,
+                            status: status
+                        )
+                    )
+                    dispatchGroup.leave()
+                }
             }
-        })
-    } catch let error {
-        print("Failed", error)
-    }
+        }
 
-    return contacts.sorted {
-        $0.givenName < $1.givenName
+        dispatchGroup.notify(queue: .global()) {
+            self.contacts = internalContacts
+
+            self.isFetchingInProgress = false
+            if self.isFetchingPlanned {
+                self.fetchIfNeeded()
+            }
+        }
+    }
+    
+    private func fetchContacts() -> [CNContact] {
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+        var contacts: [CNContact] = []
+
+        do {
+            try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+                if let _ = contact.phoneNumbers.first?.value {
+                    contacts.append(contact)
+                }
+            })
+        } catch let error {
+            print("Failed", error)
+        }
+
+        return contacts.sorted {
+            $0.givenName < $1.givenName
+        }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
 
-    //@Binding var destination: AppDestination
+    @Binding var destination: AppDestination
 
     var body: some View {
         NavigationView {
@@ -22,13 +22,15 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button {
-                        // destination = .main
+                        destination = .main
                     } label: {
                         VStack {
                             Image("angle_up")
                                 .opacity(0.8)
                             Text("Camera")
                                 .font(Typography.controlL)
+                                .foregroundColor(.white)
+                                .opacity(0.8)
                         }
                     }
                 }
@@ -47,6 +49,7 @@ private struct MyFriendsFeedView: View {
                 .padding(.bottom, 20)
             ForEach(viewModel.friends, id: \.self) { friend in
                 Text(friend.name)
+                Text(friend.phone)
                 if friend.lockets.isEmpty {
                     Text("Душнила-друг ничего тебе не послал")
                 } else {

@@ -11,6 +11,7 @@ import Combine
 final class MyFriendsFeedViewModel: ObservableObject {
     struct Friend: Hashable {
         let name: String
+        let phone: String
         let lockets: [String]
     }
 
@@ -20,11 +21,15 @@ final class MyFriendsFeedViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     init() {
-        self.cancellable = ContactsInfo.instance.$contacts.sink { [weak self] contacts in
-            guard let self = self else { return }
-            let friendsModels = contacts.filter { $0.status == .inContacts(.friend) }
-            let friends = friendsModels.map { Friend(name: $0.firstName, lockets: []) }
-            self.friends = friends
-        }
+        self.cancellable = ContactsInfo.instance.$contacts
+            .throttle(for: 0.5, scheduler: RunLoop.main, latest: true)
+            .sink { [weak self] contacts in
+                guard let self = self else { return }
+                let friendsModels = contacts.filter { $0.status == .inContacts(.friend) }
+                let friends = friendsModels.map {
+                    Friend(name: $0.firstName, phone: $0.phoneNumber, lockets: [])
+                }
+                self.friends = friends
+            }
     }
 }

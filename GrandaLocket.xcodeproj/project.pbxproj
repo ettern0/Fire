@@ -29,6 +29,7 @@
 		92388C8D27C59A6500C43B3B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C8C27C59A6500C43B3B /* FirebaseCrashlytics */; };
 		92388C8F27C59A6500C43B3B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C8E27C59A6500C43B3B /* FirebaseFirestore */; };
 		92388C9127C59A6500C43B3B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92388C9027C59A6500C43B3B /* FirebaseStorage */; };
+		92388C9327C62F1D00C43B3B /* button_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 92388C9227C62F1D00C43B3B /* button_loading.json */; };
 		92664A5327B50850006C860E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* BlurView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
@@ -106,6 +107,7 @@
 		922F74AE27BE876600E03453 /* LargeCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		922F74B027BE910300E03453 /* SmallCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		922F74B327BE9C4400E03453 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		92388C9227C62F1D00C43B3B /* button_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = button_loading.json; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
@@ -212,12 +214,13 @@
 				C12357A627BE98E40093D55E /* DesignKit */,
 				922F74B227BE9C2800E03453 /* Services */,
 				92E4F57127C407C90040E25B /* SendView */,
-				92664A5227B5084F006C860E /* BlurView.swift */,
 				92D14E5927C505B800998DED /* Feed */,
+				92CC9FD827BA6518009C7AB7 /* Fonts */,
+				92664A5227B5084F006C860E /* BlurView.swift */,
 				922F74AA27BE75F000E03453 /* FooterNextView.swift */,
 				92FBDACD27B59C280062A9A7 /* PickerView.swift */,
 				92D023A227B40C3600099E69 /* LocketMode.swift */,
-				92CC9FD827BA6518009C7AB7 /* Fonts */,
+				92388C9227C62F1D00C43B3B /* button_loading.json */,
 				92E51C5527B2694900FEE370 /* GoogleService-Info.plist */,
 				882266FD27B2C5D900501312 /* Info.plist */,
 				882266EF27B2658F00501312 /* Assets.xcassets */,
@@ -480,6 +483,7 @@
 				92CC9FE627BA663B009C7AB7 /* ALSHauss-Bold.ttf in Resources */,
 				92CC9FEC27BA663B009C7AB7 /* ALSHauss-BookItalic.ttf in Resources */,
 				92CC9FF627BA6649009C7AB7 /* ALSHauss-Thin.ttf in Resources */,
+				92388C9327C62F1D00C43B3B /* button_loading.json in Resources */,
 				92CC9FF527BA6649009C7AB7 /* ALSHauss-ThinItalic.ttf in Resources */,
 				92CC9FE927BA663B009C7AB7 /* ALSHauss-HairlineItalic.ttf in Resources */,
 				92CC9FEA27BA663B009C7AB7 /* ALSHauss-LightItalic.ttf in Resources */,

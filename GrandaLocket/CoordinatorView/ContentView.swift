@@ -39,7 +39,7 @@ struct ContentView: View {
             case .send:
                 SendView(destination: $destination, snapshotImage: $snapshotImage)
             case .feed:
-                EmptyView()
+                FeedView(destination: $destination)
             }
         }
         .animation(.default, value: destination)

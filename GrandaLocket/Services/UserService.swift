@@ -123,4 +123,19 @@ final class UserService {
             }
         }
     }
+
+    func addContactsListener(onUpdate: @escaping () -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        db?.collection("contacts").document(user.uid)
+            .addSnapshotListener { documentSnapshot, error in
+                guard documentSnapshot != nil else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "")")
+                    return
+                }
+                onUpdate()
+            }
+    }
 }

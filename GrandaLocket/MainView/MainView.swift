@@ -43,6 +43,7 @@ struct MainView: View {
                         changexDirection(value.startLocation.x, value.location.x)
                         changeyDirection(value.startLocation.y, value.location.y)
                         changeModeWithxDirection()
+                        changeModeWithyDirection()
                     }
             )
         }
@@ -95,9 +96,6 @@ struct MainView: View {
                 Circle()
                     .stroke(Color.black.opacity(0.8), lineWidth: 2)
                     .frame(width: 65, height: 65, alignment: .center)
-
-
-
             }
         }).padding()
     }
@@ -179,9 +177,9 @@ struct MainView: View {
 
     func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
         let dif = abs(yOld - yNew)
-        if yOld > yNew, dif > minYToChangeMode {
+        if yOld < yNew, dif > minYToChangeMode {
             yDirection = .top
-        } else if yOld < yNew, dif > minYToChangeMode {
+        } else if yOld > yNew, dif > minYToChangeMode {
             yDirection = .bottom
         }
     }
@@ -195,4 +193,13 @@ struct MainView: View {
             }
         }
     }
+
+    func changeModeWithyDirection() {
+        withAnimation {
+            if yDirection == .bottom {
+                destination = .feed
+            }
+        }
+    }
+
 }

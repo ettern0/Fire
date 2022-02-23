@@ -16,6 +16,7 @@ struct FooterSendView: View {
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
     private let widthOfButtonSend: CGFloat = 115
+    @State var loadProcess: Bool = false
 
     var footerOffset: CGFloat {
         -((spacingHStack + buttonHeight)/2)
@@ -38,14 +39,18 @@ struct FooterSendView: View {
                     }
                 }
                 Button {
-                    StorageManager().persistImageToStorage(image: snapshotImage) { url in
-                       // UserService().saveImageRef(from:, to: )
-                            print(url )
+                    loadProcess.toggle()
+                    StorageManager().persistImageToStorage(image: snapshotImage) { status in
+                        loadProcess.toggle()
                         destination = .main
                     }
                 } label: {
-                    Text("SEND")
-                        .frame(height: buttonHeight)
+                    if loadProcess {
+                        LottieView(name: "button_loading", loopMode: .loop)
+                            .offset(y: -buttonHeight/4)
+                    } else {
+                        Text("SEND")
+                    }
                 }.buttonStyle(LargeCapsuleButtonStyle())
                     .frame(width: widthOfButtonSend, height: buttonHeight)
             }
