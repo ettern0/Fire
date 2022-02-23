@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-
+import Combine
 
 struct SendView: View {
 
     @Binding var destination: AppDestination
-    @Binding var snaphotImage: Image
+    @Binding var snapshotImage: UIImage
     @State var selectedMode: SendSelectedMode = .allFriends
     @State private var menuIsOpen: Bool = false
 
@@ -19,13 +19,17 @@ struct SendView: View {
         NavigationView {
             VStack {
                 Spacer()
-                snaphotImage
+                Image(uiImage: snapshotImage)
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width,
                            height: UIScreen.main.bounds.width)
-                FooterSendView(destination: $destination,
-                               selectedMode: $selectedMode,
-                               nextDestination: .main)
+                Spacer()
+                FooterSendView(
+                    destination: $destination,
+                    selectedMode: $selectedMode,
+                    nextDestination: .main,
+                    snapshotImage: snapshotImage
+                )
             }
             .navigationTitle(selectedMode.rawValue)
             .font(Typography.headerM)

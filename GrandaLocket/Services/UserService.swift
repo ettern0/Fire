@@ -34,32 +34,46 @@ final class UserService {
         }
     }
 
-    func checkUserStatusInContacts(phone: String, completion: @escaping (ContactStatus) -> Void) {
-        db?.collection("contacts").whereField("phone", isEqualTo: phone.getPhoneFormat())
-            .getDocuments() { (querySnapshot, err) in
-                if err == nil {
-                    if let snapshot = querySnapshot {
-                        snapshot.documents.map { doc in
-                            completion(ContactStatusFromString(doc["status"] as? String ?? ""))
-                        }
-                    }
+    private func checkRegisteredUserStatus(
+        by phone: String,
+        id: String,
+        completion: @escaping (String?, ContactStatus) -> Void
+    ) {
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("User should not be nil.")
+            return completion(nil, .notRegistered)
+        }
+
+        let uid = user.uid
+
+        db?.collection("contacts/\(uid)/contacts")
+            .document(id)
+            .getDocument() { (document, err) in
+                if let document = document,
+                   let rawStatus = document["status"] as? String {
+                    let status = contactStatus(from: rawStatus)
+                    completion(id, status)
+                } else {
+                    completion(id, .registered)
                 }
             }
     }
     
-    func checkUserStatusByPhone(phone: String, completion: @escaping (ContactStatus) -> Void) {
-
+    func checkUserStatus(by phone: String, completion: @escaping (String?, ContactStatus) -> Void) {
         guard let db = db else {
-            return completion(.notRegistered)
+            return completion(nil, .notRegistered)
         }
         
-        db.collection("users").whereField("phone", isEqualTo: phone.getPhoneFormat()).getDocuments(){ (querySnapshot, err) in
-            if let snapshot = querySnapshot {
-                snapshot.documents.map { doc in
-                    completion(.isRegistered)
-                }
+        db
+            .collection("users")
+            .whereField("phone", isEqualTo: phone.unformatted)
+            .getDocuments()
+        { [weak self] (querySnapshot, err) in
+            if let document = querySnapshot?.documents.first {
+                guard let self = self else { return }
+                self.checkRegisteredUserStatus(by: phone, id: document.documentID, completion: completion)
             } else {
-
+                completion(nil, .notRegistered)
             }
         }
     }
@@ -67,50 +81,67 @@ final class UserService {
     func setRequestToChangeContactStatus(contact: ContactInfo,
                                          completion: @escaping (ContactStatus) -> Void) {
 
-        var statusForChange: ContactStatus
-        switch contact.status {
-        case .isRegistered:
-            statusForChange = .inContacts(.outcomingRequest)
-        default:
-            statusForChange = .notRegistered
+        guard let user = Auth.auth().currentUser else {
+            return
         }
 
-        //Try to save data in your contacts lis Firebase with current status
-        let request = db?.collection("contacts").whereField("phone", isEqualTo: contact.phoneNumber.getPhoneFormat())
-        let requestToUpdate = db?.collection("contacts").document(contact.id.uuidString)
+        guard let phoneFrom = user.phoneNumber?.unformatted,
+              let contactID = contact.id
+        else {
+            assertionFailure()
+            return
+        }
 
-        //First try to check if the number already exist and update
-        request?.getDocuments() { (querySnapshot, err) in
-            if let _ = err {
-                completion(contact.status)
+        let currentStatus = contact.status
+        let (userStatus, friendStatus) = currentStatus.nextOnFriendRequest()
+
+        let phoneTo = contact.phoneNumber.unformatted
+        let userRequestFields = [
+            "phone": phoneTo,
+            "status": userStatus.stringValue
+        ]
+        let friendRequestField = [
+            "phone": phoneFrom,
+            "status": friendStatus.stringValue
+        ]
+
+        self.updateContactsFromRequest(id: user.uid, friendID: contactID, value: userRequestFields)
+        self.updateContactsFromRequest(id: contactID, friendID: user.uid, value: friendRequestField)
+        completion(userStatus)
+    }
+
+    private func updateContactsFromRequest(
+        id: String,
+        friendID: String,
+        value: [String: String]
+    ) {
+        db?.collection("contacts").document(id).getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.db?
+                    .collection("contacts/\(id)/contacts")
+                    .document(friendID)
+                    .updateData(value)
             } else {
-                for _ in querySnapshot!.documents {
-                    //Update data
-                    requestToUpdate?.updateData([
-                        "status": statusForChange.stringValue
-                    ]) { err in
-                        if let _ = err {
-                            completion(contact.status)
-                        }
-                        else {
-                            completion(statusForChange)
-                        }
-                    }
-                }
+                self.db?
+                    .collection("contacts/\(id)/contacts")
+                    .document(friendID)
+                    .setData(value)
             }
+        }
+    }
+
+    func addContactsListener(onUpdate: @escaping () -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            return
         }
 
-        //Second try to create new entity in contacts Forebase
-        requestToUpdate?.setData([
-            "phone": contact.phoneNumber.getPhoneFormat(),
-            "status": statusForChange.stringValue
-        ]) { err in
-            if let _ = err {
-                completion(contact.status)
+        db?.collection("contacts/\(user.uid)/contacts")
+            .addSnapshotListener { documentSnapshot, error in
+                guard documentSnapshot != nil else {
+                    print("Error fetching document: \(error?.localizedDescription ?? "")")
+                    return
+                }
+                onUpdate()
             }
-            else {
-                completion(statusForChange)
-            }
-        }
     }
 }

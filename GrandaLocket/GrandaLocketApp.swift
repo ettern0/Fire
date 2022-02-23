@@ -14,8 +14,8 @@ struct GrandaLocketApp: App {
 
     var body: some Scene {
         WindowGroup {
+//            FeedView()
             ContentView()
-            //CarouselView()
                 .ignoresSafeArea()
         }
     }

@@ -18,6 +18,7 @@
 		884D539427BAAA1900C23FF5 /* ExtensionTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884D539327BAAA1900C23FF5 /* ExtensionTransition.swift */; };
 		885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 885FD98F27BF353900D57C09 /* FirebaseAppCheck */; };
 		886A463F27BBBD5B00B6290A /* HealthyPersonTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886A463E27BBBD5B00B6290A /* HealthyPersonTextEditor.swift */; };
+		88EA187627C6EA4E0097E827 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 88EA187527C6EA4E0097E827 /* FirebaseStorage */; };
 		88FA4DB027C4E9A3001ED670 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */; };
 		9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201AABF27BBCEEC00842557 /* AppDestination.swift */; };
 		922F74A727BD208A00E03453 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F74A627BD208A00E03453 /* ContactInfo.swift */; };
@@ -166,6 +167,7 @@
 				92D0238A27B27A5C00099E69 /* FirebaseCrashlytics in Frameworks */,
 				92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */,
 				92D0238627B27A5C00099E69 /* FirebaseAuth in Frameworks */,
+				88EA187627C6EA4E0097E827 /* FirebaseStorage in Frameworks */,
 				88FA4DB027C4E9A3001ED670 /* KeyboardObserver in Frameworks */,
 				922F74B927BE9CFC00E03453 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				885FD99027BF353900D57C09 /* FirebaseAppCheck in Frameworks */,
@@ -408,6 +410,7 @@
 				885FD98F27BF353900D57C09 /* FirebaseAppCheck */,
 				92D14E4B27C42EDB00998DED /* Lottie */,
 				88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */,
+				88EA187527C6EA4E0097E827 /* FirebaseStorage */,
 			);
 			productName = GrandaLocket;
 			productReference = 882266E827B2658C00501312 /* GrandaLocket.app */;
@@ -879,6 +882,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
+		};
+		88EA187527C6EA4E0097E827 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92D0238427B27A5C00099E69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		88FA4DAF27C4E9A3001ED670 /* KeyboardObserver */ = {
 			isa = XCSwiftPackageProductDependency;

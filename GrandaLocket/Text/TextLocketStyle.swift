@@ -25,44 +25,44 @@ extension TextLocketStyle {
     )
 
     static let black: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+        topGradient: LinearGradient(colors: [Palette.widgetBlackLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        centerGradient: LinearGradient(colors: [Palette.blackHard], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        bottomGradient: LinearGradient(colors: [Palette.widgetBlackLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
     )
 
     static let orange: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+        topGradient: LinearGradient(colors: [Palette.widgetOrangeLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        centerGradient: LinearGradient(colors: [Palette.widgetOrangeHard], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        bottomGradient: LinearGradient(colors: [Palette.widgetOrangeLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
     )
 
     static let pink: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+        topGradient: LinearGradient(colors: [Palette.widgetPinkLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        centerGradient: LinearGradient(colors: [Palette.widgetPinkHard], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        bottomGradient: LinearGradient(colors: [Palette.widgetPinkLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
     )
 
     static let green: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+        topGradient: LinearGradient(colors: [Palette.widgetGreenLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        centerGradient: LinearGradient(colors: [Palette.widgetGreenHard], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        bottomGradient: LinearGradient(colors: [Palette.widgetGreenLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
     )
 
     static let blue: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+        topGradient: LinearGradient(colors: [Palette.widgetBlueLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        centerGradient: LinearGradient(colors: [Palette.widgetBlueHard], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+        bottomGradient: LinearGradient(colors: [Palette.widgetBlueLight], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
     )
 
-    static let aquamarine: Self = .init(
-        topGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        centerGradient: LinearGradient(colors: [Color(rgb: 0x1B1A1D)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
-        bottomGradient: LinearGradient(colors: [Color(rgb: 0x2A272E)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
-    )
+//    static let aquamarine: Self = .init(
+//        topGradient: LinearGradient(colors: [Color(rgb: 0x005BEA)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+//        centerGradient: LinearGradient(colors: [Color(rgb: 0x0160D5)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)),
+//        bottomGradient: LinearGradient(colors: [Color(rgb: 0x00C6FB)], startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1))
+//    )
 }
 
 extension TextLocketStyle: CaseIterable {
     static var allCases: [TextLocketStyle] {
-        [.violet, .black, .orange, .pink, .green, .blue, .aquamarine]
+        [.violet, .black, .orange, .pink, .green, .blue,]
     }
 }

@@ -17,7 +17,7 @@ struct MainView: View {
     @State private var yDirection: GesturesDirection = .top
     @State private var textStyle: TextLocketStyle = .violet
     @Binding var destination: AppDestination
-    @Binding var snaphotImage: Image
+    @Binding var snapshotImage: UIImage
     @State private var state = KeyboardState()
 
     private var minXToChangeMode: CGFloat {
@@ -65,6 +65,7 @@ struct MainView: View {
                         changexDirection(value.startLocation.x, value.location.x)
                         changeyDirection(value.startLocation.y, value.location.y)
                         changeModeWithxDirection()
+                        changeModeWithyDirection()
                     }
             )
         }
@@ -104,7 +105,7 @@ struct MainView: View {
 
     var captureButton: some View {
         Button(action: {
-            snaphotImage = Image(uiImage: locketCreationContainer(position: .center).snapshot())
+            snapshotImage = locketCreationContainer(position: .center).snapshot()
             destination = .send
         }, label: {
             ZStack {
@@ -118,9 +119,6 @@ struct MainView: View {
                 Circle()
                     .stroke(Color.black.opacity(0.8), lineWidth: 2)
                     .frame(width: 65, height: 65, alignment: .center)
-
-
-
             }
         }).padding()
     }
@@ -142,7 +140,7 @@ struct MainView: View {
 
     var transitButton: some View {
         Button {
-
+            destination = .feed
         } label: {
             Image("angle_down")
         }
@@ -202,9 +200,9 @@ struct MainView: View {
 
     private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
         let dif = abs(yOld - yNew)
-        if yOld > yNew, dif > minYToChangeMode {
+        if yOld < yNew, dif > minYToChangeMode {
             yDirection = .top
-        } else if yOld < yNew, dif > minYToChangeMode {
+        } else if yOld > yNew, dif > minYToChangeMode {
             yDirection = .bottom
         }
     }
@@ -218,4 +216,13 @@ struct MainView: View {
             }
         }
     }
+
+    private func changeModeWithyDirection() {
+        withAnimation {
+            if yDirection == .bottom {
+                destination = .feed
+            }
+        }
+    }
+
 }

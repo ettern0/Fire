@@ -79,8 +79,7 @@ struct PhoneNumberView: View {
             HStack {
                 if inProgress {
                     ProgressView()
-                        .scaleEffect(1.5, anchor: .center)
-                        .foregroundColor(.white)
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 } else {
                     Text("Next")
                         .foregroundColor(.white)

@@ -32,8 +32,7 @@ struct SmsView: View {
                 ZStack {
                     if otpCodeManager.inProgress {
                         ProgressView()
-                            .scaleEffect(2, anchor: .center)
-                            .foregroundColor(.white)
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
                         textBoxes
                         TextField("", text: $otpCodeManager.text)

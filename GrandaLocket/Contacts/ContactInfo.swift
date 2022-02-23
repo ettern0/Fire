@@ -9,8 +9,8 @@ import Contacts
 import Foundation
 
 struct ContactInfo: Identifiable, Equatable {
-    var id = UUID()
-    var firstName: String
+    let id: String?
+    let firstName: String
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
@@ -26,14 +26,14 @@ enum FriendStatus: Int {
 }
 
 enum ContactStatus: Equatable {
-    case isRegistered
+    case registered
     case notRegistered
     case inContacts(FriendStatus)
 
     var stringValue: String {
         switch self {
-        case .isRegistered:
-            return "isRegistered"
+        case .registered:
+            return "registered"
         case .notRegistered:
             return "notRegistered"
         case .inContacts(let friendStatus):
@@ -50,7 +50,7 @@ enum ContactStatus: Equatable {
 
     var order: Int {
         switch self {
-        case .isRegistered:
+        case .registered:
             return 4
         case .notRegistered:
             return 5
@@ -65,9 +65,29 @@ enum ContactStatus: Equatable {
             }
         }
     }
+
+    // Возвращает статус дружбы, в который нужно перейти при нажатии на кнопку в списке контактов.
+    // Первый аргумент - статус в таблице текущего пользователя, а второй - в таблице друга.
+    func nextOnFriendRequest() -> (Self, Self) {
+        switch self {
+        case .registered:
+            return (.inContacts(.outcomingRequest), .inContacts(.incomingRequest))
+        case .notRegistered:
+            return (.notRegistered, .notRegistered)
+        case .inContacts(let friendStatus):
+            switch friendStatus {
+            case .incomingRequest:
+                return (.inContacts(.friend), .inContacts(.friend))
+            case .outcomingRequest:
+                return (.inContacts(.outcomingRequest), .inContacts(.incomingRequest))
+            case .friend:
+                return (.inContacts(.friend), .inContacts(.friend))
+            }
+        }
+    }
 }
 
-func ContactStatusFromString(_ str: String) -> ContactStatus {
+func contactStatus(from str: String) -> ContactStatus {
     switch str {
     case "friend":
         return .inContacts(.friend)
@@ -76,7 +96,7 @@ func ContactStatusFromString(_ str: String) -> ContactStatus {
     case "outcomingRequest":
         return .inContacts(.outcomingRequest)
     case "register":
-        return .isRegistered
+        return .registered
     case "notRegister":
         return .notRegistered
     default:
@@ -85,43 +105,26 @@ func ContactStatusFromString(_ str: String) -> ContactStatus {
 }
 
 final class ContactsInfo: ObservableObject {
-
     static let instance = ContactsInfo()
     @Published var contacts: [ContactInfo]
+    private let userService = UserService()
+    private var isFetchingInProgress: Bool = false
+    private var isFetchingPlanned: Bool = false
 
     private init() {
         self.contacts = []
         self.requestAccess()
+
+        userService.addContactsListener { [weak self] in
+            self?.fetchIfNeeded()
+        }
     }
 
-    func fetchingContacts() {
-        let contactsFromList = fetchContacts()
-
-        //initial
-        contactsFromList.forEach { contact in
-            contact.phoneNumbers.forEach { phone in
-                self.contacts.append(
-                    ContactInfo(firstName: contact.givenName,
-                                lastName: contact.familyName,
-                                phoneNumber: phone.value.stringValue,
-                                status: .notRegistered))
-            }
-        }
-
-        //Try to find status in contacts
-        for index in self.contacts.indices {
-            UserService().checkUserStatusInContacts(phone: self.contacts[index].phoneNumber) { status in
-                self.contacts[index].status = status
-            }
-        }
-
-        //Try to find if registered in app
-        for index in self.contacts.indices {
-            UserService().checkUserStatusByPhone(phone: self.contacts[index].phoneNumber) { status in
-                if self.contacts[index].status == .notRegistered {
-                    self.contacts[index].status = status
-                }
-            }
+    func fetchIfNeeded() {
+        if isFetchingInProgress {
+            isFetchingPlanned = true
+        } else {
+            fetchContactsInfo()
         }
     }
 
@@ -129,41 +132,82 @@ final class ContactsInfo: ObservableObject {
         let store = CNContactStore()
         switch CNContactStore.authorizationStatus(for: .contacts) {
         case .authorized:
-            self.fetchingContacts()
+            self.fetchIfNeeded()
         case .denied:
             store.requestAccess(for: .contacts) { granted, error in
                 if granted {
-                    self.fetchingContacts()
+                    self.fetchIfNeeded()
                 }
             }
         case .restricted, .notDetermined:
             store.requestAccess(for: .contacts) { granted, error in
                 if granted {
-                    self.fetchingContacts()
+                    self.fetchIfNeeded()
                 }
             }
         @unknown default:
             print("error")
         }
     }
-}
 
-private func fetchContacts() -> [CNContact] {
-    let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
-    let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
-    var contacts: [CNContact] = []
+    private func fetchContactsInfo() {
+        self.isFetchingInProgress = true
+        self.isFetchingPlanned = false
+        var internalContacts = [ContactInfo]()
+        let contactsFromList = fetchContacts()
 
-    do {
-        try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
-            if let _ = contact.phoneNumbers.first?.value {
-                contacts.append(contact)
+        let dispatchGroup = DispatchGroup()
+        contactsFromList.forEach { contact in
+            contact.phoneNumbers.forEach { phone in
+                dispatchGroup.enter()
+                userService.checkUserStatus(by: phone.value.stringValue.unformatted) { (id, status) in
+                    internalContacts.append(
+                        ContactInfo(
+                            id: id,
+                            firstName: contact.givenName,
+                            lastName: contact.familyName,
+                            phoneNumber: phone.value.stringValue,
+                            status: status
+                        )
+                    )
+                    dispatchGroup.leave()
+                }
             }
-        })
-    } catch let error {
-        print("Failed", error)
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.contacts = internalContacts
+
+            self.isFetchingInProgress = false
+            if self.isFetchingPlanned {
+                self.fetchIfNeeded()
+            }
+        }
     }
 
-    return contacts.sorted {
-        $0.givenName < $1.givenName
+    private func fetchContacts() -> [CNContact] {
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+        let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+        var contacts: [CNContact] = []
+
+        do {
+            try CNContactStore().enumerateContacts(with: request, usingBlock: { (contact, stopPointer) in
+                if let _ = contact.phoneNumbers.first?.value {
+                    contacts.append(contact)
+                }
+            })
+        } catch let error {
+            print("Failed", error)
+        }
+
+        return contacts.sorted {
+            $0.givenName < $1.givenName
+        }
+    }
+}
+
+extension ContactInfo {
+    var isFriend: Bool {
+        status == .inContacts(.friend)
     }
 }
