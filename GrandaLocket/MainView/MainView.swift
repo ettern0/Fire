@@ -20,6 +20,8 @@ struct MainView: View {
     @Binding var snapshotImage: UIImage
     @State private var state = KeyboardState()
     @State private var screenshotMaker: ScreenshotMaker?
+    @State private var text: String = ""
+    @State private var isEditingText: Bool = false
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -156,9 +158,6 @@ struct MainView: View {
         .padding(.top, -15)
     }
 
-    @State var text: String = ""
-    @State var isEditing: Bool = false
-
     func locketCreationContainer(position: ImagePosition) -> some View {
         Group {
             switch selectedMode {
@@ -176,7 +175,7 @@ struct MainView: View {
                         case .center:
                             ZStack {
                                 TextViewBackground(style: textStyle, position: position)
-                                HealthyPersonTextEditor(text: $text, isEditing: $isEditing)
+                                HealthyPersonTextEditor(text: $text, isEditing: $isEditingText)
                             }
                         case .bottom:
                             TextViewBackground(style: textStyle, position: position)
