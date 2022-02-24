@@ -101,7 +101,7 @@ private struct MyFeedView: View {
 }
 
 private struct UserPhotosView: View {
-    var urls: Array<URL>
+    let urls: Array<URL>
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -116,7 +116,7 @@ private struct UserPhotosView: View {
                         }
                         .frame(width: 100, height: 100)
                         .background(.clear)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
             }
         }
