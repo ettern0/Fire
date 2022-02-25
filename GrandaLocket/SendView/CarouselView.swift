@@ -37,35 +37,6 @@ struct CarouselView: View {
         }
             .padding(15)
     }
-//
-//    var CarouselView: some View {
-//        GeometryReader { mainView in
-//            ScrollView(.horizontal, showsIndicators: false) {
-//                HStack(spacing: xSpacing) {
-//                    ForEach(viewModel.friends) { friend in
-//                        GeometryReader { item in
-//                            CarouselContactView(viewModel: viewModel, friend: friend)
-//                                .scaleEffect(
-//                                    calcScale(mainFrame: mainView.frame(in: .global).maxX,
-//                                              minX: item.frame(in: .global).minX))
-//                        }.frame(width: 60, height: mainView.frame(in: .global).maxY)
-//                    }
-//                }
-//                .offset(y: yOffset)
-//            }
-//        }
-//    }
-
-//    private func calcScale(mainFrame: CGFloat, minX: CGFloat) -> CGFloat {
-//        let scale = minX / mainFrame
-//        var decreesRatio = abs(2 - (abs(0.5 - scale) * 2))
-//        if decreesRatio > maxRatio {
-//            decreesRatio = maxRatio
-//        } else if decreesRatio < 1 {
-//            decreesRatio = 1
-//        }
-//        return decreesRatio
-//    }
 }
 
 struct CarouselContactView: View {
