@@ -19,6 +19,9 @@ struct MainView: View {
     @Binding var destination: AppDestination
     @Binding var snapshotImage: UIImage
     @State private var state = KeyboardState()
+    @State private var screenshotMaker: ScreenshotMaker?
+    @State private var text: String = ""
+    @State private var isEditingText: Bool = false
 
     private var minXToChangeMode: CGFloat {
         UIScreen.main.bounds.width * 0.2
@@ -50,6 +53,9 @@ struct MainView: View {
                         width: proxy.size.width,
                         height: proxy.size.width
                     )
+                    .screenshotView { screenshotMaker in
+                        self.screenshotMaker = screenshotMaker
+                    }
                 ZStack {
                     locketCreationContainer(position: .bottom)
                     buttonAreaView
@@ -105,7 +111,12 @@ struct MainView: View {
 
     var captureButton: some View {
         Button(action: {
-            snapshotImage = locketCreationContainer(position: .center).snapshot()
+            if let image = screenshotMaker?.screenshot() {
+                snapshotImage = image
+                destination = .send
+            } else {
+                assertionFailure("Can not create snapshot")
+            }
             destination = .send
         }, label: {
             ZStack {
@@ -146,10 +157,6 @@ struct MainView: View {
         }
         .padding(.top, -15)
     }
-
-    @State var text: String = ""
-    @State var isEditingText: Bool = false
-
     func locketCreationContainer(position: ImagePosition, isEditing: Bool = false) -> some View {
         Group {
             switch selectedMode {
