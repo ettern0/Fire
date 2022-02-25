@@ -7,6 +7,7 @@
 
 import Contacts
 import Foundation
+import UIKit
 
 struct ContactInfo: Identifiable, Equatable {
     let id: String?
@@ -14,7 +15,8 @@ struct ContactInfo: Identifiable, Equatable {
     var lastName: String
     var phoneNumber: String
     var status: ContactStatus
-    var selected: Bool = false
+//    var selected: Bool = false
+    let image: UIImage?
 
     mutating func changeStatus(_ status: ContactStatus) {
         self.status = status
@@ -161,13 +163,20 @@ final class ContactsInfo: ObservableObject {
             contact.phoneNumbers.forEach { phone in
                 dispatchGroup.enter()
                 userService.checkUserStatus(by: phone.value.stringValue.unformatted) { (id, status) in
+
+                    var image: UIImage?
+                    if let imageData = contact.thumbnailImageData {
+                        image = UIImage(data: imageData)
+                    }
+
                     internalContacts.append(
                         ContactInfo(
                             id: id,
                             firstName: contact.givenName,
                             lastName: contact.familyName,
                             phoneNumber: phone.value.stringValue,
-                            status: status
+                            status: status,
+                            image: image
                         )
                     )
                     dispatchGroup.leave()
@@ -186,7 +195,7 @@ final class ContactsInfo: ObservableObject {
     }
 
     private func fetchContacts() -> [CNContact] {
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey, CNContactImageDataAvailableKey, CNContactImageDataKey, CNContactThumbnailImageDataKey]
         let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
         var contacts: [CNContact] = []
 

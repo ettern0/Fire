@@ -46,20 +46,29 @@ struct CarouselContactView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 4) {
-                Circle()
-                    .foregroundColor(.black.opacity(0.0001)) // https://stackoverflow.com/a/57157130
-                    .frame(width: 100, height: 100)
-                    .background {
-                        Circle()
-                            .stroke()
-                            .foregroundColor(Palette.accent)
-                    }
-                    .background {
-                        if friend.isSelected {
-                            Image("selected")
+
+                if friend.image != nil {
+                    imageAvatar(image: friend.image!, frame: CGSize(width: 100, height: 100))
+                        .foregroundColor(.black.opacity(0.0001)) // https://stackoverflow.com/a/57157130
+                        .overlay {
+                            if friend.isSelected {
+                                Circle()
+                                    .foregroundColor(Palette.blackMiddle)
+                                    .opacity(0.5)
+                                Image("selected")
+                            }
                         }
-                    }
-                Text(friend.name)
+                } else {
+                    textAvatar(textForIcon: "",
+                               frame: CGSize(width: 100, height: 100),
+                               strokeColor: Palette.accent)
+                        .background {
+                            if friend.isSelected {
+                                Image("selected")
+                            }
+                        }
+                }
+                Text(friend.firstName)
                     .frame(width: 60, height: 20)
                     .font(Typography.controlL)
                     .lineLimit(nil)

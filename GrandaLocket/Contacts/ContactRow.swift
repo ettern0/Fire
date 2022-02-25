@@ -12,19 +12,21 @@ struct ContactRow: View {
     @ObservedObject private var contacts = ContactsInfo.instance
     var contact: ContactInfo
     var textForIcon: String {
-        getShortNameFromContact(contact: contact)
+        getShortNameFromContact(firstName: contact.firstName, lastName: contact.lastName)
     }
 
     var body: some View {
 
         HStack {
-            Text("\(textForIcon)")
-                .frame(width: 61, height: 61)
-                .background {
-                    Circle()
-                        .stroke()
-                        .foregroundColor(Palette.blackMiddle)
-                }.padding(.trailing, 12)
+            if contact.image != nil {
+                imageAvatar(image: contact.image!, frame: CGSize(width: 60, height: 60))
+                    .padding(.trailing, 12)
+            } else {
+                textAvatar(textForIcon: textForIcon,
+                           frame: CGSize(width: 60, height: 60),
+                           strokeColor: Palette.blackMiddle)
+                    .padding(.trailing, 12)
+            }
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(contact.firstName) \(contact.lastName)")
                     .foregroundColor(.white)
@@ -52,6 +54,8 @@ struct ContactRow: View {
         }
         .padding(.vertical, 10)
     }
+
+
 
     private func getTextButtonPropeties() -> (label: AnyView, disabled: Bool) {
         switch contact.status {

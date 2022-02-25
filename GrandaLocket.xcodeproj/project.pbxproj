@@ -36,6 +36,7 @@
 		92388C9527C6772D00C43B3B /* SendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9427C6772C00C43B3B /* SendViewModel.swift */; };
 		92388C9727C69CE300C43B3B /* DownloadImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9627C69CE100C43B3B /* DownloadImageService.swift */; };
 		92388C9B27C6CA7000C43B3B /* PhotosInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92388C9A27C6CA7000C43B3B /* PhotosInfo.swift */; };
+		924D696D27C8DAA70020724C /* GaleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D696C27C8DAA60020724C /* GaleryView.swift */; };
 		92664A5327B50850006C860E /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5227B5084F006C860E /* BlurView.swift */; };
 		92664A5527B51CA6006C860E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664A5427B51CA6006C860E /* MainView.swift */; };
 		92AEBD5027BA945100654E4B /* SmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEBD4F27BA945100654E4B /* SmsView.swift */; };
@@ -77,6 +78,7 @@
 		92D14E5B27C5065100998DED /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5A27C5065000998DED /* FeedView.swift */; };
 		92D14E5D27C58BFA00998DED /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5C27C58BF900998DED /* FeedViewModel.swift */; };
 		92D14E5F27C58F2900998DED /* UserImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D14E5E27C58F2900998DED /* UserImagesService.swift */; };
+		92E2D59727C90E6A00728D09 /* Avatars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E2D59627C90E6900728D09 /* Avatars.swift */; };
 		92E4F57327C4092F0040E25B /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57227C4092F0040E25B /* SendView.swift */; };
 		92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57427C409A90040E25B /* FooterSendView.swift */; };
 		92E4F57727C410A80040E25B /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F57627C410A80040E25B /* ContactRow.swift */; };
@@ -118,6 +120,7 @@
 		92388C9427C6772C00C43B3B /* SendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewModel.swift; sourceTree = "<group>"; };
 		92388C9627C69CE100C43B3B /* DownloadImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageService.swift; sourceTree = "<group>"; };
 		92388C9A27C6CA7000C43B3B /* PhotosInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInfo.swift; sourceTree = "<group>"; };
+		924D696C27C8DAA60020724C /* GaleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryView.swift; sourceTree = "<group>"; };
 		92664A5227B5084F006C860E /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		92664A5427B51CA6006C860E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		92AEBD4F27BA945100654E4B /* SmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmsView.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		92D14E5A27C5065000998DED /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		92D14E5C27C58BF900998DED /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		92D14E5E27C58F2900998DED /* UserImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImagesService.swift; sourceTree = "<group>"; };
+		92E2D59627C90E6900728D09 /* Avatars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatars.swift; sourceTree = "<group>"; };
 		92E4F57227C4092F0040E25B /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
 		92E4F57427C409A90040E25B /* FooterSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterSendView.swift; sourceTree = "<group>"; };
 		92E4F57627C410A80040E25B /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				922F74B227BE9C2800E03453 /* Services */,
 				92E4F57127C407C90040E25B /* SendView */,
 				92D14E5927C505B800998DED /* Feed */,
+				924D696B27C8DA760020724C /* GaleryView */,
 				92CC9FD827BA6518009C7AB7 /* Fonts */,
 				92664A5227B5084F006C860E /* BlurView.swift */,
 				922F74AA27BE75F000E03453 /* FooterNextView.swift */,
@@ -299,6 +304,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		924D696B27C8DA760020724C /* GaleryView */ = {
+			isa = PBXGroup;
+			children = (
+				924D696C27C8DAA60020724C /* GaleryView.swift */,
+			);
+			path = GaleryView;
 			sourceTree = "<group>";
 		};
 		92CC9FD827BA6518009C7AB7 /* Fonts */ = {
@@ -383,6 +396,7 @@
 				92C5E68A27BD12FB00C6276A /* ConnectView.swift */,
 				922F74A827BD223400E03453 /* ContactsView.swift */,
 				92E4F57627C410A80040E25B /* ContactRow.swift */,
+				92E2D59627C90E6900728D09 /* Avatars.swift */,
 				922F74A627BD208A00E03453 /* ContactInfo.swift */,
 				92E9C96E27C38F28002A7501 /* ContactFunctions.swift */,
 			);
@@ -518,6 +532,7 @@
 			files = (
 				92388C9B27C6CA7000C43B3B /* PhotosInfo.swift in Sources */,
 				92388C9527C6772D00C43B3B /* SendViewModel.swift in Sources */,
+				924D696D27C8DAA70020724C /* GaleryView.swift in Sources */,
 				92D14E5F27C58F2900998DED /* UserImagesService.swift in Sources */,
 				92D14E5D27C58BFA00998DED /* FeedViewModel.swift in Sources */,
 				92D14E5B27C5065100998DED /* FeedView.swift in Sources */,
@@ -567,6 +582,7 @@
 				92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */,
 				92C2084727BBD53F00D92C85 /* ContentView.swift in Sources */,
 				882266EC27B2658C00501312 /* GrandaLocketApp.swift in Sources */,
+				92E2D59727C90E6A00728D09 /* Avatars.swift in Sources */,
 				92D14E4E27C430B600998DED /* Lottie.swift in Sources */,
 				92D023A127B3F8BF00099E69 /* ExtensionView.swift in Sources */,
 				92E4F57327C4092F0040E25B /* SendView.swift in Sources */,

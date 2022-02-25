@@ -14,6 +14,7 @@ struct SendView: View {
     @Binding var snapshotImage: UIImage
     @State var selectedMode: SendSelectedMode = .allFriends
     @State private var menuIsOpen: Bool = false
+    @ObservedObject var viewModel = SendViewModel()
 
     var body: some View {
         NavigationView {
@@ -28,7 +29,8 @@ struct SendView: View {
                     destination: $destination,
                     selectedMode: $selectedMode,
                     nextDestination: .main,
-                    snapshotImage: snapshotImage
+                    snapshotImage: snapshotImage,
+                    viewModel: viewModel
                 )
             }
             .navigationTitle(selectedMode.rawValue)
@@ -39,6 +41,7 @@ struct SendView: View {
                     Menu {
                         Button {
                             selectedMode = .allFriends
+                            viewModel.selectAllFriends(value: true)
                         } label: {
                             HStack {
                                 Text(SendSelectedMode.allFriends.rawValue)
@@ -47,6 +50,7 @@ struct SendView: View {
                         }
                         Button {
                             selectedMode = .selectFriends
+                            viewModel.selectAllFriends(value: false)
                         } label: {
                             HStack {
                                 Text(SendSelectedMode.selectFriends.rawValue)
