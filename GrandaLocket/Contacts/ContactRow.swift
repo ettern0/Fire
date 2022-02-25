@@ -19,10 +19,10 @@ struct ContactRow: View {
 
         HStack {
             if contact.image != nil {
-                imageAvatar(image: contact.image!, frame: CGSize(width: 60, height: 60))
+                ImageAvatar(image: contact.image!, frame: CGSize(width: 60, height: 60))
                     .padding(.trailing, 12)
             } else {
-                textAvatar(textForIcon: textForIcon,
+                TextAvatar(textForIcon: textForIcon,
                            frame: CGSize(width: 60, height: 60),
                            strokeColor: Palette.blackMiddle)
                     .padding(.trailing, 12)

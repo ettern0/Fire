@@ -80,10 +80,10 @@ struct HealthyPersonTextEditor: View {
         text.isEmpty ? placeholder : nil
     }
 
-    private var representable: TextViewRepresentable {
+    private func representable(isEditing: Binding<Bool>) -> TextViewRepresentable {
         .init(
             text: $text,
-            isEditing: $isEditing,
+            isEditing: isEditing,
             textHorizontalPadding: textHorizontalPadding,
             textVerticalPadding: textVerticalPadding,
             textColor: textColor,
@@ -99,7 +99,7 @@ struct HealthyPersonTextEditor: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                self.representable
+                self.representable(isEditing: $isEditing)
                 self._placeholder.map { placeholder in
                     Text(placeholder)
                         .font(.init(self.placeholderFont))

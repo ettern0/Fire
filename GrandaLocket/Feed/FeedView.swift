@@ -119,17 +119,10 @@ private struct MyFriendsFeedView: View {
                 HStack(spacing: 12) {
                     ForEach(filteredContacts, id: \.phoneNumber) { contact in
                         VStack(spacing: 16) {
-                            VStack (spacing: 8){
-                                Circle()
-                                    .foregroundColor(.black.opacity(0.0001)) // https://stackoverflow.com/a/57157130
-                                    .frame(width: 70, height: 70)
-                                    .background {
-                                        Circle()
-                                            .stroke()
-                                            .foregroundColor(Palette.accent)
-                                    }
+                            VStack(spacing: 8) {
+                                ImageAvatar(image: contact.image, frame: CGSize(width: 70, height: 70))
                                 Text(contact.firstName)
-                                    .frame(width: 70, height: 20)
+//                                    .frame(width: 70, height: 20)
                                     .font(Typography.description)
                                     .lineLimit(nil)
                             }
@@ -162,8 +155,6 @@ private struct MyFriendsFeedView: View {
                 UserService().setRequestToChangeContactStatus(contact: contact) { status in }
             } label: {
                 Text("ACCEPT")
-                    .font(Typography.controlM)
-                    .foregroundColor(Palette.blackHard)
             }
             .buttonStyle(SmallCapsuleButtonStyle())
             .frame(width: 95, height: 25)

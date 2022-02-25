@@ -45,7 +45,7 @@ struct MainView: View {
                           proxy.size.width -
                           bottomHeight(containerSize: proxy.size, keyboardHeight: state.height(in: proxy))
                     )
-                locketCreationContainer(position: .center)
+                locketCreationContainer(position: .center, isEditing: isEditingText)
                     .frame(
                         width: proxy.size.width,
                         height: proxy.size.width
@@ -148,9 +148,9 @@ struct MainView: View {
     }
 
     @State var text: String = ""
-    @State var isEditing: Bool = false
+    @State var isEditingText: Bool = false
 
-    func locketCreationContainer(position: ImagePosition) -> some View {
+    func locketCreationContainer(position: ImagePosition, isEditing: Bool = false) -> some View {
         Group {
             switch selectedMode {
                 case .photo:
@@ -167,7 +167,7 @@ struct MainView: View {
                         case .center:
                             ZStack {
                                 TextViewBackground(style: textStyle, position: position)
-                                HealthyPersonTextEditor(text: $text, isEditing: $isEditing)
+                                HealthyPersonTextEditor(text: $text, isEditing: $isEditingText)
                             }
                         case .bottom:
                             TextViewBackground(style: textStyle, position: position)
@@ -202,8 +202,10 @@ struct MainView: View {
         let dif = abs(yOld - yNew)
         if yOld < yNew, dif > minYToChangeMode {
             yDirection = .top
+            isEditingText = false
         } else if yOld > yNew, dif > minYToChangeMode {
             yDirection = .bottom
+
         }
     }
 

@@ -88,12 +88,14 @@ final class UserService {
 
         db?.collection("contacts/\(uid)/contacts").getDocuments()
         { [weak self] (querySnapshot, err) in
-            if let document = querySnapshot?.documents.first {
-                guard self != nil else { return }
-                if let phone = document["phone"] as? String,
-                   let status = document["status"] as? String,
-                   !contactPhones.contains(phone) {
-                    completion(document.documentID, phone, contactStatus(from: status))
+            if let documents = querySnapshot?.documents {
+                documents.forEach { document in
+                    guard self != nil else { return }
+                    if let phone = document["phone"] as? String,
+                       let status = document["status"] as? String,
+                       !contactPhones.contains(phone) {
+                        completion(document.documentID, phone, contactStatus(from: status))
+                    }
                 }
             }
         }

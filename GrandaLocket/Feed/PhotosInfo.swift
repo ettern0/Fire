@@ -9,7 +9,7 @@ import Foundation
 
 final class PhotosInfo: ObservableObject {
 
-    @Published var photos: Array<RemotePhoto> = []
+    @Published var photos: [RemotePhoto] = []
     static let instance = PhotosInfo()
     private let imageService = DownloadImageService()
     private var isFetchingInProgress: Bool = false
@@ -37,7 +37,7 @@ final class PhotosInfo: ObservableObject {
 
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        imageService.download() { value in
+        imageService.download { value in
             self.photos = value
         }
         dispatchGroup.leave()

@@ -12,10 +12,9 @@ import UIKit
 struct ContactInfo: Identifiable, Equatable {
     let id: String?
     let firstName: String
-    var lastName: String
-    var phoneNumber: String
+    let lastName: String
+    let phoneNumber: String
     var status: ContactStatus
-//    var selected: Bool = false
     let image: UIImage?
 
     mutating func changeStatus(_ status: ContactStatus) {
@@ -191,10 +190,11 @@ final class ContactsInfo: ObservableObject {
             internalContacts.append(
                 ContactInfo(
                     id: id,
-                    firstName: "",
+                    firstName: phone,
                     lastName: "",
                     phoneNumber: phone,
-                    status: status
+                    status: status,
+                    image: nil
                 )
             )
         }

@@ -48,7 +48,7 @@ struct CarouselContactView: View {
             VStack(spacing: 4) {
 
                 if friend.image != nil {
-                    imageAvatar(image: friend.image!, frame: CGSize(width: 100, height: 100))
+                    ImageAvatar(image: friend.image!, frame: CGSize(width: 100, height: 100))
                         .foregroundColor(.black.opacity(0.0001)) // https://stackoverflow.com/a/57157130
                         .overlay {
                             if friend.isSelected {
@@ -59,7 +59,7 @@ struct CarouselContactView: View {
                             }
                         }
                 } else {
-                    textAvatar(textForIcon: "",
+                    TextAvatar(textForIcon: "",
                                frame: CGSize(width: 100, height: 100),
                                strokeColor: Palette.accent)
                         .background {
