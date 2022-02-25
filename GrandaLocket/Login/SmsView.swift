@@ -48,8 +48,8 @@ struct SmsView: View {
                             }
                     }
                 }
+                Spacer()
             }
-            .padding(.bottom, 229)
             .frame(maxHeight: .infinity)
             .frame(maxWidth: .infinity)
             .background(Palette.blackHard)
@@ -108,9 +108,10 @@ struct SmsView: View {
                 RoundedRectangle(cornerRadius: 1)
                     .frame(height: 0.5)
                     .foregroundColor(.white)
+                
             })
+        
             .padding(paddingOfBox)
-            .padding(.bottom,300)
     }
 
     var header: some View {

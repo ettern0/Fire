@@ -14,20 +14,22 @@ struct PhoneNumberView: View {
 
     var body: some View {
         NavigationView {
+
+
             VStack {
+
                 header
                 PhoneNumberField(phoneNumber: $phoneNumber)
                     .frame(height: 60)
-                    .frame(maxWidth: .infinity)
                     .padding(.bottom, 8)
-                    .padding(.horizontal,16)
-                Toggle(isOn: $syncContacts, label: {
+                    .padding(.horizontal,12)
+                HStack {
                     Text("Sync Contacts")
                         .foregroundColor(.white)
-
-                })
-                    .padding(.bottom, 467)
-                    .padding(.horizontal,16)
+                    Spacer()
+                    Toggle("", isOn: $syncContacts).labelsHidden()
+                }
+                    Spacer()
             }
             .frame(maxHeight: .infinity)
             .background(Palette.blackHard)
@@ -35,6 +37,7 @@ struct PhoneNumberView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     signButton
                 }
+
             }
         }
     }
@@ -46,13 +49,14 @@ struct PhoneNumberView: View {
                 .font(Typography.headerL)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 8)
-                .padding(.horizontal,48)
+                .padding(.horizontal, 48)
             Text("Please confirm your country code and enter your phone number")
                 .foregroundColor(.white)
+                .frame(width: 270, alignment:.center)
                 .font(Typography.description)
-                .padding(.bottom, 44)
+                .padding(.bottom, 32)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 63)
+                .padding(.horizontal, 12)
                 .opacity(0.8)
                 .lineSpacing(4)
 
