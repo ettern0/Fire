@@ -38,7 +38,7 @@ final class UserService {
         guard let db = db else {
             return completion(nil, .notRegistered)
         }
-        
+
         db
             .collection("users")
             .whereField("phone", isEqualTo: phone.unformatted)
@@ -56,8 +56,7 @@ final class UserService {
     private func checkRegisteredUserStatus(
         by phone: String,
         id: String,
-        completion: @escaping (String?, ContactStatus) -> Void
-    ) {
+        completion: @escaping (String?, ContactStatus) -> Void) {
         guard let user = Auth.auth().currentUser else {
             assertionFailure("User should not be nil.")
             return completion(nil, .notRegistered)
@@ -76,6 +75,28 @@ final class UserService {
                     completion(id, .registered)
                 }
             }
+    }
+
+    func getContactOutsideContactList(contactPhones: [String],
+                                      completion: @escaping (String?, String, ContactStatus) -> Void) {
+
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        let uid = user.uid
+
+        db?.collection("contacts/\(uid)/contacts").getDocuments()
+        { [weak self] (querySnapshot, err) in
+            if let document = querySnapshot?.documents.first {
+                guard self != nil else { return }
+                if let phone = document["phone"] as? String,
+                   let status = document["status"] as? String,
+                   !contactPhones.contains(phone) {
+                    completion(document.documentID, phone, contactStatus(from: status))
+                }
+            }
+        }
     }
 
     func setRequestToChangeContactStatus(contact: ContactInfo,

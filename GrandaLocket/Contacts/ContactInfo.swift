@@ -157,10 +157,12 @@ final class ContactsInfo: ObservableObject {
         self.isFetchingPlanned = false
         var internalContacts = [ContactInfo]()
         let contactsFromList = fetchContacts()
+        var contactsPhones: [String] = []
 
         let dispatchGroup = DispatchGroup()
         contactsFromList.forEach { contact in
             contact.phoneNumbers.forEach { phone in
+                contactsPhones.append(phone.value.stringValue.unformatted)
                 dispatchGroup.enter()
                 userService.checkUserStatus(by: phone.value.stringValue.unformatted) { (id, status) in
 
@@ -183,6 +185,20 @@ final class ContactsInfo: ObservableObject {
                 }
             }
         }
+
+        dispatchGroup.enter()
+        userService.getContactOutsideContactList(contactPhones: contactsPhones) { (id, phone, status) in
+            internalContacts.append(
+                ContactInfo(
+                    id: id,
+                    firstName: "",
+                    lastName: "",
+                    phoneNumber: phone,
+                    status: status
+                )
+            )
+        }
+        dispatchGroup.leave()
 
         dispatchGroup.notify(queue: .main) {
             self.contacts = internalContacts
