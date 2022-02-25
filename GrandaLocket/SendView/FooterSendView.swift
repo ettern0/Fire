@@ -12,7 +12,7 @@ struct FooterSendView: View {
     @Binding var selectedMode: SendSelectedMode
     let nextDestination: AppDestination
     let snapshotImage: UIImage
-    @ObservedObject var viewModel = SendViewModel()
+    @ObservedObject var viewModel: SendViewModel
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
     private let widthOfButtonSend: CGFloat = 115

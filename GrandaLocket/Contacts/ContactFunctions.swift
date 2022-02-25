@@ -7,18 +7,18 @@
 
 import Foundation
 
-func getShortNameFromContact(contact: ContactInfo) ->String {
+func getShortNameFromContact(firstName: String, lastName: String) ->String {
 
     let firstLetter: String
     let secondLetter: String
 
-    if let ch = contact.firstName.first {
+    if let ch = firstName.first {
         firstLetter = String(ch)
     } else {
         firstLetter = ""
     }
 
-    if let ch = contact.lastName.first {
+    if let ch = lastName.first {
         secondLetter = String(ch)
     } else {
         secondLetter = ""

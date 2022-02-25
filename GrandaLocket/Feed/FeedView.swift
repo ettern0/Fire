@@ -12,7 +12,6 @@ struct FeedView: View {
     @Binding var destination: AppDestination
     @State private var yDirection: GesturesDirection = .bottom
     @ObservedObject var viewModel = FeedViewModel()
-    @State var addFriendMode: Bool = false
     private var minYToChangeMode: CGFloat {
         UIScreen.main.bounds.height * 0.1
     }
@@ -21,7 +20,7 @@ struct FeedView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 40) {
                 MyFeedView(viewModel: viewModel)
-                MyFriendsFeedView(viewModel: viewModel, addFriendMode: $addFriendMode, destination: $destination)
+                MyFriendsFeedView(viewModel: viewModel, destination: $destination)
                 Spacer()
             }
             .gesture(
@@ -70,7 +69,6 @@ struct FeedView: View {
 
 private struct MyFriendsFeedView: View {
     @ObservedObject var viewModel: FeedViewModel
-    @Binding var addFriendMode: Bool
     @Binding var destination: AppDestination
     @ObservedObject private var contacts = ContactsInfo.instance
 
@@ -90,17 +88,22 @@ private struct MyFriendsFeedView: View {
                         .font(Typography.headerM)
                         .padding(.bottom, 20)
                     Spacer()
-                    addButton
+                    VStack() {
+                        addButton
+                        Spacer()
+                    }
                 }
-                if addFriendMode {
+                if filteredContacts.count > 0 {
                     requestList
                 }
                 ForEach(viewModel.friends, id: \.self) { friend in
                     if friend.url.count > 0 {
-                        Text(friend.name)
-                            .font(Typography.headerS)
-                            .padding(.bottom, 20)
-                        UserPhotosView(urls: friend.url)
+                        VStack(alignment: .leading) {
+                            Text(friend.name)
+                                .font(Typography.headerS)
+                                .padding(.bottom, 20)
+                            UserPhotosView(urls: friend.url)
+                        }
                     }
                 }
             }
@@ -136,12 +139,6 @@ private struct MyFriendsFeedView: View {
                             }
                         }
                     }
-                    VStack() {
-                        addNewRequest
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                        Spacer()
-                    }
                 }
             }
         }
@@ -150,7 +147,7 @@ private struct MyFriendsFeedView: View {
 
     var addButton: some View {
         Button {
-            addFriendMode.toggle()
+            destination = .contacts
         } label: {
             Text("Add friends")
                 .font(Typography.controlL)
@@ -187,23 +184,6 @@ private struct MyFriendsFeedView: View {
             .frame(width: 95, height: 25)
         }
     }
-
-    var addNewRequest: some View {
-        Button {
-            destination = .contacts
-        } label: {
-            Image(systemName: "plus")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .foregroundColor(Palette.whiteLight)
-                .background(
-                    Circle()
-                        .stroke()
-                        .foregroundColor(Palette.whiteLight)
-                        .frame(width: 70, height: 70)
-                )
-        }
-    }
 }
 
 private struct MyFeedView: View {
@@ -221,21 +201,23 @@ private struct MyFeedView: View {
 
 private struct UserPhotosView: View {
     let urls: Array<URL>
-
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(urls, id: \.self) { url in
-                    AsyncImage(url: url) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                    } placeholder: {
-                        ProgressView()
+                    NavigationLink(destination: GaleryView(urls: urls, focus: url)) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .renderingMode(.original)
+                                .resizable()
+                                .scaledToFill()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 100, height: 100)
+                        .background(.clear)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
-                    .frame(width: 100, height: 100)
-                    .background(.clear)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
             }
         }

@@ -11,12 +11,23 @@ import Combine
 final class SendViewModel: ObservableObject {
     struct Friend: Hashable, Identifiable {
         let id: String?
-        let name: String
-        var isSelected: Bool
+        let firstName: String
+        let lastName: String
+        var isSelected: Bool = true
+        let image: UIImage?
     }
 
     @Published var friends: [Friend] = []
     var cancellable: AnyCancellable?
+
+    func selectAllFriends(value: Bool) {
+        guard friends.contains(where: { $0.isSelected != value }) else { return }
+        var friends = friends
+        for index in friends.indices {
+            friends[index].isSelected = value
+        }
+        self.friends = friends
+    }
 
     init() {
         cancellable = ContactsInfo.instance.$contacts
@@ -29,8 +40,10 @@ final class SendViewModel: ObservableObject {
                     .map { friend in
                         Friend(
                             id: friend.id,
-                            name: friend.firstName,
-                            isSelected: false
+                            firstName: friend.firstName,
+                            lastName: friend.lastName,
+                            isSelected: true,
+                            image: friend.image
                         )
                     }
                 self.friends = friends
