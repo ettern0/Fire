@@ -34,6 +34,25 @@ final class UserService {
         }
     }
 
+    func checkUserStatus(by phone: String, completion: @escaping (String?, ContactStatus) -> Void) {
+        guard let db = db else {
+            return completion(nil, .notRegistered)
+        }
+        
+        db
+            .collection("users")
+            .whereField("phone", isEqualTo: phone.unformatted)
+            .getDocuments()
+        { [weak self] (querySnapshot, err) in
+            if let document = querySnapshot?.documents.first {
+                guard let self = self else { return }
+                self.checkRegisteredUserStatus(by: phone, id: document.documentID, completion: completion)
+            } else {
+                completion(nil, .notRegistered)
+            }
+        }
+    }
+
     private func checkRegisteredUserStatus(
         by phone: String,
         id: String,
@@ -57,25 +76,6 @@ final class UserService {
                     completion(id, .registered)
                 }
             }
-    }
-    
-    func checkUserStatus(by phone: String, completion: @escaping (String?, ContactStatus) -> Void) {
-        guard let db = db else {
-            return completion(nil, .notRegistered)
-        }
-        
-        db
-            .collection("users")
-            .whereField("phone", isEqualTo: phone.unformatted)
-            .getDocuments()
-        { [weak self] (querySnapshot, err) in
-            if let document = querySnapshot?.documents.first {
-                guard let self = self else { return }
-                self.checkRegisteredUserStatus(by: phone, id: document.documentID, completion: completion)
-            } else {
-                completion(nil, .notRegistered)
-            }
-        }
     }
 
     func setRequestToChangeContactStatus(contact: ContactInfo,
@@ -127,6 +127,27 @@ final class UserService {
                     .document(friendID)
                     .setData(value)
             }
+        }
+    }
+
+    func setRequestToDeleteContactStatus(contact: ContactInfo,
+                                         completion: @escaping (Bool) -> Void) {
+
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+
+        guard let contactID = contact.id else {
+            return
+        }
+
+        self.deleteContactsFromRequest(id: user.uid, friendID: contactID)
+        self.deleteContactsFromRequest(id: contactID, friendID: user.uid)
+        completion(true)
+    }
+
+    private func deleteContactsFromRequest(id: String, friendID: String) {
+        db?.collection("contacts").document(id).collection("contacts").document(friendID).delete() { error in
         }
     }
 
