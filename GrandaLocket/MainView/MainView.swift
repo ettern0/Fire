@@ -68,10 +68,8 @@ struct MainView: View {
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        changexDirection(value.startLocation.x, value.location.x)
-                        changeyDirection(value.startLocation.y, value.location.y)
-                        changeModeWithxDirection()
-                        changeModeWithyDirection()
+                        changeModeWithDirection(xOld: value.startLocation.x, xNew: value.location.x,
+                                                yOld: value.startLocation.y, yNew: value.location.y)
                     }
             )
         }
@@ -161,9 +159,11 @@ struct MainView: View {
         Group {
             switch selectedMode {
                 case .photo:
+                ZStack {
                     CameraPreview(videoProvider: model.videoProvider, position: position)
                         .blur(radius: blurRadius(for: position), opaque: true)
                         .clipped()
+                }
                 case .text:
                     switch position {
                         case .top:
@@ -196,42 +196,43 @@ struct MainView: View {
         }
     }
 
-    private func changexDirection(_ xOld: CGFloat, _ xNew: CGFloat) {
-        let dif = abs(xOld - xNew)
-        if xOld > xNew, dif > minXToChangeMode {
-            xDirection = .right
-        } else if xOld < xNew, dif > minXToChangeMode {
-            xDirection = .left
-        }
-    }
+    private func changeModeWithDirection(xOld: CGFloat, xNew: CGFloat, yOld: CGFloat, yNew: CGFloat) {
 
-    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
-        let dif = abs(yOld - yNew)
-        if yOld < yNew, dif > minYToChangeMode {
-            yDirection = .top
-            isEditingText = false
-        } else if yOld > yNew, dif > minYToChangeMode {
-            yDirection = .bottom
+        let difX = abs(xOld - xNew)
+        let difY = abs(yOld - yNew)
 
-        }
-    }
+        //change x direction
+        if difX > difY {
 
-    private func changeModeWithxDirection() {
-        withAnimation {
-            if xDirection == .left, selectedMode == .text {
-                selectedMode = .photo
-            } else if xDirection == .right, selectedMode == .photo {
-                selectedMode = .text
+            if xOld > xNew, difX > minXToChangeMode {
+                xDirection = .right
+            } else if xOld < xNew, difX > minXToChangeMode {
+                xDirection = .left
+            }
+
+            withAnimation {
+                if xDirection == .left, selectedMode == .text {
+                    selectedMode = .photo
+                } else if xDirection == .right, selectedMode == .photo {
+                    selectedMode = .text
+                }
+            }
+
+        } else {
+
+            if yOld < yNew, difY > minYToChangeMode {
+                yDirection = .top
+                isEditingText = false
+            } else if yOld > yNew, difY > minYToChangeMode {
+                yDirection = .bottom
+
+            }
+
+            withAnimation {
+                if yDirection == .bottom {
+                    destination = .feed
+                }
             }
         }
     }
-
-    private func changeModeWithyDirection() {
-        withAnimation {
-            if yDirection == .bottom {
-                destination = .feed
-            }
-        }
-    }
-
 }
