@@ -28,6 +28,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         if let _ = Auth.auth().settings {
             //setting.isAppVerificationDisabledForTesting = true
         }
+        do {
+            //get current user (so we can migrate later)
+            let user = Auth.auth().currentUser
+            //switch to using app group
+            try Auth.auth().useUserAccessGroup("group.FirebaseAuth")
+            //migrate current user
+            if let user = user {
+                Auth.auth().updateCurrentUser(user) { error in
+                    assertionFailure("User should not be nil.")
+                }
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
         return true
     }
 }
