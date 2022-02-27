@@ -68,6 +68,7 @@ struct FireWidgetEntryView : View {
         GeometryReader { geo in
             ZStack(alignment: .center){
                 Image(uiImage: image)
+                    .resizable()
                     .frame(width: geo.size.width, height: geo.size.height)
                     .background(.clear)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
