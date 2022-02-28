@@ -90,6 +90,7 @@
 		92FBDAD427B6B4B30062A9A7 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92FBDAD327B6B4B30062A9A7 /* PhoneNumberKit */; };
 		C12357A527BD2B4E0093D55E /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A427BD2B4E0093D55E /* Palette.swift */; };
 		C12357A827BEA0930093D55E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A727BEA0930093D55E /* Typography.swift */; };
+		C12357AB27C3921A0093D55E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357AA27C3921A0093D55E /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,7 @@
 		92FBDAD027B699820062A9A7 /* PhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
 		C12357A427BD2B4E0093D55E /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		C12357A727BEA0930093D55E /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		C12357AA27C3921A0093D55E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				92D0238B27B27D2100099E69 /* AppDelegate.swift */,
 				883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */,
 				882266EB27B2658C00501312 /* GrandaLocketApp.swift */,
+				C12357A927C391BF0093D55E /* Onboarding */,
 				9201AABC27BBCEAF00842557 /* CoordinatorView */,
 				92D14E5527C4346B00998DED /* MainView */,
 				92FBDACF27B699580062A9A7 /* Login */,
@@ -412,6 +415,14 @@
 			path = DesignKit;
 			sourceTree = "<group>";
 		};
+		C12357A927C391BF0093D55E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C12357AA27C3921A0093D55E /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -538,6 +549,7 @@
 				92FBDAD127B699820062A9A7 /* PhoneNumberView.swift in Sources */,
 				92664A5327B50850006C860E /* BlurView.swift in Sources */,
 				C12357A527BD2B4E0093D55E /* Palette.swift in Sources */,
+				C12357AB27C3921A0093D55E /* OnboardingView.swift in Sources */,
 				92FBDACC27B5971C0062A9A7 /* CameraModel.swift in Sources */,
 				C12357A827BEA0930093D55E /* Typography.swift in Sources */,
 				9201AAC027BBCEEC00842557 /* AppDestination.swift in Sources */,
