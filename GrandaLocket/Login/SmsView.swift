@@ -23,6 +23,10 @@ struct SmsView: View {
         self.phoneNumber = phoneNumber
         UITextField.appearance().keyboardAppearance = .dark
         self.otpCodeManager = OtpInputManager()
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+
+        }
     }
 
     var body: some View {
@@ -55,6 +59,9 @@ struct SmsView: View {
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.focusedField = .field
+                    if phoneNumber == "+16505551234" {
+                        self.otpCodeManager.text = "123654"
+                    }
                 }
             }
             .toolbar {

@@ -11,12 +11,11 @@ import Contacts
 struct ConnectContactsView: View {
 
     @Binding var destination: AppDestination
+    let syncContacts: Bool
 
     init(destination: Binding<AppDestination>, syncContacts: Bool) {
         self._destination = destination
-        if syncContacts == false {
-            self.destination = .main
-        }
+        self.syncContacts = syncContacts
     }
 
     var body: some View {
@@ -46,6 +45,11 @@ struct ConnectContactsView: View {
                     .opacity(0.8)
                     .lineSpacing(4)
                 FooterNextView(destination: $destination, nextDestination: .contacts)
+            }
+            .onAppear {
+                if syncContacts == false {
+                    self.destination = .main
+                }
             }
             .frame(maxWidth: .infinity)
             .background(Palette.blackHard)

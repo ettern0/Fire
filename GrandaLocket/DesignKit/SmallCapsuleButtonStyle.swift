@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct SmallCapsuleButtonStyle: ButtonStyle {
+
+    var active: Bool = true
+    var capsuleFillColor: Color {
+        return active ? Palette.accent: Palette.blackHight
+    }
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: 13).bold())
@@ -16,7 +22,7 @@ struct SmallCapsuleButtonStyle: ButtonStyle {
             .padding(.horizontal, 18)
             .background {
                 Capsule()
-                    .fill(Palette.accent)
+                    .fill(capsuleFillColor)
             }
     }
 }

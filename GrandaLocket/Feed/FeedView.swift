@@ -19,7 +19,7 @@ struct FeedView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 40) {
-                MyFeedView(viewModel: viewModel)
+                MyFeedView(viewModel: viewModel, destination: $destination)
                 MyFriendsFeedView(viewModel: viewModel, destination: $destination)
                 Spacer()
             }
@@ -113,7 +113,7 @@ private struct MyFriendsFeedView: View {
     var requestList: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Requests")
-                .font(Typography.headerM)
+                .font(Typography.headerS)
                 .padding(.bottom, 20)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
@@ -122,7 +122,6 @@ private struct MyFriendsFeedView: View {
                             VStack(spacing: 8) {
                                 ImageAvatar(image: contact.image, frame: CGSize(width: 70, height: 70))
                                 Text(contact.firstName)
-//                                    .frame(width: 70, height: 20)
                                     .font(Typography.description)
                                     .lineLimit(nil)
                             }
@@ -177,15 +176,37 @@ private struct MyFriendsFeedView: View {
     }
 }
 
+import Firebase
+
 private struct MyFeedView: View {
     @ObservedObject var viewModel: FeedViewModel
+    @Binding var destination: AppDestination
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("My Fire")
-                .font(Typography.headerM)
-                .padding(.bottom, 20)
+            HStack {
+                Text("My Fire")
+                    .font(Typography.headerM)
+                Spacer()
+                signOutButton
+            }
+            .padding(.bottom, 20)
             UserPhotosView(urls: viewModel.myPhotos)
+
+        }
+    }
+
+    var signOutButton: some View {
+        Button {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                destination = .phoneNumberAuth
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+        } label: {
+            Text("Sign out")
         }
     }
 }

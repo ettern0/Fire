@@ -27,7 +27,6 @@ final class ImageService {
         }
 
         guard let user = try? Auth.auth().getStoredUser(forAccessGroup: "group.FirebaseAuth") else {
-            assertionFailure("User should not be nil.")
             return completion([])
         }
 

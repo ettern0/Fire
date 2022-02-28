@@ -31,14 +31,13 @@ struct ContactsView: View {
                         ContactRow(contact: contact)
                             .listRowSeparator(.hidden)
                     }
-                    .listRowBackground(Palette.blackHard)
                     Spacer()
                         .frame(height: Self.footerHeight)
+                        .listRowSeparator(.hidden)
                 }
                 .animation(.default, value: contacts.contacts)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
-                .background(Palette.blackHard)
                 .navigationTitle("Add your friends")
                 .font(Typography.headerS)
                 FooterNextView(destination: $destination, nextDestination: .main)

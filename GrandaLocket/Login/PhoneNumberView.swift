@@ -66,9 +66,8 @@ struct PhoneNumberView: View {
     var signButton: some View {
         return Button {
             inProgress.toggle()
-            PhoneAuthProvider.provider()
-                .verifyPhoneNumber(phoneNumber.removeWhitespace()
-                    //"+16505551234"
+            PhoneAuthProvider.provider().verifyPhoneNumber(
+                    phoneNumber.removeWhitespace()
                     , uiDelegate: nil) { (verificationID, error) in
                         if let error = error {
                             inProgress.toggle()

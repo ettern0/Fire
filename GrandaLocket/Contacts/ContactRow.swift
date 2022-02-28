@@ -49,7 +49,7 @@ struct ContactRow: View {
             } label: {
                 buttonProperties.label
             }
-            .buttonStyle(SmallCapsuleButtonStyle())
+            .buttonStyle(SmallCapsuleButtonStyle(active: !buttonProperties.disabled))
             .disabled(buttonProperties.disabled)
         }
         .padding(.vertical, 10)

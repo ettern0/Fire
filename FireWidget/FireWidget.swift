@@ -26,7 +26,7 @@ struct FireTimelineProvider: TimelineProvider {
             var entries: [FireTimelineEntry] = []
             var policy: TimelineReloadPolicy
             var entry: FireTimelineEntry
-            policy = .after(Calendar.current.date(byAdding: .minute, value: 15, to: Date())!)
+            policy = .after(Calendar.current.date(byAdding: .minute, value: 1, to: Date())!)
 
             switch response {
             case .Failure:
@@ -71,7 +71,6 @@ struct FireWidgetEntryView : View {
                     .resizable()
                     .frame(width: geo.size.width, height: geo.size.height)
                     .background(.clear)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 Text(entry.text)
             }
         }
@@ -94,6 +93,6 @@ struct FireWidget: Widget {
         }
         .configurationDisplayName("Fire")
         .description("This widget show the images from your Fire friends")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .systemExtraLarge])
+        .supportedFamilies([.systemSmall, .systemLarge])
     }
 }

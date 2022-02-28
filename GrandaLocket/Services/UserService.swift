@@ -77,14 +77,16 @@ final class UserService {
             }
     }
 
-    func getContactOutsideContactList(contactPhones: [String],
-                                      completion: @escaping (String?, String, ContactStatus) -> Void) {
+    func getContactOutsideContactList
+        (contactPhones: [String],
+         completion: @escaping ([(id: String?, phone: String, status: ContactStatus)]) -> Void) {
 
         guard let user = Auth.auth().currentUser else {
             return
         }
 
         let uid = user.uid
+        var result: [(String?, String, ContactStatus)] = []
 
         db?.collection("contacts/\(uid)/contacts").getDocuments()
         { [weak self] (querySnapshot, err) in
@@ -94,9 +96,10 @@ final class UserService {
                     if let phone = document["phone"] as? String,
                        let status = document["status"] as? String,
                        !contactPhones.contains(phone) {
-                        completion(document.documentID, phone, contactStatus(from: status))
+                        result.append((document.documentID, phone, contactStatus(from: status)))
                     }
                 }
+                completion(result)
             }
         }
     }

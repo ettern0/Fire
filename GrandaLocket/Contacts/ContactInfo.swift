@@ -114,7 +114,8 @@ final class ContactsInfo: ObservableObject {
 
     private init() {
         self.contacts = []
-        self.requestAccess()
+        //self.requestAccess()
+        fetchIfNeeded()
 
         userService.addContactsListener { [weak self] in
             self?.fetchIfNeeded()
@@ -126,28 +127,6 @@ final class ContactsInfo: ObservableObject {
             isFetchingPlanned = true
         } else {
             fetchContactsInfo()
-        }
-    }
-
-    func requestAccess() {
-        let store = CNContactStore()
-        switch CNContactStore.authorizationStatus(for: .contacts) {
-        case .authorized:
-            self.fetchIfNeeded()
-        case .denied:
-            store.requestAccess(for: .contacts) { granted, error in
-                if granted {
-                    self.fetchIfNeeded()
-                }
-            }
-        case .restricted, .notDetermined:
-            store.requestAccess(for: .contacts) { granted, error in
-                if granted {
-                    self.fetchIfNeeded()
-                }
-            }
-        @unknown default:
-            print("error")
         }
     }
 
@@ -186,23 +165,25 @@ final class ContactsInfo: ObservableObject {
         }
 
         dispatchGroup.enter()
-        userService.getContactOutsideContactList(contactPhones: contactsPhones) { (id, phone, status) in
-            internalContacts.append(
-                ContactInfo(
-                    id: id,
-                    firstName: phone,
-                    lastName: "",
-                    phoneNumber: phone,
-                    status: status,
-                    image: nil
+        userService.getContactOutsideContactList(contactPhones: contactsPhones) { result in
+
+            result.forEach { element in
+                internalContacts.append(
+                    ContactInfo(
+                        id: element.id,
+                        firstName: element.phone,
+                        lastName: "",
+                        phoneNumber: element.phone,
+                        status: element.status,
+                        image: nil
+                    )
                 )
-            )
+            }
+            dispatchGroup.leave()
         }
-        dispatchGroup.leave()
 
         dispatchGroup.notify(queue: .main) {
             self.contacts = internalContacts
-
             self.isFetchingInProgress = false
             if self.isFetchingPlanned {
                 self.fetchIfNeeded()

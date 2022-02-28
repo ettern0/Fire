@@ -25,8 +25,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         AppearanceConfigurator.configure()
-        if let _ = Auth.auth().settings {
-            //setting.isAppVerificationDisabledForTesting = true
+        if let setting = Auth.auth().settings {
+            setting.isAppVerificationDisabledForTesting = true
         }
         do {
             //get current user (so we can migrate later)
@@ -36,7 +36,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             //migrate current user
             if let user = user {
                 Auth.auth().updateCurrentUser(user) { error in
-                    assertionFailure("User should not be nil.")
+                    //assertionFailure("User should not be nil.")
                 }
             }
         }
