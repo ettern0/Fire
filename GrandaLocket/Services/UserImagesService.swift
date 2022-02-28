@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
+import FirebaseFirestore
 
 final class UserImagesService: ObservableObject {
     private let storage: Storage
