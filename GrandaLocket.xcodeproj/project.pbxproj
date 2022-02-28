@@ -105,6 +105,7 @@
 		C12357A527BD2B4E0093D55E /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A427BD2B4E0093D55E /* Palette.swift */; };
 		C12357A827BEA0930093D55E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357A727BEA0930093D55E /* Typography.swift */; };
 		C12357AB27C3921A0093D55E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12357AA27C3921A0093D55E /* OnboardingView.swift */; };
+		C1DBE88527CCFD91001B5704 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DBE88427CCFD91001B5704 /* PageControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +225,7 @@
 		C12357A427BD2B4E0093D55E /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		C12357A727BEA0930093D55E /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C12357AA27C3921A0093D55E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C1DBE88427CCFD91001B5704 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				C12357AA27C3921A0093D55E /* OnboardingView.swift */,
+				C1DBE88427CCFD91001B5704 /* PageControl.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				922F74AF27BE876600E03453 /* LargeCapsuleButtonStyle.swift in Sources */,
 				92C5E68B27BD12FB00C6276A /* ConnectView.swift in Sources */,
 				92E4F57527C409A90040E25B /* FooterSendView.swift in Sources */,
+				C1DBE88527CCFD91001B5704 /* PageControl.swift in Sources */,
 				92E4F57927C41EB10040E25B /* SendSelectedMode.swift in Sources */,
 				92AEBD5027BA945100654E4B /* SmsView.swift in Sources */,
 				92E9C96F27C38F28002A7501 /* ContactFunctions.swift in Sources */,

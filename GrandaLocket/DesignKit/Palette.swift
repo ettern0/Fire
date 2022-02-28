@@ -10,7 +10,7 @@ import SwiftUI
 enum Palette {
     static let blackHard = Color(rgb: 0x110E15)
     static let blackMiddle = Color(rgb: 0x252525)
-    static let blackHight = Color(rgb: 0x6B6B6B)
+    static let blackLight = Color(rgb: 0x6B6B6B)
     static let blackOpacity = Color(rgb: 0x000000).opacity(0.4)
 
     static let whiteHard = Color(rgb: 0xFFFFFF)
