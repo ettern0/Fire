@@ -6,6 +6,8 @@
 //
 
 import Firebase
+import FirebaseStorage
+import FirebaseFirestore
 
 struct RemotePhoto: Equatable {
     let url: URL

@@ -10,7 +10,7 @@ import Firebase
 
 struct ContentView: View {
 
-    @State var destination: AppDestination = .phoneNumberAuth
+    @State var destination: AppDestination = .connectContacts
     @State var phoneNumber: String = ""
     @State var syncContacts: Bool = true
     @State var snapshotImage: UIImage = UIImage()
@@ -25,7 +25,7 @@ struct ContentView: View {
         Group {
             switch destination {
             case .onboarding:
-                EmptyView()
+                OnboardingView()
             case .phoneNumberAuth:
                 PhoneNumberView(syncContacts: $syncContacts, phoneNumber: $phoneNumber, destination: $destination)
             case .smsAuth:
