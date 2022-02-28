@@ -53,3 +53,9 @@ extension UIColor {
         .init(self)
     }
 }
+
+extension Color {
+    var uiColor: UIColor {
+        .init(self)
+    }
+}

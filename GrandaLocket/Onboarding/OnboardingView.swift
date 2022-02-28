@@ -8,90 +8,69 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @State private var selection: Int = 0
+    @Binding var destination: AppDestination
 
-        var body: some View {
-            TabView {
-                VStack {
-                    Text("Add the widget")
-                    .padding(.horizontal, 91)
-                    .padding(.top, 101)
-                    .padding(.bottom, 12)
-                    .foregroundColor(.white)
-                    .font(Typography.headerL)
-                    .multilineTextAlignment(.center)
-                    Text("Long tap on the home screen to add a widget and adjust it's size")
-                    .padding(.horizontal, 63)
-                    .padding(.bottom, 40)
-                    .foregroundColor(.white)
-                    .font(Typography.description)
-                    .multilineTextAlignment(.center)
-                    .opacity(0.8)
-                    .lineSpacing(4)
-                    Spacer()
-                    Image("phoneMockup")
-                    .padding(.bottom, 0)
-                }
-                VStack {
-                    Text("Send your Fire")
-                    .padding(.horizontal, 91)
-                    .padding(.top, 101)
-                    .padding(.bottom, 12)
-                    .foregroundColor(.white)
-                    .font(Typography.headerL)
-                    .multilineTextAlignment(.center)
-                    Text("Share messages and photos with your friends using the widget")
-                    .padding(.horizontal, 63)
-                    .padding(.bottom, 40)
-                    .foregroundColor(.white)
-                    .font(Typography.description)
-                    .multilineTextAlignment(.center)
-                    .opacity(0.8)
-                    .lineSpacing(4)
-                    Spacer()
-                    Image("phoneMockup")
-                    .padding(.bottom, 0)
-                }
-                VStack {
-                Text("React this 🔥")
-                    .padding(.horizontal, 91)
-                    .padding(.top, 101)
-                    .padding(.bottom, 12)
-                    .foregroundColor(.white)
-                    .font(Typography.headerL)
-                    .multilineTextAlignment(.center)
-                    Text("Put a reaction to the best messages, see how many friends reacted to you")
-                        .padding(.horizontal, 63)
-                        .padding(.bottom, 40)
+    var body: some View {
+        NavigationView {
+            TabView(selection: $selection) {
+                content(
+                    title: "Add the widget",
+                    subtitle: "Long tap on the home screen to add\na widget and adjust it's size",
+                    imageName: "phoneMockup"
+                )
+                .tag(0)
+                content(
+                    title: "Send your Fire",
+                    subtitle: "Share messages and photos\nwith your friends using the widget",
+                    imageName: "phoneMockup"
+                ).tag(1)
+                content(
+                    title: "React this 🔥",
+                    subtitle: "Put a reaction to the best messages,\nsee how many friends reacted to you",
+                    imageName: "phoneMockup"
+                ).tag(2)
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        destination = .phoneNumberAuth
+                    } label: {
+                        Text("Skip")
                         .foregroundColor(.white)
-                        .font(Typography.description)
-                        .multilineTextAlignment(.center)
-                        .opacity(0.8)
-                        .lineSpacing(4)
-                    Spacer()
-                    Image("phoneMockup")
-                    .padding(.bottom, 0)
+
+                    }
                 }
             }
-            .tabViewStyle(.page)
-            
-//        label: {
-//            HStack {
-//                if inProgress {
-//                    ProgressView()
-//                        .scaleEffect(1.5, anchor: .center)
-//                        .foregroundColor(.white)
-//                } else {
-//                    Text("Next")
-//                        .foregroundColor(.white)
-//                        .font(Typography.controlL)
-//                }
-//            }
+            .navigationBarTitle("", displayMode: .inline)
         }
     }
 
-//                FooterView(destination: $destination, nextDestination: .contacts)
-//            .frame(maxWidth: .infinity)
-//            .background(Palette.blackHard)
-
+    func content(title: String, subtitle: String, imageName: String) -> some View {
+        VStack {
+            Text(title)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
+                .foregroundColor(.white)
+                .font(Typography.headerL)
+                .multilineTextAlignment(.center)
+            Text(subtitle)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
+                .foregroundColor(.white)
+                .font(Typography.description)
+                .multilineTextAlignment(.center)
+                .opacity(0.8)
+                .lineSpacing(4)
+            PageControl(numberOfPages: 3, currentPage: $selection)
+            Spacer()
+            Image(imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(.bottom, 0)
+        }
+    }
+}
 
 
