@@ -14,10 +14,7 @@ struct PhoneNumberView: View {
 
     var body: some View {
         NavigationView {
-
-
             VStack {
-
                 header
                 PhoneNumberField(phoneNumber: $phoneNumber)
                     .frame(height: 60)
@@ -37,7 +34,6 @@ struct PhoneNumberView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     signButton
                 }
-
             }
         }
     }

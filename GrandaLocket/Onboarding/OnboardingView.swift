@@ -37,9 +37,8 @@ struct OnboardingView: View {
                     Button {
                         destination = .phoneNumberAuth
                     } label: {
-                        Text("Skip")
+                        Text(selection == 2 ? "Next" : "Skip")
                         .foregroundColor(.white)
-
                     }
                 }
             }
@@ -47,7 +46,7 @@ struct OnboardingView: View {
         }
     }
 
-    func content(title: String, subtitle: String, imageName: String) -> some View {
+    private func content(title: String, subtitle: String, imageName: String) -> some View {
         VStack {
             Text(title)
                 .padding(.horizontal, 16)
