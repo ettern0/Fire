@@ -11,7 +11,7 @@ struct SmallCapsuleButtonStyle: ButtonStyle {
 
     var active: Bool = true
     var capsuleFillColor: Color {
-        return active ? Palette.accent: Palette.blackHight
+        return active ? Palette.accent: Palette.blackLight
     }
 
     func makeBody(configuration: Configuration) -> some View {

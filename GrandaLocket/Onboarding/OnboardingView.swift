@@ -17,18 +17,18 @@ struct OnboardingView: View {
                 content(
                     title: "Add the widget",
                     subtitle: "Long tap on the home screen to add\na widget and adjust it's size",
-                    imageName: "phoneMockup"
+                    imageName: "Onboarding1"
                 )
                 .tag(0)
                 content(
                     title: "Send your Fire",
                     subtitle: "Share messages and photos\nwith your friends using the widget",
-                    imageName: "phoneMockup"
+                    imageName: "Onboarding2"
                 ).tag(1)
                 content(
                     title: "React this 🔥",
                     subtitle: "Put a reaction to the best messages,\nsee how many friends reacted to you",
-                    imageName: "phoneMockup"
+                    imageName: "Onboarding3"
                 ).tag(2)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

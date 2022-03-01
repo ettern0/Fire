@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "phone-mockup.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "phone-mockup@2x.png",
+      "filename" : "2@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "phone-mockup@3x.png",
+      "filename" : "2@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
