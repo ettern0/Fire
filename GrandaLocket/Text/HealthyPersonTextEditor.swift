@@ -143,7 +143,7 @@ final class TextViewCoordinator: NSObject, UITextViewDelegate {
         textView.fitTextToBounds(maxSize: 100)
     }
 
-    func textViewDidBeginEditing(_: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         setIsEditing(to: true)
     }
 
@@ -203,6 +203,13 @@ struct TextViewRepresentable: UIViewRepresentable {
         let textView = VerticallyCenteredTextView()
         textView.delegate = context.coordinator
         textView.font = font
+
+        let item = textView.inputAssistantItem
+        item.leadingBarButtonGroups = []
+        item.trailingBarButtonGroups = []
+
+        textView.reloadInputViews()
+
         return textView
     }
 
@@ -225,6 +232,8 @@ struct TextViewRepresentable: UIViewRepresentable {
         textView.backgroundColor = backgroundColor
         textView.returnKeyType = returnType
         textView.keyboardDismissMode = keyboardDismissMode
+        textView.autocorrectionType = .no
+        textView.keyboardType = .asciiCapable
         textView.isEditable = isEditable
         textView.isSelectable = isSelectable
         textView.isScrollEnabled = isScrollingEnabled
@@ -237,6 +246,23 @@ struct TextViewRepresentable: UIViewRepresentable {
         )
 
         textView.textContainer.maximumNumberOfLines = 100
+
+        let toolbar = UIToolbar(
+            frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
+        )
+        toolbar.items = [
+            .flexibleSpace(),
+            .init(
+                title: nil,
+                image: UIImage(systemName: "keyboard.chevron.compact.down"),
+                primaryAction: .init { _ in
+                    textView.resignFirstResponder()
+                },
+                menu: nil
+            )
+        ]
+        toolbar.tintColor = .white
+        textView.inputAccessoryView = toolbar
 
         DispatchQueue.main.async {
             _ = self.isEditing
