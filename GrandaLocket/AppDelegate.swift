@@ -25,9 +25,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         AppearanceConfigurator.configure()
-        if let setting = Auth.auth().settings {
-            setting.isAppVerificationDisabledForTesting = true
-        }
+//        if let setting = Auth.auth().settings {
+//            setting.isAppVerificationDisabledForTesting = true
+//        }
         do {
             //get current user (so we can migrate later)
             let user = Auth.auth().currentUser
