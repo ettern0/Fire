@@ -408,6 +408,8 @@ public class CameraService {
                 // Sets the flash option for this capture.
                 if self.videoDeviceInput.device.isFlashAvailable {
                     photoSettings.flashMode = self.flashMode
+                } else {
+                    
                 }
                 
                 photoSettings.isHighResolutionPhotoEnabled = true

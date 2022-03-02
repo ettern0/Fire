@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import Foundation
+import AVFoundation
 
 final class CameraModel: ObservableObject {
     let videoProvider: VideoProvider
@@ -68,5 +69,30 @@ final class CameraModel: ObservableObject {
 
     func switchFlash() {
         service.flashMode = service.flashMode == .on ? .off : .on
+        AVCaptureDevice.toggleTorch(on: service.flashMode == .on)
+    }
+}
+
+extension AVCaptureDevice {
+    static func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+
+                if on == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
+        }
     }
 }
