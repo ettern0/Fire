@@ -140,6 +140,8 @@
 		882266FD27B2C5D900501312 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883BFE1D27C6F2EC009BC9C0 /* AppearanceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceConfigurator.swift; sourceTree = "<group>"; };
 		883BFE1F27C6FA06009BC9C0 /* ScreenshotMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotMaker.swift; sourceTree = "<group>"; };
+		884C2B1427D0CF52002128E6 /* FireWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireWidgetExtension.entitlements; sourceTree = "<group>"; };
+		884C2B1527D0CF72002128E6 /* FireWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		884D537F27B58FF500C23FF5 /* VideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProvider.swift; sourceTree = "<group>"; };
 		884D538A27BA78FE00C23FF5 /* TextLocketStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLocketStyle.swift; sourceTree = "<group>"; };
 		884D538C27BA9E4F00C23FF5 /* TextViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewBackground.swift; sourceTree = "<group>"; };
@@ -261,6 +263,8 @@
 		882266DF27B2658C00501312 = {
 			isa = PBXGroup;
 			children = (
+				884C2B1527D0CF72002128E6 /* FireWidgetExtensionRelease.entitlements */,
+				884C2B1427D0CF52002128E6 /* FireWidgetExtension.entitlements */,
 				926124AA27CB976000CE6B80 /* FireWidgetExtensionDebug.entitlements */,
 				882266EA27B2658C00501312 /* GrandaLocket */,
 				9261249827CB973B00CE6B80 /* FireWidget */,
@@ -919,7 +923,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.magauran.GrandaLocket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Granda Locket";
+				PROVISIONING_PROFILE_SPECIFIER = Fire;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1028,7 +1032,7 @@
 				CODE_SIGN_ENTITLEMENTS = FireWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = XJB6H4WXH3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FireWidget/Info.plist;
@@ -1055,8 +1059,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = FireWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FireWidget/Info.plist;
@@ -1083,9 +1088,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = FireWidgetExtensionRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FireWidget/Info.plist;
@@ -1098,8 +1104,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ettern0.GrandaLocket.FireWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.magauran.GrandaLocket.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Fire Widget";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
