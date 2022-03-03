@@ -32,7 +32,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             //get current user (so we can migrate later)
             let user = Auth.auth().currentUser
             //switch to using app group
-            try Auth.auth().useUserAccessGroup("group.FirebaseAuth")
+            try Auth.auth().useUserAccessGroup("group.com.magauran.fire")
             //migrate current user
             if let user = user {
                 Auth.auth().updateCurrentUser(user) { error in

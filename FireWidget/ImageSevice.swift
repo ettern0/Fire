@@ -26,7 +26,7 @@ final class ImageService {
             return completion([])
         }
 
-        guard let user = try? Auth.auth().getStoredUser(forAccessGroup: "group.FirebaseAuth") else {
+        guard let user = try? Auth.auth().getStoredUser(forAccessGroup: "group.com.magauran.fire") else {
             return completion([])
         }
 

@@ -22,7 +22,7 @@ final class ImageProvider: ObservableObject {
             
             let reversedPhoto = photos.reversed()
             
-            guard let user = try? Auth.auth().getStoredUser(forAccessGroup: "group.FirebaseAuth") else {
+            guard let user = try? Auth.auth().getStoredUser(forAccessGroup: "group.com.magauran.fire") else {
                 assertionFailure("User should not be nil.")
                 return
             }
