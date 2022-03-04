@@ -11,6 +11,7 @@ struct ContactsView: View {
 
     @Binding var destination: AppDestination
     @ObservedObject private var contacts = ContactsInfo.instance
+    let showNextStep: Bool
 
     private static var footerHeight: CGFloat {
         48 + 16 + 16 + (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0)
@@ -40,7 +41,9 @@ struct ContactsView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Add your friends")
                 .font(Typography.headerS)
-                FooterNextView(destination: $destination, nextDestination: .main)
+                if showNextStep {
+                    FooterNextView(destination: $destination, nextDestination: .main)
+                }
             }
             .ignoresSafeArea(edges: .bottom)
         }

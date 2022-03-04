@@ -12,15 +12,17 @@ struct FeedView: View {
     @Binding var destination: AppDestination
     @State private var yDirection: GesturesDirection = .bottom
     @ObservedObject var viewModel = FeedViewModel()
+    @State var showContacts: Bool = false
     private var minYToChangeMode: CGFloat {
         UIScreen.main.bounds.height * 0.1
     }
+
 
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 40) {
                 MyFeedView(viewModel: viewModel, destination: $destination)
-                MyFriendsFeedView(viewModel: viewModel, destination: $destination)
+                MyFriendsFeedView(viewModel: viewModel, destination: $destination, showContacts: $showContacts)
                 Spacer()
             }
             .gesture(
@@ -71,6 +73,7 @@ private struct MyFriendsFeedView: View {
     @ObservedObject var viewModel: FeedViewModel
     @Binding var destination: AppDestination
     @ObservedObject private var contacts = ContactsInfo.instance
+    @Binding var showContacts: Bool
 
     var filteredContacts: [ContactInfo] {
         let request = contacts.contacts.filter { $0.status == .inContacts(.incomingRequest) }
@@ -139,11 +142,15 @@ private struct MyFriendsFeedView: View {
 
     var addButton: some View {
         Button {
-            destination = .contacts
+            showContacts.toggle()
+            //destination = .contacts
         } label: {
             Text("Add friends")
                 .font(Typography.controlL)
                 .foregroundColor(Palette.accent)
+        }
+        .sheet(isPresented: $showContacts) {
+            ContactsView(destination: $destination, showNextStep: false)
         }
     }
 
