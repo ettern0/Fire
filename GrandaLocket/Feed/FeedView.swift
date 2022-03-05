@@ -25,13 +25,6 @@ struct FeedView: View {
                     .padding(.bottom, 40)
                 MyFriendsFeedView(viewModel: viewModel, destination: $destination, showContacts: $showContacts)
             }
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        changeyDirection(value.startLocation.y, value.location.y)
-                        changeModeWithyDirection()
-                    }
-            )
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button {
@@ -47,23 +40,6 @@ struct FeedView: View {
                         }
                     }
                 }
-            }
-        }
-    }
-
-    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
-        let dif = abs(yOld - yNew)
-        if yOld < yNew, dif > minYToChangeMode {
-            yDirection = .top
-        } else if yOld > yNew, dif > minYToChangeMode {
-            yDirection = .bottom
-        }
-    }
-
-    private func changeModeWithyDirection() {
-        withAnimation {
-            if yDirection == .top {
-                destination = .main
             }
         }
     }
