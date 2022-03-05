@@ -20,10 +20,10 @@ struct FeedView: View {
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 40) {
+            ScrollView(showsIndicators: false) {
                 MyFeedView(viewModel: viewModel, destination: $destination)
+                    .padding(.bottom, 40)
                 MyFriendsFeedView(viewModel: viewModel, destination: $destination, showContacts: $showContacts)
-                Spacer()
             }
             .gesture(
                 DragGesture()
@@ -85,28 +85,26 @@ private struct MyFriendsFeedView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            ScrollView(showsIndicators: false) {
-                HStack {
-                    Text("My Friends")
-                        .font(Typography.headerM)
-                        .padding(.bottom, 20)
+            HStack {
+                Text("My Friends")
+                    .font(Typography.headerM)
+                    .padding(.bottom, 20)
+                Spacer()
+                VStack() {
+                    addButton
                     Spacer()
-                    VStack() {
-                        addButton
-                        Spacer()
-                    }
                 }
-                if filteredContacts.count > 0 {
-                    requestList
-                }
-                ForEach(viewModel.friends, id: \.self) { friend in
-                    if friend.url.count > 0 {
-                        VStack(alignment: .leading) {
-                            Text(friend.name)
-                                .font(Typography.headerS)
-                                .padding(.bottom, 20)
-                            UserPhotosView(urls: friend.url)
-                        }
+            }
+            if filteredContacts.count > 0 {
+                requestList
+            }
+            ForEach(viewModel.friends, id: \.self) { friend in
+                if friend.url.count > 0 {
+                    VStack(alignment: .leading) {
+                        Text(friend.name)
+                            .font(Typography.headerS)
+                            .padding(.bottom, 20)
+                        UserPhotosView(urls: friend.url)
                     }
                 }
             }
