@@ -193,7 +193,7 @@ private struct MyFeedView: View {
                 Text("My Fire")
                     .font(Typography.headerM)
                 Spacer()
-                signOutButton
+  //              signOutButton
             }
             .padding(.bottom, 20)
             UserPhotosView(urls: viewModel.myPhotos)
