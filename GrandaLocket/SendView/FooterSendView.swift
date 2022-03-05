@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+private enum SendStatus {
+    case inProgress, success
+}
+
 struct FooterSendView: View {
     @Binding var destination: AppDestination
     @Binding var selectedMode: SendSelectedMode
@@ -16,7 +20,7 @@ struct FooterSendView: View {
     private let buttonHeight: CGFloat = 48
     private let spacingHStack: CGFloat = 24
     private let widthOfButtonSend: CGFloat = 115
-    @State var isLoading: Bool = false
+    @State private var sendStatus: SendStatus?
     @State var selectedIDs: [String] = []
     private let imagesService = UserImagesService()
 
@@ -41,18 +45,25 @@ struct FooterSendView: View {
                     }
                 }
                 Button {
-                    isLoading = true
+                    sendStatus = .inProgress
                     imagesService.send(
                         image: snapshotImage,
                         to: viewModel.friends.filter(\.isSelected).compactMap(\.id)
                     ) { status in
-                        isLoading = false
-                        destination = .main
+                        sendStatus = .success
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                            destination = .main
+                        }
                     }
                 } label: {
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                    if let progress = sendStatus {
+                        switch progress {
+                        case .inProgress:
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                        case .success:
+                            LottieView(name: "checkmark")
+                        }
                     } else {
                         Text("SEND")
                     }
