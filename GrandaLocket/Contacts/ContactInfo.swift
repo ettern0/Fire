@@ -141,27 +141,27 @@ final class ContactsInfo: ObservableObject {
         contactsFromList.forEach { contact in
             contact.phoneNumbers.forEach { phone in
                 if phone.value.stringValue.count > 10, !contact.givenName.isEmpty {//pass some services with short numbers and contacts without given name
-
-
                     contactsPhones.append(phone.value.stringValue.unformatted)
                     dispatchGroup.enter()
                     userService.checkUserStatus(by: phone.value.stringValue.unformatted) { (id, status) in
 
-                        var image: UIImage?
-                        if let imageData = contact.thumbnailImageData {
-                            image = UIImage(data: imageData)
-                        }
+                        if status != .notRegistered {//only registered users
+                            var image: UIImage?
+                            if let imageData = contact.thumbnailImageData {
+                                image = UIImage(data: imageData)
+                            }
 
-                        internalContacts.append(
-                            ContactInfo(
-                                id: id,
-                                firstName: contact.givenName,
-                                lastName: contact.familyName,
-                                phoneNumber: phone.value.stringValue,
-                                status: status,
-                                image: image
+                            internalContacts.append(
+                                ContactInfo(
+                                    id: id,
+                                    firstName: contact.givenName,
+                                    lastName: contact.familyName,
+                                    phoneNumber: phone.value.stringValue,
+                                    status: status,
+                                    image: image
+                                )
                             )
-                        )
+                        }
                         dispatchGroup.leave()
                     }
                 }
