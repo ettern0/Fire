@@ -12,24 +12,19 @@ struct FeedView: View {
     @Binding var destination: AppDestination
     @State private var yDirection: GesturesDirection = .bottom
     @ObservedObject var viewModel = FeedViewModel()
+    @State var showContacts: Bool = false
     private var minYToChangeMode: CGFloat {
         UIScreen.main.bounds.height * 0.1
     }
 
+
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 40) {
+            ScrollView(showsIndicators: false) {
                 MyFeedView(viewModel: viewModel, destination: $destination)
-                MyFriendsFeedView(viewModel: viewModel, destination: $destination)
-                Spacer()
+                    .padding(.bottom, 40)
+                MyFriendsFeedView(viewModel: viewModel, destination: $destination, showContacts: $showContacts)
             }
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        changeyDirection(value.startLocation.y, value.location.y)
-                        changeModeWithyDirection()
-                    }
-            )
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button {
@@ -48,29 +43,13 @@ struct FeedView: View {
             }
         }
     }
-
-    private func changeyDirection(_ yOld: CGFloat, _ yNew: CGFloat) {
-        let dif = abs(yOld - yNew)
-        if yOld < yNew, dif > minYToChangeMode {
-            yDirection = .top
-        } else if yOld > yNew, dif > minYToChangeMode {
-            yDirection = .bottom
-        }
-    }
-
-    private func changeModeWithyDirection() {
-        withAnimation {
-            if yDirection == .top {
-                destination = .main
-            }
-        }
-    }
 }
 
 private struct MyFriendsFeedView: View {
     @ObservedObject var viewModel: FeedViewModel
     @Binding var destination: AppDestination
     @ObservedObject private var contacts = ContactsInfo.instance
+    @Binding var showContacts: Bool
 
     var filteredContacts: [ContactInfo] {
         let request = contacts.contacts.filter { $0.status == .inContacts(.incomingRequest) }
@@ -82,28 +61,26 @@ private struct MyFriendsFeedView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            ScrollView(showsIndicators: false) {
-                HStack {
-                    Text("My Friends")
-                        .font(Typography.headerM)
-                        .padding(.bottom, 20)
+            HStack {
+                Text("My Friends")
+                    .font(Typography.headerM)
+                    .padding(.bottom, 20)
+                Spacer()
+                VStack() {
+                    addButton
                     Spacer()
-                    VStack() {
-                        addButton
-                        Spacer()
-                    }
                 }
-                if filteredContacts.count > 0 {
-                    requestList
-                }
-                ForEach(viewModel.friends, id: \.self) { friend in
-                    if friend.url.count > 0 {
-                        VStack(alignment: .leading) {
-                            Text(friend.name)
-                                .font(Typography.headerS)
-                                .padding(.bottom, 20)
-                            UserPhotosView(urls: friend.url)
-                        }
+            }
+            if filteredContacts.count > 0 {
+                requestList
+            }
+            ForEach(viewModel.friends, id: \.self) { friend in
+                if friend.url.count > 0 {
+                    VStack(alignment: .leading) {
+                        Text(friend.name)
+                            .font(Typography.headerS)
+                            .padding(.bottom, 20)
+                        UserPhotosView(urls: friend.url)
                     }
                 }
             }
@@ -139,11 +116,15 @@ private struct MyFriendsFeedView: View {
 
     var addButton: some View {
         Button {
-            destination = .contacts
+            showContacts.toggle()
+            //destination = .contacts
         } label: {
             Text("Add friends")
                 .font(Typography.controlL)
                 .foregroundColor(Palette.accent)
+        }
+        .sheet(isPresented: $showContacts) {
+            ContactsView(destination: $destination, showNextStep: false)
         }
     }
 
@@ -188,7 +169,7 @@ private struct MyFeedView: View {
                 Text("My Fire")
                     .font(Typography.headerM)
                 Spacer()
-//                signOutButton
+  //              signOutButton
             }
             .padding(.bottom, 20)
             UserPhotosView(urls: viewModel.myPhotos)

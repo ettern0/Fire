@@ -113,7 +113,7 @@ struct MainView: View {
                 snapshotImage = image
                 destination = .send
             } else {
-                assertionFailure("Can not create snapshot")
+//                assertionFailure("Can not create snapshot")
             }
             destination = .send
         }, label: {
